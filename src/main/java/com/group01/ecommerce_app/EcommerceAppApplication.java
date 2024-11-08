@@ -31,14 +31,14 @@ public class EcommerceAppApplication {
 	public CommandLineRunner initializeDatabase() {
 		return args -> {
 			// Initialize roles
-			addRoleIfNotFound("ROLE_ADMIN");
-			addRoleIfNotFound("ROLE_SELLER");
-			addRoleIfNotFound("ROLE_BUYER");
+			addRoleIfNotFound("ADMIN");
+			addRoleIfNotFound("SELLER");
+			addRoleIfNotFound("BUYER");
 
 			// Initialize sample users
-			addUserIfNotFound("admin@example.com", "admin123", "ROLE_ADMIN");
-			addUserIfNotFound("seller@example.com", "seller123", "ROLE_SELLER");
-			addUserIfNotFound("buyer@example.com", "buyer123", "ROLE_BUYER");
+			addUserIfNotFound("admin@example.com", "admin123", "ADMIN");
+			addUserIfNotFound("seller@example.com", "seller123", "SELLER");
+			addUserIfNotFound("buyer@example.com", "buyer123", "BUYER");
 			System.out.println("finished initializeDatabase");
 		};
 	}
