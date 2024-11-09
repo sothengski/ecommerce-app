@@ -15,6 +15,7 @@ public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false)
 	private int id;
 
 	@Column(name = "name")
@@ -22,6 +23,11 @@ public class Role implements Serializable {
 
 	// Constructors
 	public Role() {
+	}
+
+	public Role(int id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	public Role(String name) {
