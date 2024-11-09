@@ -8,13 +8,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data // @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode
+@Builder
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
 	private int id;
 
@@ -22,37 +30,37 @@ public class Role implements Serializable {
 	private String name;
 
 	// Constructors
-	public Role() {
-	}
+	// public Role() {
+	// }
 
-	public Role(int id, String name) {
-		this.id = id;
-		this.name = name;
-	}
+	// public Role(int id, String name) {
+	// this.id = id;
+	// this.name = name;
+	// }
 
 	public Role(String name) {
 		this.name = name;
 	}
 
 	// Getters and Setters
-	public int getId() {
-		return id;
-	}
+	// public int getId() {
+	// return id;
+	// }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	// public void setId(int id) {
+	// this.id = id;
+	// }
 
-	public String getName() {
-		return name;
-	}
+	// public String getName() {
+	// return name;
+	// }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	// public void setName(String name) {
+	// this.name = name;
+	// }
 
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", name=" + name + "]";
-	}
+	// @Override
+	// public String toString() {
+	// return "Role [id=" + id + ", name=" + name + "]";
+	// }
 }

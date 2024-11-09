@@ -18,7 +18,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -63,8 +71,8 @@ public class User implements Serializable {
     private Date updatedAt;
 
     // Constructors
-    public User() {
-    }
+    // public User() {
+    // }
 
     public User(Boolean active) {
         this.active = active;
@@ -89,93 +97,93 @@ public class User implements Serializable {
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    // public Long getId() {
+    // return id;
+    // }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // public void setId(Long id) {
+    // this.id = id;
+    // }
 
-    public String getEmail() {
-        return email;
-    }
+    // public String getEmail() {
+    // return email;
+    // }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    // public void setEmail(String email) {
+    // this.email = email;
+    // }
 
-    public String getPassword() {
-        return password;
-    }
+    // public String getPassword() {
+    // return password;
+    // }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    // public void setPassword(String password) {
+    // this.password = password;
+    // }
 
-    public Role getRole() {
-        return role;
-    }
+    // public Role getRole() {
+    // return role;
+    // }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+    // public void setRole(Role role) {
+    // this.role = role;
+    // }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+    // public Date getCreatedAt() {
+    // return createdAt;
+    // }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+    // public void setCreatedAt(Date createdAt) {
+    // this.createdAt = createdAt;
+    // }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
+    // public Date getUpdatedAt() {
+    // return updatedAt;
+    // }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    // public void setUpdatedAt(Date updatedAt) {
+    // this.updatedAt = updatedAt;
+    // }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    // public String getFirstName() {
+    // return firstName;
+    // }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    // public void setFirstName(String firstName) {
+    // this.firstName = firstName;
+    // }
 
-    public String getLastName() {
-        return lastName;
-    }
+    // public String getLastName() {
+    // return lastName;
+    // }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    // public void setLastName(String lastName) {
+    // this.lastName = lastName;
+    // }
 
-    public String getPhone() {
-        return phone;
-    }
+    // public String getPhone() {
+    // return phone;
+    // }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    // public void setPhone(String phone) {
+    // this.phone = phone;
+    // }
 
-    public String getAddress() {
-        return address;
-    }
+    // public String getAddress() {
+    // return address;
+    // }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    // public void setAddress(String address) {
+    // this.address = address;
+    // }
 
-    public Boolean getActive() {
-        return active;
-    }
+    // public Boolean getActive() {
+    // return active;
+    // }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+    // public void setActive(Boolean active) {
+    // this.active = active;
+    // }
 
 }
 
