@@ -25,6 +25,13 @@ public class RoleController {
     @Autowired
     private RoleRepository roleRepository;
 
+    // Constructor injection instead of Autowired
+    // private final RoleRepository roleRepository;
+
+    // public RoleController(RoleRepository roleRepository) {
+    // this.roleRepository = roleRepository;
+    // }
+
     // Get all roles
     @GetMapping("/roles")
     public ResponseEntity<List<Role>> getAllRoles() {
@@ -58,11 +65,6 @@ public class RoleController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        //// Another Short Way
-        // return roleRepository.findById(id)
-        // .map(ResponseEntity::ok)
-        // .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Get all users by roleID
@@ -77,9 +79,6 @@ public class RoleController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
-        //// Another Short Way
-        // return ResponseEntity.ok(roleRepository.save(role));
     }
 
     // Update an existing role
@@ -106,8 +105,6 @@ public class RoleController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        //// Another Short Way
-        // return ResponseEntity.ok(roleService.updateRole(id, role));
     }
 
     // Delete a role
@@ -121,9 +118,5 @@ public class RoleController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
-        //// Another Short Way
-        // roleService.deleteRole(id);
-        // return ResponseEntity.noContent().build();
     }
 }
