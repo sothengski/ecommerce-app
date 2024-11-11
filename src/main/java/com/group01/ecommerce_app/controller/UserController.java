@@ -30,8 +30,6 @@ import com.group01.ecommerce_app.model.UserRepository;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
     @Autowired
     private UserRepository userRepository;
 
@@ -91,60 +89,49 @@ public class UserController {
         }
     }
 
-    // @PostMapping
-    // public ResponseEntity<?> createUser(@RequestBody UserCreateRequestDTO
-    // userData) {
-    // try {
-    // // Encrypt the password
-    // // user.setPassword(passwordEncoder.encode(user.getPassword()));
-    // // Check if the email already exists
-    // if (userRepository.findByEmail(userData.getEmail()).isPresent()) {
-    // return new ResponseEntity<>("Email already in use", HttpStatus.BAD_REQUEST);
-    // }
-    // // Find the role by ID
-    // Optional<Role> roleOpt = roleRepository.findById(userData.getRoleId());
-    // if (roleOpt.isEmpty()) {
-    // return new ResponseEntity<>("Role not found", HttpStatus.BAD_REQUEST);
-    // }
-    // Role role = roleOpt.get();
-    // // // Print role to console
-    // // System.out.println("Role fetched: " + role);
+    @PostMapping
+    public ResponseEntity<ApiResponse<UserDTO>> createUser(@RequestBody UserCreateRequestDTO userData) {
+        try {
+            // // Encrypt the password
+            // // user.setPassword(passwordEncoder.encode(user.getPassword()));
+            // // Check if the email already exists
+            if (userRepository.findByEmail(userData.getEmail()).isPresent()) {
+                return new ResponseEntity<>(new ApiResponse<>(false, "User creation failed", "Email already in use"),
+                        HttpStatus.BAD_REQUEST);
 
-    // // // Log role to application logs
-    // // logger.info("Role fetched: {}", role);
+            }
+            // // Find the role by ID
+            Optional<Role> roleOpt = roleRepository.findById(userData.getRoleId());
+            if (roleOpt.isEmpty()) {
+                return new ResponseEntity<>(new ApiResponse<>(false, "User creation failed", "Role not found"),
+                        HttpStatus.BAD_REQUEST);
+            }
+            Role role = roleOpt.get();
 
-    // // // Print only if role is present
-    // // if (role.isPresent()) {
-    // // System.out.println("Role ID: " + role.get().getId() + ", Role Name: " +
-    // // role.get().getName());
-    // // } else {
-    // // System.out.println("Role not found.");
-    // // }
+            // // Convert DTO to User entity and set properties
+            User userTemp = new User();
+            userTemp.setEmail(userData.getEmail());
+            userTemp.setFirstName(userData.getFirstName());
+            userTemp.setLastName(userData.getLastName());
+            userTemp.setPassword(userData.getPassword());
+            userTemp.setActive(false);
+            // // userTemp.setPassword(passwordEncoder.encode(userDto.getPassword())); //
+            // // Encrypt password
+            userTemp.setRole(role); // Attach role to user
 
-    // // Convert DTO to User entity and set properties
-    // User userTemp = new User();
-    // userTemp.setEmail(userData.getEmail());
-    // userTemp.setFirstName(userData.getFirstName());
-    // userTemp.setLastName(userData.getLastName());
-    // userTemp.setPassword(userData.getPassword());
-    // // userTemp.setPassword(passwordEncoder.encode(userDto.getPassword())); //
-    // // Encrypt password
-    // userTemp.setRole(role); // Attach role to user
+            // // Save the user to the database
+            User savedUser = userRepository.save(userTemp);
 
-    // // Save the user to the database
-    // User savedUser = userRepository
-    // .save(new User("admin11@example.com", "admin123",
-    // roleRepository.findByName("admin").get()));
-    // // Convert the saved user to UserDto (excluding password) for the response
-    // UserDTO responseDto = new UserDTO(
-    // savedUser.getId(),
-    // savedUser.getEmail(),
-    // new Role(savedUser.getRole().getId(), savedUser.getRole().getName()));
-    // return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
-    // } catch (Exception e) {
-    // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    // }
-    // }
+            // // Convert the saved user to UserDto (excluding password) for the response
+            UserDTO responseDto = UserDTO.convertToUserDTO(savedUser);
+            return new ResponseEntity<>(new ApiResponse<>(true, "User created successfully", responseDto),
+                    HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error creating user", e.getMessage()));
+        }
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<UserDTO>> updateUser(@PathVariable("id") Long id,
             @RequestBody UserCreateRequestDTO userDetails) {
