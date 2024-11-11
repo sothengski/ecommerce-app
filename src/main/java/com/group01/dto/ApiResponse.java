@@ -1,10 +1,12 @@
 package com.group01.dto;
 
+import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// @NoArgsConstructor
-// @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class ApiResponse<T> {
 
@@ -14,8 +16,8 @@ public class ApiResponse<T> {
     private String error;
 
     // Constructors
-    public ApiResponse() {
-    }
+    // public ApiResponse() {
+    // }
 
     // Success response constructor
     public ApiResponse(boolean success, String message, T data) {

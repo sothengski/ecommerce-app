@@ -18,6 +18,7 @@ public class UserDTO {
     private String phone;
     private String address;
     private Role role;
+    private Boolean active; // Include active status in response
 
     // Default constructor
     // public UserDTO() {
@@ -26,7 +27,7 @@ public class UserDTO {
     // Constructor
     public UserDTO(Long id, String email, String firstName, String lastName,
             String phone, String address,
-            Role role) {
+            Role role, Boolean active) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
@@ -34,6 +35,7 @@ public class UserDTO {
         this.phone = phone;
         this.address = address;
         this.role = role;
+        this.active = active;
     }
 
     public UserDTO(Long id, String email,
@@ -53,6 +55,8 @@ public class UserDTO {
                 user.getLastName(),
                 user.getPhone(),
                 user.getShippingAddress(),
-                new Role(user.getRole().getId(), user.getRole().getName()));
+                new Role(user.getRole().getId(), user.getRole().getName()),
+                user.getActive()); // Include active status);
+
     }
 }

@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -175,7 +173,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<?>> deleteUser(@PathVariable("id") Long id) {
+    public ResponseEntity<ApiResponse<String>> deleteUser(@PathVariable("id") Long id) {
         try {
             userRepository.deleteById(id);
             return ResponseEntity.noContent().build();
@@ -184,6 +182,55 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ApiResponse<>(false, "Error deleting user", e.getMessage()));
+        }
+    }
+
+    // Activate user
+    @PutMapping("/activate/{id}")
+    public ResponseEntity<ApiResponse<UserDTO>> activateUser(@PathVariable("id") Long id) {
+        try {
+            Optional<User> userOpt = userRepository.findById(id);
+            if (userOpt.isPresent()) {
+                User user = userOpt.get();
+                user.setActive(true);
+                User updatedUser = userRepository.save(user);
+
+                return new ResponseEntity<>(
+                        new ApiResponse<>(true,
+                                "User with ID " + id + " is now active successfully",
+                                UserDTO.convertToUserDTO(
+                                        updatedUser)),
+                        HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(
+                        new ApiResponse<>(false, "User not found", "User with ID " + id + " does not exist"),
+                        HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error deleting user", e.getMessage()));
+        }
+
+    }
+
+    // Deactivate user
+    @PutMapping("/deactivate/{id}")
+    public ResponseEntity<ApiResponse<UserDTO>> deactivateUser(@PathVariable("id") Long id) {
+        Optional<User> userOpt = userRepository.findById(id);
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            user.setActive(false);
+            User updatedUser = userRepository.save(user);
+            return new ResponseEntity<>(
+                    new ApiResponse<>(true,
+                            "User with ID " + id + " is now inactive successfully",
+                            UserDTO.convertToUserDTO(
+                                    updatedUser)),
+                    HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(
+                    new ApiResponse<>(false, "User not found", "User with ID " + id + " does not exist"),
+                    HttpStatus.NOT_FOUND);
         }
     }
 }
