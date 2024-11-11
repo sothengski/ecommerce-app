@@ -34,10 +34,13 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private long id;
+    private Long id;
 
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
+
+    @Column(name = "user_name", nullable = true, unique = true, length = 100)
+    private String userName;
 
     @Column(name = "first_name", nullable = true, length = 100)
     private String firstName;
@@ -48,15 +51,15 @@ public class User implements Serializable {
     @Column(name = "phone", nullable = true, length = 9)
     private String phone;
 
-    @Column(name = "address", nullable = true, length = 100)
-    private String address;
+    @Column(name = "shippingAddress", nullable = true, length = 100)
+    private String shippingAddress;
 
-    @JsonIgnore // ignore password output in the JSON API response
+    // @JsonIgnore // This will exclude `password` from all JSON responses
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", nullable = false)
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", nullable = true)
     private Role role;
 
     @Column(name = "active", nullable = false)
@@ -85,7 +88,7 @@ public class User implements Serializable {
         this.firstName = "";
         this.lastName = "";
         this.phone = "";
-        this.address = "";
+        this.shippingAddress = "";
         this.active = false;
     }
 
@@ -93,7 +96,7 @@ public class User implements Serializable {
         this.firstName = Objects.requireNonNullElse(firstName, "");
         this.lastName = Objects.requireNonNullElse(lastName, "");
         this.phone = Objects.requireNonNullElse(phone, "");
-        this.address = Objects.requireNonNullElse(address, "");
+        this.shippingAddress = Objects.requireNonNullElse(address, "");
     }
 
     // Getters and Setters
@@ -169,12 +172,12 @@ public class User implements Serializable {
     // this.phone = phone;
     // }
 
-    // public String getAddress() {
-    // return address;
+    // public String getShippingAddress() {
+    // return shippingAddress;
     // }
 
-    // public void setAddress(String address) {
-    // this.address = address;
+    // public void setShippingAddress(String shippingaddress) {
+    // this.shippingAddress = shippingaddress;
     // }
 
     // public Boolean getActive() {
@@ -230,3 +233,13 @@ public class User implements Serializable {
 // public void setRole(Set<Role> role) {
 // this.role = role;
 // }
+
+// "shippingAddress":"123 Main St",
+
+// "shippingCity":"San Francisco",
+
+// "shippingState":"CA",
+
+// "shippingPostalCode":"94105",
+
+// "shippingCountry":"USA",
