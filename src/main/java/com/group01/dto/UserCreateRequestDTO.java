@@ -11,7 +11,7 @@ public class UserCreateRequestDTO {
     private String firstName;
     private String lastName;
     private String password;
-    private int roleId;
+    private Integer roleId;
 
     // Getters and setters
 }

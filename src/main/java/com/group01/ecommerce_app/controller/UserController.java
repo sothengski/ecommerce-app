@@ -9,13 +9,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.group01.dto.ApiResponse;
 import com.group01.dto.UserCreateRequestDTO;
 import com.group01.dto.UserDTO;
 import com.group01.ecommerce_app.model.Role;
@@ -40,7 +43,7 @@ public class UserController {
     // import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
+    public ResponseEntity<ApiResponse<List<UserDTO>>> getAllUsers() {
         try {
             List<UserDTO> users = userRepository.findAll().stream()
                     .map(UserDTO::convertToUserDTO)
@@ -62,26 +65,29 @@ public class UserController {
             }
 
             // List of users have the data
-            return new ResponseEntity<>(users, HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse<>(true, "User retrieved successfully",
+                    users), HttpStatus.OK);
             // return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error Getting all users data", e.getMessage()));
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<ApiResponse<UserDTO>> getUserById(@PathVariable("id") Long id) {
         try {
             Optional<User> userData = userRepository.findById(id);
             if (userData.isPresent()) {
                 User userTemp = userData.get();
-                return new ResponseEntity<>(UserDTO.convertToUserDTO(userTemp), HttpStatus.OK);
+                return new ResponseEntity<>(new ApiResponse<>(true, "User retrieved successfully",
+                        UserDTO.convertToUserDTO(userTemp)), HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error getting a user data", e.getMessage()));
         }
     }
 
@@ -139,5 +145,58 @@ public class UserController {
     // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     // }
     // }
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<UserDTO>> updateUser(@PathVariable("id") Long id,
+            @RequestBody UserCreateRequestDTO userDetails) {
+        try {
+            Optional<User> userData = userRepository.findById(id);
+            if (userData.isPresent()) {
+                User userTemp = userData.get();
 
+                // update fields
+                // userTemp.setEmail(userDetails.getEmail());
+                userTemp.setFirstName(userDetails.getFirstName());
+                userTemp.setLastName(userDetails.getLastName());
+                // userTemp.setPhone(userDetails.getPhone());
+                // userTemp.setShippingAddress(userDetails.getAddress());
+                // userTemp.setPassword(userDetails.getPassword());
+                // userTemp.setRole(userDetails.getRole());
+                // Fetch and set Role by roleId
+                if (userDetails.getRoleId() != null) {
+                    Optional<Role> roleOpt = roleRepository.findById(userDetails.getRoleId());
+                    if (roleOpt.isEmpty()) {
+                        return new ResponseEntity<>(new ApiResponse<>(false,
+                                "Role not found", null), HttpStatus.BAD_REQUEST);
+                    }
+                    userTemp.setRole(roleOpt.get());
+                }
+
+                // Save updated user
+                User updatedUser = userRepository.save(userTemp);
+                return new ResponseEntity<>(
+                        new ApiResponse<>(true, "User updated successfully", UserDTO.convertToUserDTO(
+                                updatedUser)),
+                        HttpStatus.OK);
+            }
+            return new ResponseEntity<>(
+                    new ApiResponse<>(false, "User not found", "User with ID " + id + " does not exist"),
+                    HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error updating user", e.getMessage()));
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<?>> deleteUser(@PathVariable("id") Long id) {
+        try {
+            userRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+            // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error deleting user", e.getMessage()));
+        }
+    }
 }
