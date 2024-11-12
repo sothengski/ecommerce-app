@@ -1,4 +1,4 @@
-package com.group01.dto;
+package com.group01.ecommerce_app.dto;
 
 import lombok.AllArgsConstructor;
 

@@ -1,5 +1,6 @@
 package com.group01.ecommerce_app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.group01.dto.ApiResponse;
-import com.group01.dto.UserCreateRequestDTO;
-import com.group01.dto.UserDTO;
+import com.group01.ecommerce_app.dto.ApiResponse;
+import com.group01.ecommerce_app.dto.UserCreateRequestDTO;
+import com.group01.ecommerce_app.dto.UserDTO;
 import com.group01.ecommerce_app.model.Role;
 import com.group01.ecommerce_app.model.RoleRepository;
 import com.group01.ecommerce_app.model.User;
@@ -41,19 +42,25 @@ public class UserController {
     @GetMapping
     public ResponseEntity<ApiResponse<List<UserDTO>>> getAllUsers() {
         try {
-            List<UserDTO> users = userRepository.findAll().stream()
-                    .map(UserDTO::convertToUserDTO)
-                    // using convertToUserDTO instead of
-                    // user -> new UserDTO(
-                    // user.getId(),
-                    // user.getEmail(),
-                    // user.getFirstName(),
-                    // user.getLastName(),
-                    // user.getPhone(),
-                    // user.getShippingAddress(),
-                    // user.getRole()))
-                    //
-                    .collect(Collectors.toList());
+            // List<UserDTO> users = userRepository.findAll().stream()
+            // .map(UserDTO::convertToUserDTO)
+            // // using convertToUserDTO instead of
+            // // user -> new UserDTO(
+            // // user.getId(),
+            // // user.getEmail(),
+            // // user.getFirstName(),
+            // // user.getLastName(),
+            // // user.getPhone(),
+            // // user.getShippingAddress(),
+            // // user.getRole()))
+            // //
+            // .collect(Collectors.toList());
+
+            List<User> users = userRepository.findAll();
+            List<UserDTO> userDTOs = new ArrayList<>();
+            for (User user : users) {
+                userDTOs.add(UserDTO.convertToUserDTO(user));
+            }
 
             // List of users is Empty
             if (users.isEmpty()) {
@@ -62,7 +69,7 @@ public class UserController {
 
             // List of users have the data
             return new ResponseEntity<>(new ApiResponse<>(true, "User retrieved successfully",
-                    users), HttpStatus.OK);
+                    userDTOs), HttpStatus.OK);
             // return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

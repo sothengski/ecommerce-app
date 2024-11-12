@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.group01.dto.ApiResponse;
-import com.group01.dto.UserDTO;
-import com.group01.dto.UserLoginDTO;
+import com.group01.ecommerce_app.dto.ApiResponse;
+import com.group01.ecommerce_app.dto.UserDTO;
+import com.group01.ecommerce_app.dto.UserLoginDTO;
 import com.group01.ecommerce_app.model.User;
 import com.group01.ecommerce_app.model.UserRepository;
 
