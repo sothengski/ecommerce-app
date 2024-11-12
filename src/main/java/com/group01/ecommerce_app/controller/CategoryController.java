@@ -44,7 +44,7 @@ public class CategoryController {
                     categories), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(false, "Error Getting all categories data", e.getMessage()));
+                    .body(new ApiResponse<>(false, "Error getting all categories data", e.getMessage()));
         }
     }
 
