@@ -1,7 +1,6 @@
 package com.group01.dto;
 
 import lombok.AllArgsConstructor;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ApiResponse<T> {
 
+    // test
     private boolean success;
     private String message;
     private T data;
