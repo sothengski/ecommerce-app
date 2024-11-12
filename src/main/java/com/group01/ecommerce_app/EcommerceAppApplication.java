@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.group01.ecommerce_app.model.Category;
+import com.group01.ecommerce_app.model.CategoryRepository;
 import com.group01.ecommerce_app.model.Role;
 import com.group01.ecommerce_app.model.RoleRepository;
 import com.group01.ecommerce_app.model.User;
@@ -21,6 +23,9 @@ public class EcommerceAppApplication {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private CategoryRepository categoryRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceAppApplication.class, args);
 		System.out.println("Program Start");
@@ -34,6 +39,12 @@ public class EcommerceAppApplication {
 			addRoleIfNotFound("admin");
 			addRoleIfNotFound("seller");
 			addRoleIfNotFound("buyer");
+
+			// Initialize Categories
+			categoryRepository.save(new Category("T-shirt", 1331, true));
+			categoryRepository.save(new Category("Pant", 1332, true));
+			categoryRepository.save(new Category("Jacket", 1333, true));
+			categoryRepository.save(new Category("Shoe", 1334, true));
 
 			// Initialize sample users
 			addUserIfNotFound("admin@example.com", "admin123", "admin");
