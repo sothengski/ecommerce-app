@@ -43,10 +43,7 @@ public class Product implements Serializable {
     @Column(name = "active")
     private boolean isActive;
     
-    public Product() {
-    	
-    }
-
+    //Constructors
 	public Product(String name, String description, String brand, double price, int stock, 
 			List<String> size, List<String> color, boolean isActive) {
 		this.name = name;

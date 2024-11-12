@@ -52,12 +52,6 @@ public class EcommerceAppApplication {
 			categoryRepository.save(new Category("Pant", true));
 			categoryRepository.save(new Category("Jacket", true));
 			categoryRepository.save(new Category("Shoe", true));
-
-			// Initialize sample users
-			addUserIfNotFound("admin@example.com", "admin123", "admin");
-			addUserIfNotFound("seller@example.com", "seller123", "seller");
-			addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
-			System.out.println("finished initializeDatabase");
 			
 			//Initialize Products
 			productRepository.save(new Product("T-Shirt",
@@ -86,6 +80,13 @@ public class EcommerceAppApplication {
 				    List.of("Gray", "White", "Beige"),
 				    true
 				));
+
+			// Initialize sample users
+			addUserIfNotFound("admin@example.com", "admin123", "admin");
+			addUserIfNotFound("seller@example.com", "seller123", "seller");
+			addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
+			System.out.println("finished initializeDatabase");
+			
 		};
 	}
 
