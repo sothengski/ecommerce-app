@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.group01.ecommerce_app.dto.ApiResponse;
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
 
@@ -26,79 +27,99 @@ public class CategoryController {
 
     // Get all categories
     @GetMapping("/categories")
-    public ResponseEntity<List<Category>> getAllCategories() {
+    public ResponseEntity<ApiResponse<List<Category>>> getAllCategories() {
         try {
             List<Category> categories = categoryRepository.findAll();
 
             // List of roles is Empty
             if (categories.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                // return new ResponseEntity<>(new ApiResponse<>(true, "No Categories data",
+                // Collections.emptyList()), HttpStatus.NO_CONTENT);
             }
 
             // List of roles have the data
-            return ResponseEntity.ok(categories);
+            // return ResponseEntity.ok(categories);
+            return new ResponseEntity<>(new ApiResponse<>(true, "Categories retrieved successfully",
+                    categories), HttpStatus.OK);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error Getting all categories data", e.getMessage()));
         }
     }
 
     // Get category by ID
     @GetMapping("/categories/{id}")
-    public ResponseEntity<Category> getCategoriesById(@PathVariable("id") long id) {
+    public ResponseEntity<ApiResponse<Category>> getCategoriesById(@PathVariable("id") long id) {
         try {
             Optional<Category> categoryData = categoryRepository.findById(id);
             if (categoryData.isPresent()) {
                 Category categoryTemp = categoryData.get();
-                return new ResponseEntity<>(categoryTemp, HttpStatus.OK);
+                return new ResponseEntity<>(new ApiResponse<>(true, "Category retrieved successfully",
+                        categoryTemp), HttpStatus.OK);
             }
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(
+                    new ApiResponse<>(false, "Category with id " + id + " does not exist", "Category not found"),
+                    HttpStatus.NOT_FOUND);
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error getting a category data", e.getMessage()));
         }
     }
 
     // Create a new category
     @PostMapping("/categories")
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity<ApiResponse<Category>> createCategory(@RequestBody Category category) {
         try {
-            Category _category = categoryRepository
+            Category newCategory = categoryRepository
                     .save(new Category(category.getName(), category.isActive()));
-            return ResponseEntity.ok(_category);
-
+            return new ResponseEntity<>(new ApiResponse<>(true, "Category created successfully",
+                    newCategory),
+                    HttpStatus.CREATED);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error creating category", e.getMessage()));
         }
     }
 
     // Update an existing category
     @PutMapping("/categories/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable("id") long id, @RequestBody Category category) {
+    public ResponseEntity<ApiResponse<Category>> updateCategory(@PathVariable("id") long id,
+            @RequestBody Category category) {
         try {
             Optional<Category> categoryData = categoryRepository.findById(id);
             if (categoryData.isPresent()) {
                 Category categoryTemp = categoryData.get();
+                // update fields
                 categoryTemp.setName(category.getName());
                 categoryTemp.setActive(category.isActive());
-                return new ResponseEntity<>(categoryTemp, HttpStatus.OK);
+                return new ResponseEntity<>(
+                        new ApiResponse<>(true, "Category updated successfully",
+                                categoryTemp),
+                        HttpStatus.OK);
             }
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(
+                    new ApiResponse<>(false, "Category with id " + id + " does not exist", "Category not found"),
+                    HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error updating category", e.getMessage()));
         }
     }
 
     // Delete a role
     @DeleteMapping("/categories/{id}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable("id") long id) {
+    public ResponseEntity<ApiResponse<String>> deleteCategory(@PathVariable("id") long id) {
         try {
             categoryRepository.deleteById(id);
             return ResponseEntity.noContent().build();
             // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error deleting category", e.getMessage()));
         }
     }
 }
