@@ -25,4 +25,25 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private long id;
+    
+    @Column(name = "name")
+	private String name;
+    
+    @Column(name = "active")
+   	private boolean isActive;
+    
+    @Column(name = "UserID")
+   	private long userId;
+    
+//    public Category() {
+//    	this.name = "";
+//    	this.userId = 0;
+//    	this.isActive = false;
+//    }
+    
+    public Category(String name, long userId, boolean isActive) {
+    	this.name = name;
+    	this.userId = userId;
+    	this.isActive = isActive;
+    }
 }
