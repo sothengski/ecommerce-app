@@ -84,7 +84,7 @@ public class EcommerceAppApplication {
 				    19,
 				    List.of("M", "L", "XL"),
 				    List.of("Gray", "White", "Beige"),
-				    false
+				    true
 				));
 		};
 	}
