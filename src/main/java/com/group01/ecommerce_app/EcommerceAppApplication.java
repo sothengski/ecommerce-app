@@ -49,12 +49,12 @@ public class EcommerceAppApplication {
 
 			// Initialize Categories
 			categoryRepository.save(new Category("T-shirt", true));
-			categoryRepository.save(new Category("Pant", true));
+			categoryRepository.save(new Category("Pants", true));
 			categoryRepository.save(new Category("Jacket", true));
-			categoryRepository.save(new Category("Shoe", true));
+			categoryRepository.save(new Category("Shoes", true));
 			
 			//Initialize Products
-			productRepository.save(new Product("T-Shirt",
+			productRepository.save(new Product("Long Sleeve T-Shirt",
 				    "Comfortable cotton t-shirt",
 				    "Zara",
 				    19.99,
@@ -62,8 +62,8 @@ public class EcommerceAppApplication {
 				    List.of("S", "M", "L", "XL"),
 				    List.of("White", "Black", "Blue"),
 				    true));
-			productRepository.save(new Product("Jeans",
-				    "Classic denim jeans with a slim fit",
+			productRepository.save(new Product("High Waist Pants",
+				    "Pants with front pockets and black welt pockets",
 				    "Levi's",
 				    49.99,
 				    50,
@@ -71,10 +71,10 @@ public class EcommerceAppApplication {
 				    List.of("Dark Blue", "Black", "Gray"),
 				    true));
 			productRepository.save(new Product(
-				    "Sweater",
-				    "Cozy wool sweater for winter",
+				    "Faux Fur Jacket",
+				    "Jacket with lapel collar and long sleeves",
 				    "Aritzia",
-				    89.99,
+				    189.99,
 				    19,
 				    List.of("M", "L", "XL"),
 				    List.of("Gray", "White", "Beige"),
