@@ -41,10 +41,10 @@ public class EcommerceAppApplication {
 			addRoleIfNotFound("buyer");
 
 			// Initialize Categories
-			categoryRepository.save(new Category("T-shirt", 1331, true));
-			categoryRepository.save(new Category("Pant", 1332, true));
-			categoryRepository.save(new Category("Jacket", 1333, true));
-			categoryRepository.save(new Category("Shoe", 1334, true));
+			categoryRepository.save(new Category("T-shirt", true));
+			categoryRepository.save(new Category("Pant", true));
+			categoryRepository.save(new Category("Jacket", true));
+			categoryRepository.save(new Category("Shoe", true));
 
 			// Initialize sample users
 			addUserIfNotFound("admin@example.com", "admin123", "admin");
