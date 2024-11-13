@@ -109,7 +109,7 @@ public class CategoryController {
         }
     }
 
-    // Delete a role
+    // Delete a category
     @DeleteMapping("/categories/{id}")
     public ResponseEntity<ApiResponse<String>> deleteCategory(@PathVariable("id") long id) {
         try {
