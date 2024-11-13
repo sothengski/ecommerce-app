@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-//@AllArgsConstructor
+// @AllArgsConstructor
 @Data
 public class ProductCreateRequestDTO {
 	private String name;
@@ -19,38 +19,48 @@ public class ProductCreateRequestDTO {
 	private String color;
 	private boolean isActive;
 	private Long categoryId;
-	
-	//Getters and Setters
+
+	// Getters and Setters
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getBrand() {
 		return brand;
 	}
+
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	public int getStock() {
 		return stock;
 	}
+
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+
 	public List<String> getSize() {
 		return Arrays.asList(size.split(","));
 	}
@@ -66,19 +76,20 @@ public class ProductCreateRequestDTO {
 	public void setColor(List<String> color) {
 		this.color = String.join(",", color);
 	}
+
 	public boolean isActive() {
 		return isActive;
 	}
+
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
 	public Long getCategoryId() {
 		return categoryId;
 	}
+
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
-	
-	
-
 }

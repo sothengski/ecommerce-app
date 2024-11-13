@@ -51,7 +51,7 @@ public class Product implements Serializable {
 
 	@Column(name = "color")
 	private String color;
-	
+
 	@Builder.Default
 	@Column(name = "active")
 	private boolean isActive = true;
@@ -59,7 +59,7 @@ public class Product implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
-	
+
 	// Constructors
 	public Product(String name, String description, String brand, double price, int stock,
 			List<String> size, List<String> color, boolean isActive) {

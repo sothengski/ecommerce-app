@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-//@AllArgsConstructor
+// @AllArgsConstructor
 @Data
 public class ProductDTO {
 	private Long id;
@@ -21,11 +21,11 @@ public class ProductDTO {
 	private String size;
 	private String color;
 	private boolean isActive;
-	
-	//Constructor
+
+	// Constructor
 	public ProductDTO(Long id, String name, String description, String brand, double price, int stock,
-            List<String> size, List<String> color, boolean isActive) {
-		this.id= id;
+			List<String> size, List<String> color, boolean isActive) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.brand = brand;
@@ -35,9 +35,9 @@ public class ProductDTO {
 		this.color = String.join(",", color);
 		this.isActive = isActive;
 	}
-	
-	//Getter and Setter
-	
+
+	// Getter and Setter
+
 	public String getName() {
 		return name;
 	}
@@ -109,18 +109,17 @@ public class ProductDTO {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-	
+
 	public static ProductDTO convertToProductDTO(Product product) {
-        return new ProductDTO(
-			product.getId(),
-	        product.getName(),
-	        product.getDescription(),
-	        product.getBrand(),
-	        product.getPrice(),
-	        product.getStock(),
-	        product.getSize(),
-	        product.getColor(),
-	        product.isActive()
-        );
+		return new ProductDTO(
+				product.getId(),
+				product.getName(),
+				product.getDescription(),
+				product.getBrand(),
+				product.getPrice(),
+				product.getStock(),
+				product.getSize(),
+				product.getColor(),
+				product.isActive());
 	}
 }

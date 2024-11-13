@@ -18,22 +18,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.group01.ecommerce_app.model.ProductRepository;
-import com.group01.ecommerce_app.model.User;
 import com.group01.ecommerce_app.dto.ApiResponse;
 import com.group01.ecommerce_app.dto.ProductCreateRequestDTO;
 import com.group01.ecommerce_app.dto.ProductDTO;
-import com.group01.ecommerce_app.dto.UserDTO;
-import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
-
+import com.group01.ecommerce_app.model.Product;
+import com.group01.ecommerce_app.model.ProductRepository;
 
 @RestController
 @RequestMapping("/api")
 public class ProductController {
+
 	@Autowired
 	ProductRepository productRepository;
+
 	@Autowired
 	CategoryRepository categoryRepository;
 
@@ -42,10 +41,10 @@ public class ProductController {
 	public ResponseEntity<ApiResponse<List<ProductDTO>>> getAllProducts(@RequestParam(required = false) String name) {
 		try {
 			List<Product> products = productRepository.findAll();
-            List<ProductDTO> productDTOs = new ArrayList<>();
-            for (Product product : products) {
-                productDTOs.add(ProductDTO.convertToProductDTO(product));
-            }
+			List<ProductDTO> productDTOs = new ArrayList<>();
+			for (Product product : products) {
+				productDTOs.add(ProductDTO.convertToProductDTO(product));
+			}
 			if (name == null) {
 				productRepository.findAll().forEach(products::add);
 			} else {
@@ -54,7 +53,7 @@ public class ProductController {
 			// List of products is Empty
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}// List of products have the data
+			} // List of products have the data
 			return new ResponseEntity<>(new ApiResponse<>(true, "Product retrieved successfully",
 					productDTOs), HttpStatus.OK);
 		} catch (Exception e) {
@@ -85,34 +84,36 @@ public class ProductController {
 	// 3. Create a new Product record
 	@PostMapping("/products")
 	public ResponseEntity<ApiResponse<ProductDTO>> createProduct(@RequestBody ProductCreateRequestDTO productRequest) {
-		try {			
-//			Product _product = productRepository
-//					.save(new Product(product.getName(), product.getDescription(), product.getBrand(),
-//							product.getPrice(), product.getStock(), product.getSize(),
-//							product.getColor(), product.isActive()));
-//			ProductDTO responseDto = ProductDTO.convertToProductDTO(_product);
+		try {
+			// Product _product = productRepository
+			// .save(new Product(product.getName(), product.getDescription(),
+			// product.getBrand(),
+			// product.getPrice(), product.getStock(), product.getSize(),
+			// product.getColor(), product.isActive()));
+			// ProductDTO responseDto = ProductDTO.convertToProductDTO(_product);
 			// Fetch the Category using the provided categoryId
-	        Category category = categoryRepository.findById(productRequest.getCategoryId())
-	                .orElseThrow(() -> new ResourceNotFoundException("Category not found with ID: " + productRequest.getCategoryId()));
+			Category category = categoryRepository.findById(productRequest.getCategoryId())
+					.orElseThrow(() -> new ResourceNotFoundException(
+							"Category not found with ID: " + productRequest.getCategoryId()));
 
 			// Convert DTO to Product entity
-	        Product productTemp = new Product();
-	        productTemp.setName(productRequest.getName());
-	        productTemp.setBrand(productRequest.getBrand());
-	        productTemp.setDescription(productRequest.getDescription());
-	        productTemp.setPrice(productRequest.getPrice());
-	        productTemp.setStock(productRequest.getStock());
-	        productTemp.setSize(productRequest.getSize());
-	        productTemp.setColor(productRequest.getColor());
-	        productTemp.setActive(productRequest.isActive());
-	        productTemp.setCategory(category);
-	        
-	        // Save product to the database
-	        Product savedProduct = productRepository.save(productTemp);
+			Product productTemp = new Product();
+			productTemp.setName(productRequest.getName());
+			productTemp.setBrand(productRequest.getBrand());
+			productTemp.setDescription(productRequest.getDescription());
+			productTemp.setPrice(productRequest.getPrice());
+			productTemp.setStock(productRequest.getStock());
+			productTemp.setSize(productRequest.getSize());
+			productTemp.setColor(productRequest.getColor());
+			productTemp.setActive(productRequest.isActive());
+			productTemp.setCategory(category);
 
-	        // Convert to DTO for response
-	        ProductDTO responseDto = ProductDTO.convertToProductDTO(savedProduct);
-	        
+			// Save product to the database
+			Product savedProduct = productRepository.save(productTemp);
+
+			// Convert to DTO for response
+			ProductDTO responseDto = ProductDTO.convertToProductDTO(savedProduct);
+
 			return new ResponseEntity<>(new ApiResponse<>(true, "Product created successfully",
 					responseDto), HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -137,10 +138,11 @@ public class ProductController {
 				_product.setSize(product.getSize());
 				_product.setColor(product.getColor());
 				_product.setActive(product.isActive());
-				 Product updatedProduct = productRepository.save(_product);
+				Product updatedProduct = productRepository.save(_product);
 				return new ResponseEntity<>(
 						new ApiResponse<>(true, "Product updated successfully",
-								ProductDTO.convertToProductDTO(updatedProduct)), HttpStatus.OK);
+								ProductDTO.convertToProductDTO(updatedProduct)),
+						HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(
 						new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product not found"),
