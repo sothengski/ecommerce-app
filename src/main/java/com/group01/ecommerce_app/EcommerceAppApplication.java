@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
+import com.group01.ecommerce_app.model.Order;
+import com.group01.ecommerce_app.model.OrderItem;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.ProductRepository;
 import com.group01.ecommerce_app.model.Role;
@@ -100,7 +102,13 @@ public class EcommerceAppApplication {
 			addUserIfNotFound("admin@example.com", "admin123", "admin");
 			addUserIfNotFound("seller@example.com", "seller123", "seller");
 			addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
-			System.out.println("finished initializeDatabase");
+			 
+			// Initialize Orders
+	        User admin = userRepository.findByEmail("admin@example.com").orElseThrow();
+	        User buyer = userRepository.findByEmail("buyer@example.com").orElseThrow();
+
+			
+			
 			
 		};
 	}

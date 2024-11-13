@@ -1,13 +1,10 @@
 package com.group01.ecommerce_app.model;
 
 import java.io.Serializable;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,13 +12,76 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data // @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode
+@Data
 @Builder
 @Entity
 @Table(name = "orders")
 public class Order implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "order_number", nullable = false, unique = true)
+    private String orderNumber;
+
+    @Column(name = "order_status", nullable = false)
+    private String orderStatus;
+
+    @Column(name = "order_date", nullable = false)
+    private LocalDateTime orderDate;
+
+    @Column(name = "total_quantity", nullable = false)
+    private int totalQuantity;
+
+    @Column(name = "total_price", nullable = false)
+    private double totalPrice;
+
+    @Column(name = "currency", nullable = false)
+    private String currency;
+
+    @Column(name = "payment_status", nullable = false)
+    private String paymentStatus;
+
+    @Column(name = "payment_method", nullable = false)
+    private String paymentMethod;
+
+    @Column(name = "shipping_address", nullable = false)
+    private String shippingAddress;
+
+    @Column(name = "shipping_city", nullable = false)
+    private String shippingCity;
+
+    @Column(name = "shipping_state", nullable = false)
+    private String shippingState;
+
+    @Column(name = "shipping_postal_code", nullable = false)
+    private String shippingPostalCode;
+
+    @Column(name = "shipping_country", nullable = false)
+    private String shippingCountry;
+
+    @Column(name = "shipping_cost", nullable = false)
+    private double shippingCost;
+
+//    @Column(name = "billing_address", nullable = false)
+//    private String billingAddress;
+//
+//    @Column(name = "billing_city", nullable = false)
+//    private String billingCity;
+//
+//    @Column(name = "billing_state", nullable = false)
+//    private String billingState;
+//
+//    @Column(name = "billing_postal_code", nullable = false)
+//    private String billingPostalCode;
+//
+//    @Column(name = "billing_country", nullable = false)
+//    private String billingCountry;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
+    private List<OrderItem> items = new ArrayList<>();
 }
