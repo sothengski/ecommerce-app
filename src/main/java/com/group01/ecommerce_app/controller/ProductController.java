@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.group01.ecommerce_app.model.ProductRepository;
+import com.group01.ecommerce_app.model.User;
 import com.group01.ecommerce_app.dto.ApiResponse;
+import com.group01.ecommerce_app.dto.ProductCreateRequestDTO;
+import com.group01.ecommerce_app.dto.ProductDTO;
+import com.group01.ecommerce_app.dto.UserDTO;
 import com.group01.ecommerce_app.model.Product;
 
 @RestController
@@ -29,19 +33,24 @@ public class ProductController {
 
 	// 1. Get a list of all Product records
 	@GetMapping("/products")
-	public ResponseEntity<ApiResponse<List<Product>>> getAllProducts(@RequestParam(required = false) String name) {
+	public ResponseEntity<ApiResponse<List<ProductDTO>>> getAllProducts(@RequestParam(required = false) String name) {
 		try {
-			List<Product> products = new ArrayList<Product>();
+			List<Product> products = productRepository.findAll();
+            List<ProductDTO> productDTOs = new ArrayList<>();
+            for (Product product : products) {
+                productDTOs.add(ProductDTO.convertToProductDTO(product));
+            }
 			if (name == null) {
 				productRepository.findAll().forEach(products::add);
 			} else {
 				productRepository.findByName(name).forEach(products::add);
 			}
+			// List of products is Empty
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
+			}// List of products have the data
 			return new ResponseEntity<>(new ApiResponse<>(true, "Product retrieved successfully",
-					products), HttpStatus.OK);
+					productDTOs), HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body(new ApiResponse<>(false, "Error getting all products data", e.getMessage()));
@@ -50,12 +59,12 @@ public class ProductController {
 
 	// 2. Get a Product record by its id
 	@GetMapping("/products/{id}")
-	public ResponseEntity<ApiResponse<Product>> getProductById(@PathVariable("id") long id) {
+	public ResponseEntity<ApiResponse<ProductDTO>> getProductById(@PathVariable("id") long id) {
 		try {
 			Optional<Product> productData = productRepository.findById(id);
 			if (productData.isPresent()) {
 				return new ResponseEntity<>(new ApiResponse<>(true, "Product retrieved successfully",
-						productData.get()), HttpStatus.OK);
+						ProductDTO.convertToProductDTO(productData.get())), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(
 						new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product is not found"),
@@ -69,14 +78,32 @@ public class ProductController {
 
 	// 3. Create a new Product record
 	@PostMapping("/products")
-	public ResponseEntity<ApiResponse<Product>> createProduct(@RequestBody Product product) {
-		try {
-			Product _product = productRepository
-					.save(new Product(product.getName(), product.getDescription(), product.getBrand(),
-							product.getPrice(), product.getStock(), product.getSize(),
-							product.getColor(), product.isActive()));
+	public ResponseEntity<ApiResponse<ProductDTO>> createProduct(@RequestBody ProductCreateRequestDTO productRequest) {
+		try {			
+//			Product _product = productRepository
+//					.save(new Product(product.getName(), product.getDescription(), product.getBrand(),
+//							product.getPrice(), product.getStock(), product.getSize(),
+//							product.getColor(), product.isActive()));
+//			ProductDTO responseDto = ProductDTO.convertToProductDTO(_product);
+			
+			// Convert DTO to Product entity
+	        Product productTemp = new Product();
+	        productTemp.setName(productRequest.getName());
+	        productTemp.setBrand(productRequest.getBrand());
+	        productTemp.setDescription(productRequest.getDescription());
+	        productTemp.setPrice(productRequest.getPrice());
+	        productTemp.setStock(productRequest.getStock());
+	        productTemp.setSize(productRequest.getSize());
+	        productTemp.setColor(productRequest.getColor());
+	        productTemp.setActive(productRequest.isActive());
+	        // Save product to the database
+	        Product savedProduct = productRepository.save(productTemp);
+
+	        // Convert to DTO for response
+	        ProductDTO responseDto = ProductDTO.convertToProductDTO(savedProduct);
+	        
 			return new ResponseEntity<>(new ApiResponse<>(true, "Product created successfully",
-					_product), HttpStatus.CREATED);
+					responseDto), HttpStatus.CREATED);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body(new ApiResponse<>(false, "Error creating product", e.getMessage()));
@@ -85,7 +112,7 @@ public class ProductController {
 
 	// 4. Update an existing Product record with its id
 	@PutMapping("/products/{id}")
-	public ResponseEntity<ApiResponse<Product>> updateProduct(@PathVariable("id") long id,
+	public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable("id") long id,
 			@RequestBody Product product) {
 		try {
 			Optional<Product> productData = productRepository.findById(id);
@@ -99,10 +126,10 @@ public class ProductController {
 				_product.setSize(product.getSize());
 				_product.setColor(product.getColor());
 				_product.setActive(product.isActive());
+				 Product updatedProduct = productRepository.save(_product);
 				return new ResponseEntity<>(
 						new ApiResponse<>(true, "Product updated successfully",
-								productRepository.save(_product)),
-						HttpStatus.OK);
+								ProductDTO.convertToProductDTO(updatedProduct)), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(
 						new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product not found"),

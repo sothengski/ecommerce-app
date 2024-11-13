@@ -35,9 +35,10 @@ public class Category implements Serializable {
 
 	@Column(name = "name")
 	private String name;
-
+	
+	@Builder.Default
 	@Column(name = "active")
-	private boolean isActive;
+	private boolean isActive = true;
 
 	// public Category() {
 	// this.name = "";

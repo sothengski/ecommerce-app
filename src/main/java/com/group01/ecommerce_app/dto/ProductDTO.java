@@ -1,0 +1,126 @@
+package com.group01.ecommerce_app.dto;
+
+import java.util.Arrays;
+import java.util.List;
+
+import com.group01.ecommerce_app.model.Product;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+//@AllArgsConstructor
+@Data
+public class ProductDTO {
+	private Long id;
+	private String name;
+	private String description;
+	private String brand;
+	private double price;
+	private int stock;
+	private String size;
+	private String color;
+	private boolean isActive;
+	
+	//Constructor
+	public ProductDTO(Long id, String name, String description, String brand, double price, int stock,
+            List<String> size, List<String> color, boolean isActive) {
+		this.id= id;
+		this.name = name;
+		this.description = description;
+		this.brand = brand;
+		this.price = price;
+		this.stock = stock;
+		this.size = String.join(",", size);
+		this.color = String.join(",", color);
+		this.isActive = isActive;
+	}
+	
+	//Getter and Setter
+	
+	public String getName() {
+		return name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public List<String> getSize() {
+		return Arrays.asList(size.split(","));
+	}
+
+	public void setSize(List<String> size) {
+		this.size = String.join(",", size);
+	}
+
+	public List<String> getColor() {
+		return Arrays.asList(color.split(","));
+	}
+
+	public void setColor(List<String> color) {
+		this.color = String.join(",", color);
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
+	public static ProductDTO convertToProductDTO(Product product) {
+        return new ProductDTO(
+			product.getId(),
+	        product.getName(),
+	        product.getDescription(),
+	        product.getBrand(),
+	        product.getPrice(),
+	        product.getStock(),
+	        product.getSize(),
+	        product.getColor(),
+	        product.isActive()
+        );
+	}
+}

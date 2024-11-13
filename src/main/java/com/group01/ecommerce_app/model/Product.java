@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 public class Product implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "name")
@@ -51,14 +51,15 @@ public class Product implements Serializable {
 
 	@Column(name = "color")
 	private String color;
-
+	
+	@Builder.Default
 	@Column(name = "active")
-	private boolean isActive;
+	private boolean isActive = true;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
-
+	
 	// Constructors
 	public Product(String name, String description, String brand, double price, int stock,
 			List<String> size, List<String> color, boolean isActive) {
