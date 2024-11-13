@@ -28,36 +28,36 @@ import lombok.NoArgsConstructor;
 @Table(name = "categories")
 public class Category implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false)
+	private Long id;
 
-    @Column(name = "name")
-    private String name;
+	@Column(name = "name")
+	private String name;
 
-    @Column(name = "active")
-    private boolean isActive;
+	@Column(name = "active")
+	private boolean isActive;
 
-    // public Category() {
-    // this.name = "";
-    // this.userId = 0;
-    // this.isActive = false;
-    // }
-    
-    @OneToMany (mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Product> products = new HashSet<>();
-    
-    public void addProduct(Product product) {
-    	this.products.add(product);
-    	product.setCategory(this);
-    }
-    
-    public Category(String name, boolean isActive) {
-        this.name = name;
-        this.isActive = isActive;
-    }
+	// public Category() {
+	// this.name = "";
+	// this.userId = 0;
+	// this.isActive = false;
+	// }
+
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Set<Product> products = new HashSet<>();
+
+	public void addProduct(Product product) {
+		this.products.add(product);
+		product.setCategory(this);
+	}
+
+	public Category(String name, boolean isActive) {
+		this.name = name;
+		this.isActive = isActive;
+	}
 
 	public String getName() {
 		return name;
@@ -82,10 +82,9 @@ public class Category implements Serializable {
 	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.id + " " + this.name + " " + this.isActive;
 	}
-    
 }

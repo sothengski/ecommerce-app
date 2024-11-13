@@ -29,7 +29,7 @@ public class EcommerceAppApplication {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
+
 	@Autowired
 	private ProductRepository productRepository;
 
@@ -52,47 +52,47 @@ public class EcommerceAppApplication {
 			Category pantsCategory = categoryRepository.save(new Category("Pants", true));
 			Category jacketCategory = categoryRepository.save(new Category("Jacket", true));
 			Category shoesCategory = categoryRepository.save(new Category("Shoes", true));
-			
-			//Initialize Products
+
+			// Initialize Products
 			Product pro1 = new Product("Long Sleeve T-Shirt",
-				    "Comfortable cotton t-shirt",
-				    "Zara",
-				    19.99,
-				    100,
-				    List.of("S", "M", "L", "XL"),
-				    List.of("White", "Black", "Blue"),
-				    true);
+					"Comfortable cotton t-shirt",
+					"Zara",
+					19.99,
+					100,
+					List.of("S", "M", "L", "XL"),
+					List.of("White", "Black", "Blue"),
+					true);
 			Product pro4 = new Product("Short Sleeve T-Shirt",
-				    "Comfortable linen t-shirt",
-				    "H&M",
-				    19.99,
-				    100,
-				    List.of("S", "L", "XL"),
-				    List.of("Purple", "Yellow"),
-				    true);
+					"Comfortable linen t-shirt",
+					"H&M",
+					19.99,
+					100,
+					List.of("S", "L", "XL"),
+					List.of("Purple", "Yellow"),
+					true);
 			pro1.setCategory(tShirtCategory);
 			productRepository.save(pro1);
 			pro4.setCategory(tShirtCategory);
 			productRepository.save(pro4);
 			Product pro2 = new Product("High Waist Pants",
-				    "Pants with front pockets and black welt pockets",
-				    "Levi's",
-				    49.99,
-				    50,
-				    List.of("28", "30", "32", "34", "36"),
-				    List.of("Dark Blue", "Black", "Gray"),
-				    true);
+					"Pants with front pockets and black welt pockets",
+					"Levi's",
+					49.99,
+					50,
+					List.of("28", "30", "32", "34", "36"),
+					List.of("Dark Blue", "Black", "Gray"),
+					true);
 			pro2.setCategory(pantsCategory);
 			productRepository.save(pro2);
 			Product pro3 = new Product(
-				    "Faux Fur Jacket",
-				    "Jacket with lapel collar and long sleeves",
-				    "Aritzia",
-				    189.99,
-				    19,
-				    List.of("M", "L", "XL"),
-				    List.of("Gray", "White", "Beige"),
-				    true);
+					"Faux Fur Jacket",
+					"Jacket with lapel collar and long sleeves",
+					"Aritzia",
+					189.99,
+					19,
+					List.of("M", "L", "XL"),
+					List.of("Gray", "White", "Beige"),
+					true);
 			pro3.setCategory(jacketCategory);
 			productRepository.save(pro3);
 
@@ -101,7 +101,7 @@ public class EcommerceAppApplication {
 			addUserIfNotFound("seller@example.com", "seller123", "seller");
 			addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
 			System.out.println("finished initializeDatabase");
-			
+
 		};
 	}
 

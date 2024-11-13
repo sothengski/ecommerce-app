@@ -24,13 +24,12 @@ import com.group01.ecommerce_app.model.Product;
 @RestController
 @RequestMapping("/api")
 public class ProductController {
-	@Autowired 
+	@Autowired
 	ProductRepository productRepository;
-	
-	//1. Get a list of all Product records
-	@GetMapping ("/products")
-	public ResponseEntity<ApiResponse<List<Product>>> getAllProducts(@RequestParam(required =
-	false) String name) {
+
+	// 1. Get a list of all Product records
+	@GetMapping("/products")
+	public ResponseEntity<ApiResponse<List<Product>>> getAllProducts(@RequestParam(required = false) String name) {
 		try {
 			List<Product> products = new ArrayList<Product>();
 			if (name == null) {
@@ -41,52 +40,53 @@ public class ProductController {
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-				return new  ResponseEntity<>(new ApiResponse<>(true, "Product retrieved successfully",
-	                    products), HttpStatus.OK);
+			return new ResponseEntity<>(new ApiResponse<>(true, "Product retrieved successfully",
+					products), HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(false, "Error getting all products data", e.getMessage()));
+					.body(new ApiResponse<>(false, "Error getting all products data", e.getMessage()));
 		}
 	}
-	
-	//2. Get a Product record by its id
+
+	// 2. Get a Product record by its id
 	@GetMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<Product>> getProductById(@PathVariable("id") long id) {
 		try {
 			Optional<Product> productData = productRepository.findById(id);
 			if (productData.isPresent()) {
 				return new ResponseEntity<>(new ApiResponse<>(true, "Product retrieved successfully",
-                        productData.get()), HttpStatus.OK);
+						productData.get()), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(
-	                    new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product is not found"),
-	                    HttpStatus.NOT_FOUND);
+						new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product is not found"),
+						HttpStatus.NOT_FOUND);
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(false, "Error getting a product data", e.getMessage()));
-		}	
+					.body(new ApiResponse<>(false, "Error getting a product data", e.getMessage()));
+		}
 	}
-	
-	//3. Create a new Product record
+
+	// 3. Create a new Product record
 	@PostMapping("/products")
 	public ResponseEntity<ApiResponse<Product>> createProduct(@RequestBody Product product) {
 		try {
-			Product _product = productRepository.save(new
-			Product(product.getName(), product.getDescription(), product.getBrand(),
-					product.getPrice(), product.getStock(), product.getSize(),
-					product.getColor(), product.isActive()));
+			Product _product = productRepository
+					.save(new Product(product.getName(), product.getDescription(), product.getBrand(),
+							product.getPrice(), product.getStock(), product.getSize(),
+							product.getColor(), product.isActive()));
 			return new ResponseEntity<>(new ApiResponse<>(true, "Product created successfully",
-					_product),HttpStatus.CREATED);
+					_product), HttpStatus.CREATED);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(false, "Error creating product", e.getMessage()));
+					.body(new ApiResponse<>(false, "Error creating product", e.getMessage()));
 		}
 	}
-	
-	//4. Update an existing Product record with its id
+
+	// 4. Update an existing Product record with its id
 	@PutMapping("/products/{id}")
-	public ResponseEntity<ApiResponse<Product>> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
+	public ResponseEntity<ApiResponse<Product>> updateProduct(@PathVariable("id") long id,
+			@RequestBody Product product) {
 		try {
 			Optional<Product> productData = productRepository.findById(id);
 			if (productData.isPresent()) {
@@ -100,20 +100,21 @@ public class ProductController {
 				_product.setColor(product.getColor());
 				_product.setActive(product.isActive());
 				return new ResponseEntity<>(
-                        new ApiResponse<>(true, "Product updated successfully",
-                        		productRepository.save(_product)), HttpStatus.OK);
-				} else {
+						new ApiResponse<>(true, "Product updated successfully",
+								productRepository.save(_product)),
+						HttpStatus.OK);
+			} else {
 				return new ResponseEntity<>(
-	                    new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product not found"),
-	                    HttpStatus.NOT_FOUND);
-				}
-		}catch (Exception e) {
+						new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product not found"),
+						HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(false, "Error updating product", e.getMessage()));
+					.body(new ApiResponse<>(false, "Error updating product", e.getMessage()));
 		}
 	}
-	
-	//5. Delete an existing Product record with its id
+
+	// 5. Delete an existing Product record with its id
 	@DeleteMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<HttpStatus>> deleteProduct(@PathVariable("id") long id) {
 		try {
@@ -121,6 +122,7 @@ public class ProductController {
 			return ResponseEntity.noContent().build();
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(false, "Error deleting product", e.getMessage()));		}
+					.body(new ApiResponse<>(false, "Error deleting product", e.getMessage()));
+		}
 	}
 }
