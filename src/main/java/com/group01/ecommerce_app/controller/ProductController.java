@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,12 +25,17 @@ import com.group01.ecommerce_app.dto.ProductCreateRequestDTO;
 import com.group01.ecommerce_app.dto.ProductDTO;
 import com.group01.ecommerce_app.dto.UserDTO;
 import com.group01.ecommerce_app.model.Product;
+import com.group01.ecommerce_app.model.Category;
+import com.group01.ecommerce_app.model.CategoryRepository;
+
 
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	CategoryRepository categoryRepository;
 
 	// 1. Get a list of all Product records
 	@GetMapping("/products")
@@ -85,7 +91,10 @@ public class ProductController {
 //							product.getPrice(), product.getStock(), product.getSize(),
 //							product.getColor(), product.isActive()));
 //			ProductDTO responseDto = ProductDTO.convertToProductDTO(_product);
-			
+			// Fetch the Category using the provided categoryId
+	        Category category = categoryRepository.findById(productRequest.getCategoryId())
+	                .orElseThrow(() -> new ResourceNotFoundException("Category not found with ID: " + productRequest.getCategoryId()));
+
 			// Convert DTO to Product entity
 	        Product productTemp = new Product();
 	        productTemp.setName(productRequest.getName());
@@ -96,6 +105,8 @@ public class ProductController {
 	        productTemp.setSize(productRequest.getSize());
 	        productTemp.setColor(productRequest.getColor());
 	        productTemp.setActive(productRequest.isActive());
+	        productTemp.setCategory(category);
+	        
 	        // Save product to the database
 	        Product savedProduct = productRepository.save(productTemp);
 

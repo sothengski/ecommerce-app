@@ -18,6 +18,7 @@ public class ProductCreateRequestDTO {
 	private String size;
 	private String color;
 	private boolean isActive;
+	private Long categoryId;
 	
 	//Getters and Setters
 	public String getName() {
@@ -70,6 +71,12 @@ public class ProductCreateRequestDTO {
 	}
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	public Long getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	
