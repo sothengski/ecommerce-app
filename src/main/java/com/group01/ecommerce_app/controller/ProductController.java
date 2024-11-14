@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,8 +24,8 @@ import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.ProductRepository;
-import com.group01.ecommerce_app.model.UserRepository;
 import com.group01.ecommerce_app.model.User;
+import com.group01.ecommerce_app.model.UserRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -37,7 +36,7 @@ public class ProductController {
 
 	@Autowired
 	CategoryRepository categoryRepository;
-	
+
 	@Autowired
 	UserRepository userRepository;
 
@@ -85,34 +84,35 @@ public class ProductController {
 					.body(new ApiResponse<>(false, "Error getting a product data", e.getMessage()));
 		}
 	}
-		
-	//3. Search product by name, color, size, userId and categoryId
+
+	// 3. Search product by name, color, size, userId and categoryId
 	@GetMapping("/products/search")
 	public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProducts(
-	        @RequestParam(required = false, defaultValue = "") String name,
-	        @RequestParam(required = false, defaultValue = "") String brand,
-	        @RequestParam(required = false, defaultValue = "") String size,
-	        @RequestParam(required = false, defaultValue = "") String color,
-	        @RequestParam(required = false) Long userId,
-	        @RequestParam(required = false) Long categoryId) {
-	    
-	    try {
-	        List<Product> products = productRepository.findProducts(
-	                name, brand, size, color, userId, categoryId);
-	        
-	        List<ProductDTO> productDTOs = products.stream()
-	                                               .map(ProductDTO::convertToProductDTO)
-	                                               .toList();
+			@RequestParam(required = false, defaultValue = "") String name,
+			@RequestParam(required = false, defaultValue = "") String brand,
+			@RequestParam(required = false, defaultValue = "") String size,
+			@RequestParam(required = false, defaultValue = "") String color,
+			@RequestParam(required = false) Long userId,
+			@RequestParam(required = false) Long categoryId) {
 
-	        if (productDTOs.isEmpty()) {
-	            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	        }
+		try {
+			List<Product> products = productRepository.findProducts(
+					name, brand, size, color, userId, categoryId);
 
-	        return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully", productDTOs), HttpStatus.OK);
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                             .body(new ApiResponse<>(false, "Error retrieving products", e.getMessage()));
-	    }
+			List<ProductDTO> productDTOs = products.stream()
+					.map(ProductDTO::convertToProductDTO)
+					.toList();
+
+			if (productDTOs.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+
+			return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully", productDTOs),
+					HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(new ApiResponse<>(false, "Error retrieving products", e.getMessage()));
+		}
 	}
 
 	// 4. Create a new Product record

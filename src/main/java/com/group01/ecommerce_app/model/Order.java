@@ -67,21 +67,38 @@ public class Order implements Serializable {
     @Column(name = "shipping_cost", nullable = false)
     private double shippingCost;
 
-//    @Column(name = "billing_address", nullable = false)
-//    private String billingAddress;
-//
-//    @Column(name = "billing_city", nullable = false)
-//    private String billingCity;
-//
-//    @Column(name = "billing_state", nullable = false)
-//    private String billingState;
-//
-//    @Column(name = "billing_postal_code", nullable = false)
-//    private String billingPostalCode;
-//
-//    @Column(name = "billing_country", nullable = false)
-//    private String billingCountry;
+    // @Column(name = "billing_address", nullable = false)
+    // private String billingAddress;
+    //
+    // @Column(name = "billing_city", nullable = false)
+    // private String billingCity;
+    //
+    // @Column(name = "billing_state", nullable = false)
+    // private String billingState;
+    //
+    // @Column(name = "billing_postal_code", nullable = false)
+    // private String billingPostalCode;
+    //
+    // @Column(name = "billing_country", nullable = false)
+    // private String billingCountry;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderItem> items = new ArrayList<>();
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

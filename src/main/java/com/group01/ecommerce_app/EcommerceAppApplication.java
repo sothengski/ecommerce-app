@@ -1,5 +1,8 @@
 package com.group01.ecommerce_app;
 
+import java.math.BigDecimal;
+import java.sql.Array;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,8 @@ import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
 import com.group01.ecommerce_app.model.Order;
 import com.group01.ecommerce_app.model.OrderItem;
+import com.group01.ecommerce_app.model.OrderItemRepository;
+import com.group01.ecommerce_app.model.OrderRepository;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.ProductRepository;
 import com.group01.ecommerce_app.model.Role;
@@ -34,6 +39,12 @@ public class EcommerceAppApplication {
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private OrderRepository orderRepository;
+
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceAppApplication.class, args);
@@ -112,6 +123,73 @@ public class EcommerceAppApplication {
 			// Initialize Orders
 			// User admin = userRepository.findByEmail("admin@example.com").orElseThrow();
 			// User buyer = userRepository.findByEmail("buyer@example.com").orElseThrow();
+
+			// Example of creating an order with items
+
+			// Sample Orders
+			Order order1 = new Order();
+			order1.setUserId(1L);
+			order1.setOrderNumber("ORD123456");
+			order1.setOrderStatus("Processing");
+			order1.setOrderDate(LocalDateTime.now());
+			order1.setTotalQuantity(3);
+			order1.setTotalPrice(150.00);
+			order1.setCurrency("USD");
+			order1.setPaymentStatus("Pending");
+			order1.setPaymentMethod("Credit Card");
+			order1.setShippingAddress("123 Main St");
+			order1.setShippingCity("New York");
+			order1.setShippingState("NY");
+			order1.setShippingPostalCode("10001");
+			order1.setShippingCountry("USA");
+			order1.setShippingCost(5.99);
+
+			Order order2 = new Order();
+			order2.setUserId(2L);
+			order2.setOrderNumber("ORD123457");
+			order2.setOrderStatus("Shipped");
+			order2.setOrderDate(LocalDateTime.now().minusDays(1));
+			order2.setTotalQuantity(2);
+			order2.setTotalPrice(75.00);
+			order2.setCurrency("USD");
+			order2.setPaymentStatus("Paid");
+			order2.setPaymentMethod("PayPal");
+			order2.setShippingAddress("456 Elm St");
+			order2.setShippingCity("Los Angeles");
+			order2.setShippingState("CA");
+			order2.setShippingPostalCode("90001");
+			order2.setShippingCountry("USA");
+			order2.setShippingCost(4.99);
+
+			// Save Orders
+			order1 = orderRepository.save(order1);
+			order2 = orderRepository.save(order2);
+
+			// Order Items
+			OrderItem item1 = new OrderItem();
+			item1.setOrder(order1);
+			item1.setProduct(pro1);
+			item1.setQuantity(2);
+			item1.setUnitPrice(50.00);
+			item1.setTotalPrice(100.00);
+
+			OrderItem item2 = new OrderItem();
+			item2.setOrder(order1);
+			item2.setProduct(pro2);
+			item2.setQuantity(1);
+			item2.setUnitPrice(25.00);
+			item2.setTotalPrice(25.00);
+
+			OrderItem item3 = new OrderItem();
+			item3.setOrder(order2);
+			item3.setProduct(pro3);
+			item3.setQuantity(1);
+			item3.setUnitPrice(50.00);
+			item3.setTotalPrice(50.00);
+
+			// Save Order Items
+			orderItemRepository.saveAll(List.of(item1, item2, item3));
+
 		};
 
 	}

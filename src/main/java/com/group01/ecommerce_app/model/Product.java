@@ -72,14 +72,14 @@ public class Product implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	
+
 	// Constructors
 	public Product(String name, String description, String brand, double price, int stock,
-			List<String> size, List<String> color, List<String> imgList, 
+			List<String> size, List<String> color, List<String> imgList,
 			User user, Category category, boolean isActive) {
 		this.name = name;
 		this.description = description;

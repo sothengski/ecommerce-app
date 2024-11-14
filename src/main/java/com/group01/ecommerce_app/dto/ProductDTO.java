@@ -1,17 +1,19 @@
 package com.group01.ecommerce_app.dto;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.User;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-// @AllArgsConstructor
+@AllArgsConstructor
 @Data
 public class ProductDTO {
 	private Long id;
@@ -29,7 +31,7 @@ public class ProductDTO {
 
 	// Constructor
 	public ProductDTO(Long id, String name, String description, String brand, double price, int stock,
-			List<String> size, List<String> color, List<String> imgList, 
+			List<String> size, List<String> color, List<String> imgList,
 			User user, Category category, boolean isActive) {
 		this.id = id;
 		this.name = name;
@@ -43,6 +45,20 @@ public class ProductDTO {
 		this.user = user;
 		this.category = category;
 		this.isActive = isActive;
+	}
+
+	public ProductDTO(Product product) {
+		this.id = product.getId();
+		this.name = product.getName();
+		this.description = product.getDescription();
+		this.brand = product.getBrand();
+		this.category = product.getCategory();
+		this.stock = product.getStock();
+		this.images = product.getImages();
+		this.price = product.getPrice();
+		this.user = product.getUser();
+		this.color = String.join(",", product.getColor());
+		this.size = String.join(",", product.getSize());
 	}
 
 	// Getter and Setter
@@ -95,7 +111,9 @@ public class ProductDTO {
 	}
 
 	public List<String> getSize() {
-		return Arrays.asList(size.split(","));
+		// return Arrays.asList(size.split(","));
+		// Check if size is not null before calling split
+		return size != null ? Arrays.asList(size.split(",")) : Arrays.asList();
 	}
 
 	public void setSize(List<String> size) {
@@ -103,7 +121,9 @@ public class ProductDTO {
 	}
 
 	public List<String> getColor() {
-		return Arrays.asList(color.split(","));
+		// return Arrays.asList(color.split(","));
+		return color != null ? Arrays.asList(color.split(",")) : Arrays.asList();
+
 	}
 
 	public void setColor(List<String> color) {
@@ -117,6 +137,7 @@ public class ProductDTO {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
 	public List<String> getImages() {
 		return images;
 	}
@@ -135,7 +156,7 @@ public class ProductDTO {
 		product.setStock(productDTO.getStock());
 		product.setSize(productDTO.getSize());
 		product.setColor(productDTO.getColor());
-		product.setCategory(category); 
+		product.setCategory(category);
 		product.setImages(productDTO.getImages());
 		product.setActive(productDTO.isActive());
 		return product;

@@ -80,24 +80,25 @@ public class User implements Serializable {
     // Constructors
     // public User() {
     // }
-    
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Set<Product> products = new HashSet<>();
+    @JsonIgnore
+    private Set<Product> products = new HashSet<>();
 
-	public void addProduct(Product product) {
-		this.products.add(product);
-		product.setUser(this);
-	}
-	
-	public Set<Product> getProducts() {
-		return products;
-	}
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
+    public void addProduct(Product product) {
+        this.products.add(product);
+        product.setUser(this);
+    }
 
-	public User(Boolean active) {
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public User(Boolean active) {
         this.active = active;
     }
 
