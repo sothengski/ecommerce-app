@@ -25,6 +25,8 @@ import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.ProductRepository;
+import com.group01.ecommerce_app.model.UserRepository;
+import com.group01.ecommerce_app.model.User;
 
 @RestController
 @RequestMapping("/api")
@@ -35,6 +37,9 @@ public class ProductController {
 
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	// 1. Get a list of all Product records
 	@GetMapping("/products")
@@ -80,19 +85,20 @@ public class ProductController {
 					.body(new ApiResponse<>(false, "Error getting a product data", e.getMessage()));
 		}
 	}
-	
-	//3. Search product by name, color, size and categoryId
+		
+	//3. Search product by name, color, size, userId and categoryId
 	@GetMapping("/products/search")
 	public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProducts(
 	        @RequestParam(required = false, defaultValue = "") String name,
 	        @RequestParam(required = false, defaultValue = "") String brand,
 	        @RequestParam(required = false, defaultValue = "") String size,
 	        @RequestParam(required = false, defaultValue = "") String color,
+	        @RequestParam(required = false) Long userId,
 	        @RequestParam(required = false) Long categoryId) {
 	    
 	    try {
-	        List<Product> products = productRepository.findByNameAndBrandAndSizeAndColorAndCategoryId(
-	                name, brand, size, color, categoryId);
+	        List<Product> products = productRepository.findProducts(
+	                name, brand, size, color, userId, categoryId);
 	        
 	        List<ProductDTO> productDTOs = products.stream()
 	                                               .map(ProductDTO::convertToProductDTO)
@@ -125,6 +131,17 @@ public class ProductController {
 							HttpStatus.BAD_REQUEST);
 				}
 				productTemp.setCategory(category.get());
+			}
+			if (productRequest.getUserId() != null) {
+				Optional<User> user = userRepository.findById(productRequest.getUserId());
+				if (user.isEmpty()) {
+					return new ResponseEntity<>(new ApiResponse<>(false,
+							"User not found with id "
+									+ productRequest.getUserId(),
+							"User not found"),
+							HttpStatus.BAD_REQUEST);
+				}
+				productTemp.setUser(user.get());
 			}
 
 			productTemp.setName(productRequest.getName());
@@ -171,6 +188,17 @@ public class ProductController {
 								HttpStatus.BAD_REQUEST);
 					}
 					updatedProduct.setCategory(category.get());
+				}
+				if (productToBeUpdated.getUserId() != null) {
+					Optional<User> user = userRepository.findById(productToBeUpdated.getUserId());
+					if (user.isEmpty()) {
+						return new ResponseEntity<>(new ApiResponse<>(false,
+								"User not found with id "
+										+ productToBeUpdated.getUserId(),
+								"user not found"),
+								HttpStatus.BAD_REQUEST);
+					}
+					updatedProduct.setUser(user.get());
 				}
 				updatedProduct.setName(productToBeUpdated.getName());
 				updatedProduct.setDescription(productToBeUpdated.getDescription());
