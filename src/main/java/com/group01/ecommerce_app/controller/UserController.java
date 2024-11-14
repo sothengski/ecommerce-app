@@ -3,7 +3,6 @@ package com.group01.ecommerce_app.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -171,13 +170,21 @@ public class UserController {
                         HttpStatus.OK);
             }
             return new ResponseEntity<>(
-                    new ApiResponse<>(false, "User not found", "User with ID " + id + " does not exist"),
+                    new ApiResponse<>(false,
+                            "User with id " + id
+                                    + " does not exist",
+                            "User not found"),
                     HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ApiResponse<>(false, "Error updating user", e.getMessage()));
         }
     }
+
+    // private String notFoundMessage(String type, Long id) {
+    // return id == null ? type + " not found" : type + " with id " + id + " does
+    // not exist";
+    // }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<String>> deleteUser(@PathVariable("id") Long id) {
@@ -204,13 +211,15 @@ public class UserController {
 
                 return new ResponseEntity<>(
                         new ApiResponse<>(true,
-                                "User with ID " + id + " is now active successfully",
+                                "User with id " + id + " is now active successfully",
                                 UserDTO.convertToUserDTO(
                                         updatedUser)),
                         HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(
-                        new ApiResponse<>(false, "User not found", "User with ID " + id + " does not exist"),
+                        new ApiResponse<>(false, "User with id " + id
+                                + " does not exist",
+                                "User not found"),
                         HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
@@ -236,7 +245,9 @@ public class UserController {
                     HttpStatus.OK);
         } else {
             return new ResponseEntity<>(
-                    new ApiResponse<>(false, "User not found", "User with ID " + id + " does not exist"),
+                    new ApiResponse<>(false, "User with id " + id
+                            + " does not exist",
+                            "User not found"),
                     HttpStatus.NOT_FOUND);
         }
     }

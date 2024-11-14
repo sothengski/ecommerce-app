@@ -3,11 +3,12 @@ package com.group01.ecommerce_app.dto;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-// @AllArgsConstructor
+@AllArgsConstructor
 @Data
 public class ProductCreateRequestDTO {
 	private String name;
@@ -17,8 +18,9 @@ public class ProductCreateRequestDTO {
 	private int stock;
 	private String size;
 	private String color;
-	private boolean isActive;
 	private Long categoryId;
+	private List<String> images; // Assuming URLs are stored for images
+	private boolean isActive;
 
 	// Getters and Setters
 	public String getName() {

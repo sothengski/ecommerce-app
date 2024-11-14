@@ -49,6 +49,11 @@ public class EcommerceAppApplication {
 			addRoleIfNotFound("seller");
 			addRoleIfNotFound("buyer");
 
+			// Initialize sample users
+			addUserIfNotFound("admin@example.com", "admin123", "admin");
+			addUserIfNotFound("seller@example.com", "seller123", "seller");
+			addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
+
 			// Initialize Categories
 			Category tShirtCategory = categoryRepository.save(new Category("T-shirt", true));
 			Category pantsCategory = categoryRepository.save(new Category("Pants", true));
@@ -63,7 +68,10 @@ public class EcommerceAppApplication {
 					100,
 					List.of("S", "M", "L", "XL"),
 					List.of("White", "Black", "Blue"),
-					true);
+
+					List.of("https://example.com/images/product1.jpg",
+							"https://example.com/images/product2.jpg"),
+					tShirtCategory, true);
 			Product pro4 = new Product("Short Sleeve T-Shirt",
 					"Comfortable linen t-shirt",
 					"H&M",
@@ -71,10 +79,13 @@ public class EcommerceAppApplication {
 					100,
 					List.of("S", "L", "XL"),
 					List.of("Purple", "Yellow"),
-					true);
-			pro1.setCategory(tShirtCategory);
+
+					List.of("https://example.com/images/product1.jpg",
+							"https://example.com/images/product2.jpg"),
+					pantsCategory, true);
+			// pro1.setCategory(tShirtCategory);
 			productRepository.save(pro1);
-			pro4.setCategory(tShirtCategory);
+			// pro4.setCategory(tShirtCategory);
 			productRepository.save(pro4);
 			Product pro2 = new Product("High Waist Pants",
 					"Pants with front pockets and black welt pockets",
@@ -83,8 +94,10 @@ public class EcommerceAppApplication {
 					50,
 					List.of("28", "30", "32", "34", "36"),
 					List.of("Dark Blue", "Black", "Gray"),
-					true);
-			pro2.setCategory(pantsCategory);
+					List.of("https://example.com/images/product1.jpg",
+							"https://example.com/images/product2.jpg"),
+					jacketCategory, true);
+			// pro2.setCategory(pantsCategory);
 			productRepository.save(pro2);
 			Product pro3 = new Product(
 					"Faux Fur Jacket",
@@ -94,20 +107,17 @@ public class EcommerceAppApplication {
 					19,
 					List.of("M", "L", "XL"),
 					List.of("Gray", "White", "Beige"),
-					true);
-			pro3.setCategory(jacketCategory);
+					List.of("https://example.com/images/product1.jpg",
+							"https://example.com/images/product2.jpg"),
+					shoesCategory, true);
+			// pro3.setCategory(jacketCategory);
 			productRepository.save(pro3);
-
-			// Initialize sample users
-			addUserIfNotFound("admin@example.com", "admin123", "admin");
-			addUserIfNotFound("seller@example.com", "seller123", "seller");
-			addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
 
 			// Initialize Orders
 			// User admin = userRepository.findByEmail("admin@example.com").orElseThrow();
 			// User buyer = userRepository.findByEmail("buyer@example.com").orElseThrow();
-
 		};
+
 	}
 
 	private void addRoleIfNotFound(String roleName) {

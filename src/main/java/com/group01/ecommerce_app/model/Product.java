@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -52,6 +54,11 @@ public class Product implements Serializable {
 	@Column(name = "color")
 	private String color;
 
+	@ElementCollection
+	@CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
+	@Column(name = "image_url")
+	private List<String> images;
+
 	@Builder.Default
 	@Column(name = "active")
 	private boolean isActive = true;
@@ -62,7 +69,7 @@ public class Product implements Serializable {
 
 	// Constructors
 	public Product(String name, String description, String brand, double price, int stock,
-			List<String> size, List<String> color, boolean isActive) {
+			List<String> size, List<String> color, List<String> imgList, Category category, boolean isActive) {
 		this.name = name;
 		this.description = description;
 		this.brand = brand;
@@ -70,6 +77,8 @@ public class Product implements Serializable {
 		this.stock = stock;
 		this.size = String.join(",", size);
 		this.color = String.join(",", color);
+		this.images = imgList;
+		this.category = category;
 		this.isActive = isActive;
 	}
 
@@ -158,5 +167,13 @@ public class Product implements Serializable {
 		return this.id + " " + this.name + " " + this.description + " " +
 				this.brand + " " + this.price + " " +
 				this.stock + " " + this.size + " " + this.color + " " + this.isActive;
+	}
+
+	public List<String> getImages() {
+		return images;
+	}
+
+	public void setImages(List<String> images) {
+		this.images = images;
 	}
 }

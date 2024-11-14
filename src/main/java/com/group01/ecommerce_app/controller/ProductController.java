@@ -92,12 +92,21 @@ public class ProductController {
 			// product.getColor(), product.isActive()));
 			// ProductDTO responseDto = ProductDTO.convertToProductDTO(_product);
 			// Fetch the Category using the provided categoryId
-			Category category = categoryRepository.findById(productRequest.getCategoryId())
-					.orElseThrow(() -> new ResourceNotFoundException(
-							"Category not found with ID: " + productRequest.getCategoryId()));
 
 			// Convert DTO to Product entity
 			Product productTemp = new Product();
+			if (productRequest.getCategoryId() != null) {
+				Optional<Category> category = categoryRepository.findById(productRequest.getCategoryId());
+				if (category.isEmpty()) {
+					return new ResponseEntity<>(new ApiResponse<>(false,
+							"Category not found with id "
+									+ productRequest.getCategoryId(),
+							"Category not found"),
+							HttpStatus.BAD_REQUEST);
+				}
+				productTemp.setCategory(category.get());
+			}
+
 			productTemp.setName(productRequest.getName());
 			productTemp.setBrand(productRequest.getBrand());
 			productTemp.setDescription(productRequest.getDescription());
@@ -105,8 +114,9 @@ public class ProductController {
 			productTemp.setStock(productRequest.getStock());
 			productTemp.setSize(productRequest.getSize());
 			productTemp.setColor(productRequest.getColor());
+			productTemp.setImages(productRequest.getImages());
+			// productTemp.setCategory(category);
 			productTemp.setActive(productRequest.isActive());
-			productTemp.setCategory(category);
 
 			// Save product to the database
 			Product savedProduct = productRepository.save(productTemp);
@@ -125,20 +135,35 @@ public class ProductController {
 	// 4. Update an existing Product record with its id
 	@PutMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable("id") long id,
-			@RequestBody Product product) {
+			@RequestBody ProductCreateRequestDTO productToBeUpdated) {
 		try {
 			Optional<Product> productData = productRepository.findById(id);
 			if (productData.isPresent()) {
-				Product _product = productData.get();
-				_product.setName(product.getName());
-				_product.setDescription(product.getDescription());
-				_product.setBrand(product.getBrand());
-				_product.setPrice(product.getPrice());
-				_product.setStock(product.getStock());
-				_product.setSize(product.getSize());
-				_product.setColor(product.getColor());
-				_product.setActive(product.isActive());
-				Product updatedProduct = productRepository.save(_product);
+				Product updatedProduct = productData.get();
+
+				if (productToBeUpdated.getCategoryId() != null) {
+					Optional<Category> category = categoryRepository.findById(productToBeUpdated.getCategoryId());
+					if (category.isEmpty()) {
+						return new ResponseEntity<>(new ApiResponse<>(false,
+								"Category not found with id "
+										+ productToBeUpdated.getCategoryId(),
+								"Category not found"),
+								HttpStatus.BAD_REQUEST);
+					}
+					updatedProduct.setCategory(category.get());
+				}
+				updatedProduct.setName(productToBeUpdated.getName());
+				updatedProduct.setDescription(productToBeUpdated.getDescription());
+				updatedProduct.setBrand(productToBeUpdated.getBrand());
+				updatedProduct.setPrice(productToBeUpdated.getPrice());
+				updatedProduct.setStock(productToBeUpdated.getStock());
+				updatedProduct.setSize(productToBeUpdated.getSize());
+				updatedProduct.setColor(productToBeUpdated.getColor());
+				updatedProduct.setImages(productToBeUpdated.getImages());
+				// updatedProduct.setCategory(category);
+				updatedProduct.setActive(productToBeUpdated.isActive());
+				productRepository.save(updatedProduct);
+
 				return new ResponseEntity<>(
 						new ApiResponse<>(true, "Product updated successfully",
 								ProductDTO.convertToProductDTO(updatedProduct)),

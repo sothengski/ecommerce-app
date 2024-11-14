@@ -57,6 +57,5 @@ public class UserDTO {
                 user.getShippingAddress(),
                 new Role(user.getRole().getId(), user.getRole().getName()),
                 user.getActive()); // Include active status);
-
     }
 }
