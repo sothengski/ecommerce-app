@@ -73,10 +73,14 @@ public class Product implements Serializable {
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
 	
-
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+	
 	// Constructors
 	public Product(String name, String description, String brand, double price, int stock,
-			List<String> size, List<String> color, List<String> imgList, Category category, boolean isActive) {
+			List<String> size, List<String> color, List<String> imgList, 
+			User user, Category category, boolean isActive) {
 		this.name = name;
 		this.description = description;
 		this.brand = brand;
@@ -85,6 +89,7 @@ public class Product implements Serializable {
 		this.size = String.join(",", size);
 		this.color = String.join(",", color);
 		this.images = imgList;
+		this.user = user;
 		this.category = category;
 		this.isActive = isActive;
 	}
@@ -167,6 +172,14 @@ public class Product implements Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

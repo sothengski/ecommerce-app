@@ -50,9 +50,9 @@ public class EcommerceAppApplication {
 			addRoleIfNotFound("buyer");
 
 			// Initialize sample users
-			addUserIfNotFound("admin@example.com", "admin123", "admin");
-			addUserIfNotFound("seller@example.com", "seller123", "seller");
-			addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
+			User admin = addUserIfNotFound("admin@example.com", "admin123", "admin");
+			User seller = addUserIfNotFound("seller@example.com", "seller123", "seller");
+			User buyer = addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
 
 			// Initialize Categories
 			Category tShirtCategory = categoryRepository.save(new Category("T-shirt", true));
@@ -71,7 +71,7 @@ public class EcommerceAppApplication {
 
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
-					tShirtCategory, true);
+					admin, tShirtCategory, true);
 			Product pro4 = new Product("Short Sleeve T-Shirt",
 					"Comfortable linen t-shirt",
 					"H&M",
@@ -82,7 +82,7 @@ public class EcommerceAppApplication {
 
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
-					tShirtCategory, true);
+					seller, tShirtCategory, true);
 			productRepository.save(pro1);
 			productRepository.save(pro4);
 			Product pro2 = new Product("High Waist Pants",
@@ -94,7 +94,7 @@ public class EcommerceAppApplication {
 					List.of("Dark Blue", "Black", "Gray"),
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
-					pantsCategory, true);
+					admin, pantsCategory, true);
 			productRepository.save(pro2);
 			Product pro3 = new Product(
 					"Faux Fur Jacket",
@@ -106,7 +106,7 @@ public class EcommerceAppApplication {
 					List.of("Gray", "White", "Beige"),
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
-					jacketCategory, true);
+					buyer, jacketCategory, true);
 			productRepository.save(pro3);
 
 			// Initialize Orders
@@ -120,10 +120,10 @@ public class EcommerceAppApplication {
 		roleRepository.findByName(roleName).orElseGet(() -> roleRepository.save(new Role(roleName)));
 	}
 
-	private void addUserIfNotFound(String email, String password, String roleName) {
+	private User addUserIfNotFound(String email, String password, String roleName) {
 		Role role = roleRepository.findByName(roleName)
 				.orElseThrow(() -> new RuntimeException("Role not found"));
-		userRepository.findByEmail(email).orElseGet(() -> userRepository.save(new User(email, password, role)));
+		return userRepository.findByEmail(email).orElseGet(() -> userRepository.save(new User(email, password, role)));
 	}
 
 }

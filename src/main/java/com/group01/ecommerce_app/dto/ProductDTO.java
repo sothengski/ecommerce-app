@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.Product;
+import com.group01.ecommerce_app.model.User;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,14 @@ public class ProductDTO {
 	private String size;
 	private String color;
 	private boolean isActive;
+	private User user;
 	private Category category;
 	private List<String> images; // Assuming URLs are stored for images
 
 	// Constructor
 	public ProductDTO(Long id, String name, String description, String brand, double price, int stock,
-			List<String> size, List<String> color, List<String> imgList, Category category, boolean isActive) {
+			List<String> size, List<String> color, List<String> imgList, 
+			User user, Category category, boolean isActive) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -37,6 +40,7 @@ public class ProductDTO {
 		this.size = String.join(",", size);
 		this.color = String.join(",", color);
 		this.images = imgList;
+		this.user = user;
 		this.category = category;
 		this.isActive = isActive;
 	}
@@ -149,6 +153,7 @@ public class ProductDTO {
 				product.getSize(),
 				product.getColor(),
 				product.getImages(),
+				product.getUser(),
 				product.getCategory(), // != null ? product.getCategory().getName() : null,
 				product.isActive());
 	}

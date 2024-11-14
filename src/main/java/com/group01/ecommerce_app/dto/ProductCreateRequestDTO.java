@@ -18,6 +18,7 @@ public class ProductCreateRequestDTO {
 	private int stock;
 	private String size;
 	private String color;
+	private Long userId;
 	private Long categoryId;
 	private List<String> images; 
 	private boolean isActive;
@@ -93,6 +94,14 @@ public class ProductCreateRequestDTO {
 
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public List<String> getImages() {
