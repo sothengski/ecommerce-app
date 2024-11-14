@@ -23,7 +23,6 @@ public class ProductDTO {
 	private String color;
 	private boolean isActive;
 	private Category category;
-	// private String categoryName; // Display only the name of the category
 	private List<String> images; // Assuming URLs are stored for images
 
 	// Constructor
@@ -43,7 +42,6 @@ public class ProductDTO {
 	}
 
 	// Getter and Setter
-
 	public String getName() {
 		return name;
 	}
@@ -115,6 +113,13 @@ public class ProductDTO {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+	public List<String> getImages() {
+		return images;
+	}
+
+	public void setImages(List<String> images) {
+		this.images = images;
+	}
 
 	// Converts ProductDTO to Product entity
 	public static Product convertToProductEntity(ProductDTO productDTO, Category category) {
@@ -126,7 +131,7 @@ public class ProductDTO {
 		product.setStock(productDTO.getStock());
 		product.setSize(productDTO.getSize());
 		product.setColor(productDTO.getColor());
-		product.setCategory(category); // Set the category based on the category ID
+		product.setCategory(category); 
 		product.setImages(productDTO.getImages());
 		product.setActive(productDTO.isActive());
 		return product;

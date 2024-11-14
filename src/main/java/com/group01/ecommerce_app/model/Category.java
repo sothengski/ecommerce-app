@@ -40,12 +40,6 @@ public class Category implements Serializable {
 	@Column(name = "active")
 	private boolean isActive = true;
 
-	// public Category() {
-	// this.name = "";
-	// this.userId = 0;
-	// this.isActive = false;
-	// }
-
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<Product> products = new HashSet<>();

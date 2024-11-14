@@ -19,7 +19,7 @@ public class ProductCreateRequestDTO {
 	private String size;
 	private String color;
 	private Long categoryId;
-	private List<String> images; // Assuming URLs are stored for images
+	private List<String> images; 
 	private boolean isActive;
 
 	// Getters and Setters
@@ -94,4 +94,13 @@ public class ProductCreateRequestDTO {
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	public List<String> getImages() {
+		return images;
+	}
+
+	public void setImages(List<String> images) {
+		this.images = images;
+	}
+	
 }

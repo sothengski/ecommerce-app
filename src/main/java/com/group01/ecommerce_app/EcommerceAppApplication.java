@@ -82,10 +82,8 @@ public class EcommerceAppApplication {
 
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
-					pantsCategory, true);
-			// pro1.setCategory(tShirtCategory);
+					tShirtCategory, true);
 			productRepository.save(pro1);
-			// pro4.setCategory(tShirtCategory);
 			productRepository.save(pro4);
 			Product pro2 = new Product("High Waist Pants",
 					"Pants with front pockets and black welt pockets",
@@ -96,8 +94,7 @@ public class EcommerceAppApplication {
 					List.of("Dark Blue", "Black", "Gray"),
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
-					jacketCategory, true);
-			// pro2.setCategory(pantsCategory);
+					pantsCategory, true);
 			productRepository.save(pro2);
 			Product pro3 = new Product(
 					"Faux Fur Jacket",
@@ -109,8 +106,7 @@ public class EcommerceAppApplication {
 					List.of("Gray", "White", "Beige"),
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
-					shoesCategory, true);
-			// pro3.setCategory(jacketCategory);
+					jacketCategory, true);
 			productRepository.save(pro3);
 
 			// Initialize Orders

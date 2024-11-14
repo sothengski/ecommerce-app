@@ -77,7 +77,7 @@ public class User implements Serializable {
     // public User() {
     // }
 
-    public User(Boolean active) {
+	public User(Boolean active) {
         this.active = active;
     }
 

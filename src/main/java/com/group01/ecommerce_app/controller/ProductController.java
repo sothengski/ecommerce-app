@@ -80,19 +80,39 @@ public class ProductController {
 					.body(new ApiResponse<>(false, "Error getting a product data", e.getMessage()));
 		}
 	}
+	
+	//3. Search product by name, color, size and categoryId
+	@GetMapping("/products/search")
+	public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProducts(
+	        @RequestParam(required = false, defaultValue = "") String name,
+	        @RequestParam(required = false, defaultValue = "") String brand,
+	        @RequestParam(required = false, defaultValue = "") String size,
+	        @RequestParam(required = false, defaultValue = "") String color,
+	        @RequestParam(required = false) Long categoryId) {
+	    
+	    try {
+	        List<Product> products = productRepository.findByNameAndBrandAndSizeAndColorAndCategoryId(
+	                name, brand, size, color, categoryId);
+	        
+	        List<ProductDTO> productDTOs = products.stream()
+	                                               .map(ProductDTO::convertToProductDTO)
+	                                               .toList();
 
-	// 3. Create a new Product record
+	        if (productDTOs.isEmpty()) {
+	            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	        }
+
+	        return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully", productDTOs), HttpStatus.OK);
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                             .body(new ApiResponse<>(false, "Error retrieving products", e.getMessage()));
+	    }
+	}
+
+	// 4. Create a new Product record
 	@PostMapping("/products")
 	public ResponseEntity<ApiResponse<ProductDTO>> createProduct(@RequestBody ProductCreateRequestDTO productRequest) {
 		try {
-			// Product _product = productRepository
-			// .save(new Product(product.getName(), product.getDescription(),
-			// product.getBrand(),
-			// product.getPrice(), product.getStock(), product.getSize(),
-			// product.getColor(), product.isActive()));
-			// ProductDTO responseDto = ProductDTO.convertToProductDTO(_product);
-			// Fetch the Category using the provided categoryId
-
 			// Convert DTO to Product entity
 			Product productTemp = new Product();
 			if (productRequest.getCategoryId() != null) {
@@ -132,7 +152,7 @@ public class ProductController {
 		}
 	}
 
-	// 4. Update an existing Product record with its id
+	// 5. Update an existing Product record with its id
 	@PutMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable("id") long id,
 			@RequestBody ProductCreateRequestDTO productToBeUpdated) {
@@ -179,7 +199,7 @@ public class ProductController {
 		}
 	}
 
-	// 5. Delete an existing Product record with its id
+	// 6. Delete an existing Product record with its id
 	@DeleteMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<HttpStatus>> deleteProduct(@PathVariable("id") long id) {
 		try {
