@@ -22,6 +22,7 @@ import com.group01.ecommerce_app.model.CategoryRepository;
 @RestController
 @RequestMapping("/api")
 public class CategoryController {
+
     @Autowired
     private CategoryRepository categoryRepository;
 
@@ -29,11 +30,13 @@ public class CategoryController {
     @GetMapping("/categories")
     public ResponseEntity<ApiResponse<List<Category>>> getAllCategories() {
         try {
-            List<Category> categories = categoryRepository.findAll();
+            List<Category> categories = categoryRepository.findAll(); // new ArrayList<>();
 
             // List of roles is Empty
             if (categories.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(new ApiResponse<>(true, "Categories retrieved successfully",
+                        categories, "No categories found"), HttpStatus.OK);
+                // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
                 // return new ResponseEntity<>(new ApiResponse<>(true, "No Categories data",
                 // Collections.emptyList()), HttpStatus.NO_CONTENT);
             }
