@@ -94,6 +94,7 @@ public class CategoryController {
                 // update fields
                 categoryTemp.setName(category.getName());
                 categoryTemp.setActive(category.isActive());
+                categoryRepository.save(categoryTemp);
                 return new ResponseEntity<>(
                         new ApiResponse<>(true, "Category updated successfully",
                                 categoryTemp),
