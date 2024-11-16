@@ -76,49 +76,37 @@ public class EcommerceAppApplication {
 					"Comfortable cotton t-shirt",
 					"Zara",
 					19.99,
-					100,
-					List.of("S", "M", "L", "XL"),
+					50,
+					List.of("S", "M", "L"),
 					List.of("White", "Black", "Blue"),
 
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
 					admin, tShirtCategory, true);
-			Product pro4 = new Product("Short Sleeve T-Shirt",
+			Product pro3 = new Product("Short Sleeve T-Shirt",
 					"Comfortable linen t-shirt",
 					"H&M",
 					19.99,
-					100,
-					List.of("S", "L", "XL"),
+					20,
+					List.of("S", "L"),
 					List.of("Purple", "Yellow"),
 
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
 					seller, tShirtCategory, true);
 			productRepository.save(pro1);
-			productRepository.save(pro4);
+			productRepository.save(pro3);
 			Product pro2 = new Product("High Waist Pants",
 					"Pants with front pockets and black welt pockets",
 					"Levi's",
 					49.99,
-					50,
-					List.of("28", "30", "32", "34", "36"),
-					List.of("Dark Blue", "Black", "Gray"),
+					10,
+					List.of("28", "30", "34"),
+					List.of("Dark Blue", "Gray"),
 					List.of("https://example.com/images/product1.jpg",
 							"https://example.com/images/product2.jpg"),
-					admin, pantsCategory, true);
+					buyer, pantsCategory, true);
 			productRepository.save(pro2);
-			Product pro3 = new Product(
-					"Faux Fur Jacket",
-					"Jacket with lapel collar and long sleeves",
-					"Aritzia",
-					189.99,
-					19,
-					List.of("M", "L", "XL"),
-					List.of("Gray", "White", "Beige"),
-					List.of("https://example.com/images/product1.jpg",
-							"https://example.com/images/product2.jpg"),
-					buyer, jacketCategory, true);
-			productRepository.save(pro3);
 
 			// Initialize Orders
 			// User admin = userRepository.findByEmail("admin@example.com").orElseThrow();
