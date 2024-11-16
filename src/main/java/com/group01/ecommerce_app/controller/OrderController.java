@@ -1,18 +1,33 @@
 package com.group01.ecommerce_app.controller;
 
-import com.group01.ecommerce_app.dto.ApiResponse;
-import com.group01.ecommerce_app.dto.OrderDTO;
-import com.group01.ecommerce_app.model.Order;
-import com.group01.ecommerce_app.model.OrderRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import com.group01.ecommerce_app.dto.ApiResponse;
+import com.group01.ecommerce_app.dto.OrderDTO;
+import com.group01.ecommerce_app.dto.OrderRequestDTO;
+import com.group01.ecommerce_app.model.Order;
+import com.group01.ecommerce_app.model.OrderItem;
+import com.group01.ecommerce_app.model.OrderRepository;
+import com.group01.ecommerce_app.model.Product;
+import com.group01.ecommerce_app.model.ProductRepository;
+import com.group01.ecommerce_app.model.User;
+import com.group01.ecommerce_app.model.UserRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -20,6 +35,12 @@ public class OrderController {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     @GetMapping("/orders")
     public ResponseEntity<ApiResponse<List<OrderDTO>>> getAllOrders(@RequestParam(required = false) String name) {
@@ -61,11 +82,80 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
-        Order order = OrderDTO.toOrderEntity(orderDTO);
-        Order savedOrder = orderRepository.save(order);
-        return new ResponseEntity<>(OrderDTO.convertToOrderDTO(savedOrder), HttpStatus.CREATED);
+    public ResponseEntity<ApiResponse<OrderDTO>> createOrder(@RequestBody OrderRequestDTO orderRequesDTO) {
+        try {
+            // Convert DTO to Order entity
+            Order orderTemp = new Order();
+
+            if (orderRequesDTO.getUserId() != null) {
+                Optional<User> user = userRepository.findById(orderRequesDTO.getUserId());
+                if (user.isEmpty()) {
+                    return new ResponseEntity<>(new ApiResponse<>(false,
+                            "User not found with id "
+                                    + orderRequesDTO.getUserId(),
+                            "User not found"),
+                            HttpStatus.BAD_REQUEST);
+                }
+                orderTemp.setUserId(user.get().getId());
+            }
+            List<OrderItem> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
+                Product product = productRepository.findById(itemDTO.getProductId())
+                        .orElseThrow(() -> new RuntimeException("Product not found with id " + itemDTO.getProductId()));
+
+                OrderItem item = new OrderItem();
+                item.setOrder(orderTemp);
+                item.setProduct(product);
+                item.setQuantity(itemDTO.getQuantity());
+                item.setUnitPrice(product.getPrice());
+                item.setTotalPrice(product.getPrice() * itemDTO.getQuantity());
+                return item;
+            })
+                    .collect(Collectors.toList());
+
+            orderTemp.setItems(items);
+
+            orderTemp.setOrderNumber(orderRequesDTO.getOrderNumber());
+            orderTemp.setOrderStatus(orderRequesDTO.getOrderStatus());
+            orderTemp.setOrderDate(orderRequesDTO.getOrderDate());
+            orderTemp.setTotalQuantity(orderRequesDTO.getTotalQuantity());
+
+            // Calculate and set total price for the order
+            Double totalPrice = items.stream()
+                    .map(OrderItem::getTotalPrice)
+                    .reduce(0.0, Double::sum);
+            orderTemp.setTotalPrice(totalPrice);
+
+            // orderTemp.setTotalPrice(orderRequesDTO.getTotalPrice());
+            orderTemp.setCurrency(orderRequesDTO.getCurrency());
+            orderTemp.setPaymentStatus(orderRequesDTO.getPaymentStatus());
+            orderTemp.setPaymentMethod(orderRequesDTO.getPaymentMethod());
+            orderTemp.setShippingAddress(orderRequesDTO.getShippingAddress());
+            orderTemp.setShippingCity(orderRequesDTO.getShippingCity());
+            orderTemp.setShippingState(orderRequesDTO.getShippingState());
+            orderTemp.setShippingPostalCode(orderRequesDTO.getShippingPostalCode());
+            orderTemp.setShippingCountry(orderRequesDTO.getShippingCountry());
+            orderTemp.setShippingCost(orderRequesDTO.getShippingCost());
+
+            Order savedOrder = orderRepository.save(orderTemp);
+
+            // Convert to DTO for response
+            OrderDTO responseDto = OrderDTO.convertToOrderDTO(savedOrder);
+
+            return new ResponseEntity<>(new ApiResponse<>(true, "Product created successfully",
+                    responseDto), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error creating order", e.getMessage()));
+        }
     }
+
+    // @PostMapping("/orders")
+    // public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
+    // Order order = OrderDTO.toOrderEntity(orderDTO);
+    // Order savedOrder = orderRepository.save(order);
+    // return new ResponseEntity<>(OrderDTO.convertToOrderDTO(savedOrder),
+    // HttpStatus.CREATED);
+    // }
 
     @PutMapping("/orders/{orderId}")
     public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO orderDTO) {
@@ -85,3 +175,67 @@ public class OrderController {
         }
     }
 }
+
+/*
+ * // TODO
+ * ==================================================================
+ * 
+ * Get Order Summary (Cart View)
+ * 
+ * Endpoint: GET /api/orders/{orderId}
+ * 
+ * Description: Retrieves the order summary, including items in the cart, total
+ * price, tax, and estimated shipping costs.
+ * ==================================================================
+ * 
+ * Add Item to Cart
+ * 
+ * Endpoint: POST /api/orders/{orderId}/items
+ * 
+ * Description: Adds an item to the cart within an order by orderId.
+ * ==================================================================
+ * 
+ * Update Item Quantity in Order
+ * 
+ * Endpoint: PUT /api/orders/{orderId}/items/{item_id}
+ * 
+ * Description: Updates the quantity of a specific item in the order.
+ * ==================================================================
+ * 
+ * Remove Item from Order
+ * 
+ * Endpoint: DELETE /api/order/{orderId}/items/{item_id}
+ * 
+ * Description: Removes a specific item from the order.
+ * ==================================================================
+ * 
+ * Clear Order (Empty Cart)
+ * 
+ * Endpoint: DELETE /api/order/{orderId}
+ * 
+ * Description: Clears all items from the order.
+ * ==================================================================
+ * 
+ * Update Shipping Option
+ * 
+ * Endpoint: PUT /api/orders/{orderId}/shipping
+ * 
+ * Description: Allows the user to select or update a shipping option for the
+ * order.
+ * ==================================================================
+ * 
+ * Update Payment Method
+ * 
+ * Endpoint: PUT /api/orders/{orderId}/payment
+ * 
+ * Description: Allows the user to select or update a payment method for the
+ * order.
+ * ==================================================================
+ * 
+ * Submit Order
+ * 
+ * Endpoint: PUT /api/orders/{orderId}/submit
+ * 
+ * Description: Submits the order for processing and finalizes the purchase.
+ * ==================================================================
+ */

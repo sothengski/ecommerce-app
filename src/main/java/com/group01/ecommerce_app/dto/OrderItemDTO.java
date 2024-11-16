@@ -1,7 +1,6 @@
 package com.group01.ecommerce_app.dto;
 
 import com.group01.ecommerce_app.model.OrderItem;
-import com.group01.ecommerce_app.model.Product;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +17,11 @@ public class OrderItemDTO {
 
     // Getters and Setters
     // You can use Lombok annotations like @Data or @Getter and @Setter here as well
+
+    public Double getTotalPrice() {
+        return unitPrice * quantity;
+        // return unitPrice.multiply(BigDecimal.valueOf(quantity));
+    }
 
     // Converts OrderItem to OrderItemDTO
     public static OrderItemDTO toOrderItemDTO(OrderItem orderItem) {
@@ -46,7 +50,7 @@ public class OrderItemDTO {
     }
 
     // Converts OrderItemDTO to OrderItem
-    public static OrderItem toOrderItemEntity(OrderItemDTO dto) {
+    public static OrderItem toOrderItemEntity(OrderItemDTO orderItemDTO) {
         OrderItem item = new OrderItem();
         // item.setProductId(dto.getProductId());
         // item.setProductName(dto.getProductName());
