@@ -1,5 +1,6 @@
 package com.group01.ecommerce_app.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.group01.ecommerce_app.dto.ApiResponse;
 import com.group01.ecommerce_app.dto.UserCreateRequestDTO;
 import com.group01.ecommerce_app.dto.UserDTO;
+import com.group01.ecommerce_app.model.Cart;
 import com.group01.ecommerce_app.model.Role;
 import com.group01.ecommerce_app.model.RoleRepository;
 import com.group01.ecommerce_app.model.User;
@@ -125,6 +127,14 @@ public class UserController {
 
             // // Save the user to the database
             User savedUser = userRepository.save(userTemp);
+
+            // Create a cart for the user
+            Cart cart = new Cart();
+            cart.setUser(savedUser);
+            cart.setTotalPrice(BigDecimal.ZERO);
+
+            // Set the cart in the user (bidirectional relationship)
+            savedUser.setCart(cart);
 
             // // Convert the saved user to UserDto (excluding password) for the response
             UserDTO responseDto = UserDTO.convertToUserDTO(savedUser);

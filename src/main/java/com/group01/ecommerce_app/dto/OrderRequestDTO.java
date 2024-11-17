@@ -36,7 +36,7 @@ public class OrderRequestDTO {
     // private String billingPostalCode;
     // private String billingCountry;
 
-    private List<OrderItemRequestDTO> items;
+    private List<ItemRequestDTO> items;
 
     // public Double getTotalPrice() {
     // if (items == null || items.isEmpty()) {
@@ -52,7 +52,7 @@ public class OrderRequestDTO {
 
         return items.stream()
                 .mapToDouble(
-                        OrderItemRequestDTO::getTotalPrice)
+                        ItemRequestDTO::getTotalPrice)
                 .reduce(0.0, Double::sum); // Sum all the TotalPrice values
     }
 
@@ -62,7 +62,7 @@ public class OrderRequestDTO {
         }
         return items.stream()
                 .mapToInt(
-                        OrderItemRequestDTO::getQuantity)
+                        ItemRequestDTO::getQuantity)
                 .sum();
     }
 }

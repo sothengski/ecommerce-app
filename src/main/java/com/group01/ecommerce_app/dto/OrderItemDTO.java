@@ -16,7 +16,8 @@ public class OrderItemDTO {
     private double totalPrice;
 
     // Getters and Setters
-    // You can use Lombok annotations like @Data or @Getter and @Setter here as well
+    // You can use Lombok annotations like @Data or @Getter and @Setter here as
+    // well
 
     public Double getTotalPrice() {
         return unitPrice * quantity;

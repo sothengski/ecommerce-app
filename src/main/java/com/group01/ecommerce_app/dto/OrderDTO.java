@@ -6,12 +6,14 @@ import java.util.stream.Collectors;
 
 import com.group01.ecommerce_app.model.Order;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 // @AllArgsConstructor
 @Data
+// @Builder
 public class OrderDTO {
 
     private Long userId;
@@ -67,7 +69,10 @@ public class OrderDTO {
         // dto.setBillingState(order.getBillingState());
         // dto.setBillingPostalCode(order.getBillingPostalCode());
         // dto.setBillingCountry(order.getBillingCountry());
-        dto.setItems(order.getItems().stream().map(OrderItemDTO::toOrderItemDTO).collect(Collectors.toList()));
+        dto.setItems(order.getItems().stream()
+                .map(item -> OrderItemDTO.toOrderItemDTO(item)) // Explicitly map each Item
+                .collect(Collectors.toList()));
+        // dto.setItems(order.getItems().stream().map(OrderItemDTO::toOrderItemDTO).collect(Collectors.toList()));
         return dto;
     }
 

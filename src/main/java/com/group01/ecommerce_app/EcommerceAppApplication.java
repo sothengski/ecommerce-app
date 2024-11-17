@@ -1,7 +1,6 @@
 package com.group01.ecommerce_app;
 
 import java.math.BigDecimal;
-import java.sql.Array;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.group01.ecommerce_app.model.Cart;
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
 import com.group01.ecommerce_app.model.Order;
@@ -191,7 +191,6 @@ public class EcommerceAppApplication {
 			orderItemRepository.saveAll(List.of(item1, item2, item3));
 
 		};
-
 	}
 
 	private void addRoleIfNotFound(String roleName) {
@@ -201,7 +200,17 @@ public class EcommerceAppApplication {
 	private User addUserIfNotFound(String email, String password, String roleName) {
 		Role role = roleRepository.findByName(roleName)
 				.orElseThrow(() -> new RuntimeException("Role not found"));
-		return userRepository.findByEmail(email).orElseGet(() -> userRepository.save(new User(email, password, role)));
+
+		User newUser = new User(email, password, role);
+
+		// Create a cart for the user
+		Cart cart = new Cart();
+		cart.setUser(newUser);
+		cart.setTotalPrice(BigDecimal.ZERO);
+		// Set the cart in the user (bidirectional relationship)
+		newUser.setCart(cart);
+
+		return userRepository.findByEmail(email).orElseGet(() -> userRepository.save(newUser));
 	}
 
 }

@@ -1,21 +1,26 @@
 package com.group01.ecommerce_app.dto;
 
+import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.User;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
-public class ProductDTO {
+public class ProductDTO implements Serializable {
 	private Long id;
 	private String name;
 	private String description;
@@ -25,14 +30,20 @@ public class ProductDTO {
 	private String size;
 	private String color;
 	private boolean isActive;
-	private User user;
+
+	@JsonProperty("user")
+	@JsonInclude(Include.NON_NULL)
+	private UserDTO userDTO;
+
+	@JsonProperty("category")
+	@JsonInclude(Include.NON_NULL)
 	private Category category;
 	private List<String> images; // Assuming URLs are stored for images
 
 	// Constructor
 	public ProductDTO(Long id, String name, String description, String brand, double price, int stock,
 			List<String> size, List<String> color, List<String> imgList,
-			User user, Category category, boolean isActive) {
+			UserDTO userDTO, Category category, boolean isActive) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -42,7 +53,7 @@ public class ProductDTO {
 		this.size = String.join(",", size);
 		this.color = String.join(",", color);
 		this.images = imgList;
-		this.user = user;
+		this.userDTO = userDTO;
 		this.category = category;
 		this.isActive = isActive;
 	}
@@ -56,7 +67,7 @@ public class ProductDTO {
 		this.stock = product.getStock();
 		this.images = product.getImages();
 		this.price = product.getPrice();
-		this.user = product.getUser();
+		this.userDTO = UserDTO.convertToUserDTO(product.getUser(), "role", "active");
 		this.color = String.join(",", product.getColor());
 		this.size = String.join(",", product.getSize());
 	}
@@ -163,7 +174,23 @@ public class ProductDTO {
 	}
 
 	// Converts Product entity to ProductDTO
-	public static ProductDTO convertToProductDTO(Product product) {
+	public static ProductDTO convertToProductDTO(final Product product) {
+		// return ProductDTO.builder()
+		// .id(product.getId())
+		// .name(product.getName())
+		// .description(product.getDescription())
+		// .brand(product.getBrand())
+		// .price(product.getPrice())
+		// .stock(product.getStock())
+		// .size(product.getSize().toString())
+		// .color(product.getColor().toString())
+		// .images(product.getImages())
+		// .userDTO(UserDTO.builder()
+		// .id(product.getUser().getId())
+		// .email(product.getUser().getEmail())
+		// .build())
+		// .build();
+
 		return new ProductDTO(
 				product.getId(),
 				product.getName(),
@@ -174,7 +201,10 @@ public class ProductDTO {
 				product.getSize(),
 				product.getColor(),
 				product.getImages(),
-				product.getUser(),
+				UserDTO.convertToUserDTO(product
+						.getUser(),
+						"role",
+						"phone", "address", "active"),
 				product.getCategory(), // != null ? product.getCategory().getName() : null,
 				product.isActive());
 	}
