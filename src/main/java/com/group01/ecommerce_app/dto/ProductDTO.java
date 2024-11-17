@@ -158,7 +158,7 @@ public class ProductDTO implements Serializable {
 	}
 
 	// Converts ProductDTO to Product entity
-	public static Product convertToProductEntity(ProductDTO productDTO, Category category) {
+	public static Product convertToProductEntity(ProductDTO productDTO, User user, Category category) {
 		Product product = new Product();
 		product.setName(productDTO.getName());
 		product.setDescription(productDTO.getDescription());
@@ -168,6 +168,7 @@ public class ProductDTO implements Serializable {
 		product.setSize(productDTO.getSize());
 		product.setColor(productDTO.getColor());
 		product.setCategory(category);
+		product.setUser(user);
 		product.setImages(productDTO.getImages());
 		product.setActive(productDTO.isActive());
 		return product;

@@ -9,6 +9,7 @@ import java.util.Set;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
