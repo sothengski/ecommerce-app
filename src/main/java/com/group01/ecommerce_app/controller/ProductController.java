@@ -85,7 +85,7 @@ public class ProductController {
 		}
 	}
 
-	// 3. Search product by name, color, size, userId and categoryId
+	// 3. Search product by name, brand, color, size, userId and categoryId
 	@GetMapping("/products/search")
 	public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProducts(
 			@RequestParam(required = false, defaultValue = "") String name,
