@@ -156,14 +156,96 @@ public class OrderController {
     // return new ResponseEntity<>(OrderDTO.convertToOrderDTO(savedOrder),
     // HttpStatus.CREATED);
     // }
+    
+    @PutMapping("/orders/{id}")
+    public ResponseEntity<ApiResponse<OrderDTO>> updateOrder(
+            @PathVariable("id") long id, 
+            @RequestBody OrderRequestDTO orderRequestDTO) {
+        try {
+            // Find the existing order by ID
+            Optional<Order> orderData = orderRepository.findById(id);
+            if (orderData.isPresent()) {
+                Order existingOrder = orderData.get();
 
-    @PutMapping("/orders/{orderId}")
-    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO orderDTO) {
-        return orderRepository.findById(orderId).map(order -> {
-            Order updatedOrder = orderRepository.save(OrderDTO.toOrderEntity(orderDTO));
-            return ResponseEntity.ok(OrderDTO.convertToOrderDTO(updatedOrder));
-        }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                // Update user ID if provided
+                if (orderRequestDTO.getUserId() != null) {
+                    Optional<User> user = userRepository.findById(orderRequestDTO.getUserId());
+                    if (user.isEmpty()) {
+                        return new ResponseEntity<>(new ApiResponse<>(false,
+                                "User not found with id " + orderRequestDTO.getUserId(),
+                                "User not found"),
+                                HttpStatus.BAD_REQUEST);
+                    }
+                    existingOrder.setUserId(user.get().getId());
+                }
+
+                // Update items
+                if (orderRequestDTO.getItems() != null) {
+                    List<OrderItem> items = orderRequestDTO.getItems().stream().map(itemDTO -> {
+                        Product product = productRepository.findById(itemDTO.getProductId())
+                                .orElseThrow(() -> new RuntimeException("Product not found with id " + itemDTO.getProductId()));
+
+                        OrderItem item = new OrderItem();
+                        item.setOrder(existingOrder);
+                        item.setProduct(product);
+                        item.setQuantity(itemDTO.getQuantity());
+                        item.setUnitPrice(product.getPrice());
+                        item.setTotalPrice(product.getPrice() * itemDTO.getQuantity());
+                        return item;
+                    }).collect(Collectors.toList());
+                    existingOrder.setItems(items);
+                }
+
+                // Update basic order details
+                existingOrder.setOrderNumber(orderRequestDTO.getOrderNumber());
+                existingOrder.setOrderStatus(orderRequestDTO.getOrderStatus());
+                existingOrder.setOrderDate(orderRequestDTO.getOrderDate());
+                existingOrder.setTotalQuantity(orderRequestDTO.getTotalQuantity());
+
+                // Calculate and update total price
+                if (orderRequestDTO.getItems() != null) {
+                    Double totalPrice = existingOrder.getItems().stream()
+                            .map(OrderItem::getTotalPrice)
+                            .reduce(0.0, Double::sum);
+                    existingOrder.setTotalPrice(totalPrice);
+                }
+
+                existingOrder.setCurrency(orderRequestDTO.getCurrency());
+                existingOrder.setPaymentStatus(orderRequestDTO.getPaymentStatus());
+                existingOrder.setPaymentMethod(orderRequestDTO.getPaymentMethod());
+                existingOrder.setShippingAddress(orderRequestDTO.getShippingAddress());
+                existingOrder.setShippingCity(orderRequestDTO.getShippingCity());
+                existingOrder.setShippingState(orderRequestDTO.getShippingState());
+                existingOrder.setShippingPostalCode(orderRequestDTO.getShippingPostalCode());
+                existingOrder.setShippingCountry(orderRequestDTO.getShippingCountry());
+                existingOrder.setShippingCost(orderRequestDTO.getShippingCost());
+
+                // Save the updated order to the database
+                Order updatedOrder = orderRepository.save(existingOrder);
+
+                // Convert to DTO for response
+                OrderDTO responseDto = OrderDTO.convertToOrderDTO(updatedOrder);
+
+                return new ResponseEntity<>(new ApiResponse<>(true, "Order updated successfully",
+                        responseDto), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(new ApiResponse<>(false, "Order with id " + id + " does not exist", "Order not found"),
+                        HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error updating order", e.getMessage()));
+        }
     }
+
+
+//    @PutMapping("/orders/{orderId}")
+//    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO orderDTO) {
+//        return orderRepository.findById(orderId).map(order -> {
+//            Order updatedOrder = orderRepository.save(OrderDTO.toOrderEntity(orderDTO));
+//            return ResponseEntity.ok(OrderDTO.convertToOrderDTO(updatedOrder));
+//        }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
 
     @DeleteMapping("/orders/{orderId}")
     public ResponseEntity<HttpStatus> deleteOrder(@PathVariable Long orderId) {
