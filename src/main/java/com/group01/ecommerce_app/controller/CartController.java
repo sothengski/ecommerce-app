@@ -26,7 +26,7 @@ import com.group01.ecommerce_app.model.User;
 import com.group01.ecommerce_app.model.UserRepository;
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/api/carts")
 public class CartController {
 
     @Autowired
@@ -41,7 +41,7 @@ public class CartController {
     @Autowired
     private OrderRepository orderRepository;
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/users/{userId}")
     public ResponseEntity<ApiResponse<CartDTO>> getCartByUser(@PathVariable("userId") Long userId) {
 
         User user = userRepository.findById(userId)
@@ -57,7 +57,7 @@ public class CartController {
                 CartDTO.convertToCartDTO(cart)));
     }
 
-    @PostMapping("/user/{userId}")
+    @PostMapping("/users/{userId}")
     public ResponseEntity<ApiResponse<CartDTO>> createCartForUser(@PathVariable Long userId) {
         try {
             // Check if user exists
@@ -171,5 +171,4 @@ public class CartController {
                     .body(new ApiResponse<>(false, "Error creating cart", e.getMessage()));
         }
     }
-
 }
