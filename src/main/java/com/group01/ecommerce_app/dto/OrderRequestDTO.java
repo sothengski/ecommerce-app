@@ -36,7 +36,7 @@ public class OrderRequestDTO {
     // private String billingPostalCode;
     // private String billingCountry;
 
-    private List<ItemRequestDTO> items;
+    private List<OrderItemRequestDTO> items;
 
     // public Double getTotalPrice() {
     // if (items == null || items.isEmpty()) {
@@ -48,12 +48,27 @@ public class OrderRequestDTO {
     // .reduce(0.0, Double::sum); // Sum all the TotalPrice values
     // return itemsTotal + shippingCost;
     // }
+
+    // Calculate the total price
+    // public Double getTotalPrice() {
+    // if (items == null || items.isEmpty()) {
+    // return 0.0; // Return 0.0 if there are no items
+    // }
+
+    // // Sum up the total price of all items
+    // return items.stream()
+    // .map(OrderItemDTO::getTotalPrice) // Assuming OrderItemDTO has a
+    // getTotalPrice method
+    // .reduce(0.0, Double::sum);
+    // }
     public Double getTotalPrice() {
 
+        if (items == null || items.isEmpty()) {
+            return 0.0;
+        }
         return items.stream()
-                .mapToDouble(
-                        ItemRequestDTO::getTotalPrice)
-                .reduce(0.0, Double::sum); // Sum all the TotalPrice values
+                .mapToDouble(OrderItemRequestDTO::getTotalPrice)
+                .sum();
     }
 
     public Integer getTotalQuantity() {
@@ -62,7 +77,7 @@ public class OrderRequestDTO {
         }
         return items.stream()
                 .mapToInt(
-                        ItemRequestDTO::getQuantity)
+                        OrderItemRequestDTO::getQuantity)
                 .sum();
     }
 }

@@ -112,7 +112,7 @@ public class OrderController {
             })
                     .collect(Collectors.toList());
 
-            // orderTemp.setItems(items);
+            orderTemp.setItems(items);
 
             orderTemp.setOrderNumber(orderRequesDTO.getOrderNumber());
             orderTemp.setOrderStatus(orderRequesDTO.getOrderStatus());
@@ -120,10 +120,10 @@ public class OrderController {
             orderTemp.setTotalQuantity(orderRequesDTO.getTotalQuantity());
 
             // Calculate and set total price for the order
-            // Double totalPrice = items.stream()
-            // .map(OrderItem::getTotalPrice)
-            // .reduce(0.0, Double::sum);
-            // orderTemp.setTotalPrice(totalPrice);
+            Double totalPrice = items.stream()
+                    .map(OrderItem::getTotalPrice)
+                    .reduce(0.0, Double::sum);
+            orderTemp.setTotalPrice(totalPrice);
 
             // orderTemp.setTotalPrice(orderRequesDTO.getTotalPrice());
             orderTemp.setCurrency(orderRequesDTO.getCurrency());
