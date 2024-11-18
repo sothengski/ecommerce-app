@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.group01.ecommerce_app.model.Cart;
+import com.group01.ecommerce_app.model.CartRepository;
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
 import com.group01.ecommerce_app.model.Order;
@@ -45,6 +46,9 @@ public class EcommerceAppApplication {
 
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+
+	@Autowired
+	private CartRepository cartRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceAppApplication.class, args);
@@ -114,6 +118,12 @@ public class EcommerceAppApplication {
 
 			// Example of creating an order with items
 
+			// Create a cart
+			Cart cart = cartRepository.findById(buyer.getId()).get();
+			// cart.setUser(buyer); // Assuming user is already created
+			cart.setTotalPrice(0.0);
+			// cartRepository.save(cart);
+
 			// Sample Orders
 			Order order1 = new Order();
 			order1.setUserId(1L);
@@ -148,6 +158,7 @@ public class EcommerceAppApplication {
 			order2.setShippingPostalCode("90001");
 			order2.setShippingCountry("USA");
 			order2.setShippingCost(4.99);
+			order2.setCart(cart);
 
 			// Save Orders
 			order1 = orderRepository.save(order1);
@@ -194,7 +205,7 @@ public class EcommerceAppApplication {
 		// Create a cart for the user
 		Cart cart = new Cart();
 		cart.setUser(newUser);
-		cart.setTotalPrice(BigDecimal.ZERO);
+		cart.setTotalPrice(0.0);
 		// Set the cart in the user (bidirectional relationship)
 		newUser.setCart(cart);
 

@@ -67,7 +67,7 @@ public class ProductDTO implements Serializable {
 		this.stock = product.getStock();
 		this.images = product.getImages();
 		this.price = product.getPrice();
-		this.userDTO = UserDTO.convertToUserDTO(product.getUser(), "role", "active");
+		this.userDTO = UserDTO.convertToUserDTO(product.getUser(), "role", "active", "address", "phone");
 		this.color = String.join(",", product.getColor());
 		this.size = String.join(",", product.getSize());
 	}

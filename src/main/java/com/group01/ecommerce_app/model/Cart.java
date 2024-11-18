@@ -38,7 +38,11 @@ public class Cart implements Serializable {
     private User user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Item> items = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>(); // One-to-Many relationship with Order
 
-    private BigDecimal totalPrice;
+    private Double totalPrice;
+
+    // @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval =
+    // true)
+    // private List<Item> items = new ArrayList<>();
 }

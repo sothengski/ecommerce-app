@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.group01.ecommerce_app.model.Cart;
 import com.group01.ecommerce_app.model.Order;
 
 import lombok.Builder;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class OrderDTO {
 
     private Long userId;
+    private Long orderId;
     private String orderNumber;
     private String orderStatus;
     private LocalDateTime orderDate;
@@ -43,13 +45,17 @@ public class OrderDTO {
 
     private List<OrderItemDTO> items;
 
+    private Long cartId;
+
     // Getters and Setters
     // You can use Lombok annotations like @Data or @Getter and @Setter here as well
 
     // Converts Order to OrderDTO
     public static OrderDTO convertToOrderDTO(Order order) {
         OrderDTO dto = new OrderDTO();
+        dto.setOrderId(order.getId());
         dto.setUserId(order.getUserId());
+        dto.setCartId(order.getCart() == null ? null : order.getCart().getId());
         dto.setOrderNumber(order.getOrderNumber());
         dto.setOrderStatus(order.getOrderStatus());
         dto.setOrderDate(order.getOrderDate());

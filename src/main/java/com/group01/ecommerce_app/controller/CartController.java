@@ -2,7 +2,9 @@ package com.group01.ecommerce_app.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,10 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 import com.group01.ecommerce_app.dto.ApiResponse;
 import com.group01.ecommerce_app.dto.CartDTO;
-import com.group01.ecommerce_app.dto.ItemDTO;
+import com.group01.ecommerce_app.dto.OrderDTO;
+import com.group01.ecommerce_app.dto.OrderRequestDTO;
 import com.group01.ecommerce_app.model.Cart;
 import com.group01.ecommerce_app.model.CartRepository;
-import com.group01.ecommerce_app.model.Item;
+import com.group01.ecommerce_app.model.Order;
+import com.group01.ecommerce_app.model.OrderItem;
+import com.group01.ecommerce_app.model.OrderRepository;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.ProductRepository;
 import com.group01.ecommerce_app.model.User;
@@ -32,6 +37,9 @@ public class CartController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<ApiResponse<CartDTO>> getCartByUser(@PathVariable("userId") Long userId) {
@@ -64,8 +72,8 @@ public class CartController {
             // Create new cart
             Cart cart = new Cart();
             cart.setUser(user);
-            cart.setItems(new ArrayList<>());
-            cart.setTotalPrice(BigDecimal.ZERO);
+            // cart.setItems(new ArrayList<>());
+            // cart.setTotalPrice(BigDecimal.ZERO);
 
             // Save cart (cascades to user)
             cartRepository.save(cart);
@@ -80,12 +88,12 @@ public class CartController {
         // return ResponseEntity.status(HttpStatus.CREATED).body(cartDTO);
     }
 
-    @PutMapping("/{cartId}/add-item")
-    public ResponseEntity<ApiResponse<CartDTO>> addItemToCart(@PathVariable("cartId") Long cartId,
-            @RequestBody ItemDTO cartItemDTO) {
+    @PostMapping("/{cartId}/orders")
+    public ResponseEntity<ApiResponse<OrderDTO>> addOrderToCart(@PathVariable Long cartId,
+            @RequestBody OrderRequestDTO orderRequesDTO) {
         try {
+            // Retrieve the cart
             Cart cart = new Cart();
-            // .orElseThrow(() -> new RuntimeException("Cart not found"));
             if (cartId != null) {
                 Optional<Cart> cartTemp = cartRepository.findById(cartId);
                 if (cartTemp.isEmpty()) {
@@ -98,65 +106,69 @@ public class CartController {
                 }
                 cart = cartTemp.get();
             }
-            Product product = new Product();
-            // productRepository.findById(cartItemDTO.getProductId())
-            // .orElseThrow(() -> new RuntimeException("Product not found"));
 
-            if (cartItemDTO.getProductId() != null) {
-                Optional<Product> productTemp = productRepository.findById(cartItemDTO.getProductId());
-                if (productTemp.isEmpty()) {
+            // Convert DTO to Order entity
+            Order orderTemp = new Order();
+
+            // Associate the order with the cart
+            orderTemp.setCart(cart);
+
+            if (orderRequesDTO.getUserId() != null) {
+                Optional<User> user = userRepository.findById(orderRequesDTO.getUserId());
+                if (user.isEmpty()) {
                     return new ResponseEntity<>(new ApiResponse<>(false,
-                            "Product not found with id "
-                                    + cartItemDTO
-                                            .getProductId(),
-                            "Product not found"),
+                            "User not found with id "
+                                    + orderRequesDTO.getUserId(),
+                            "User not found"),
                             HttpStatus.BAD_REQUEST);
                 }
-                product = productTemp.get();
-
+                orderTemp.setUserId(user.get().getId());
             }
+            List<OrderItem> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
+                Product product = productRepository.findById(itemDTO.getProductId())
+                        .orElseThrow(() -> new RuntimeException("Product not found with id " + itemDTO.getProductId()));
 
-            // Find existing cart item for the same product
-            Optional<Item> existingItem = Optional.ofNullable(cart.getItems())
-                    .orElse(new ArrayList<>()) // Handle null items list
-                    .stream()
-                    .filter(item -> item.getProduct().getId().equals(cartItemDTO.getProductId()))
-                    .findFirst();
+                OrderItem item = new OrderItem();
+                item.setOrder(orderTemp);
+                item.setProduct(product);
+                item.setQuantity(itemDTO.getQuantity());
+                item.setUnitPrice(product.getPrice());
+                item.setTotalPrice(product.getPrice() * itemDTO.getQuantity());
+                return item;
+            })
+                    .collect(Collectors.toList());
 
-            if (existingItem.isPresent()) {
-                // Update the existing item's quantity and total price
-                Item item = existingItem.get();
-                item.setQuantity(item.getQuantity() + cartItemDTO.getQuantity());
-                item.setTotalPrice(
-                        BigDecimal.valueOf(product.getPrice()).multiply(BigDecimal.valueOf(item.getQuantity())));
-            } else {
-                // Add a new item to the cart
-                Item newItem = new Item();
-                newItem.setCart(cart);
-                newItem.setProduct(product);
-                newItem.setQuantity(cartItemDTO.getQuantity());
-                newItem.setUnitPrice(BigDecimal.valueOf(product.getPrice()));
-                newItem.setTotalPrice(
-                        BigDecimal.valueOf(product.getPrice()).multiply(BigDecimal.valueOf(cartItemDTO.getQuantity())));
-                cart.getItems().add(newItem);
-            }
+            orderTemp.setItems(items);
 
-            // Update cart total price
-            // BigDecimal totalPrice = cart.getItems().stream()
-            // .map(Item::getTotalPrice)
-            // .reduce(BigDecimal.ZERO, BigDecimal::add);
+            orderTemp.setOrderNumber(orderRequesDTO.getOrderNumber());
+            orderTemp.setOrderStatus(orderRequesDTO.getOrderStatus());
+            orderTemp.setOrderDate(orderRequesDTO.getOrderDate());
+            orderTemp.setTotalQuantity(orderRequesDTO.getTotalQuantity());
 
-            BigDecimal totalPrice = BigDecimal.valueOf(100.0);
-            cart.setTotalPrice(totalPrice);
+            // Calculate and set total price for the order
+            Double totalPrice = items.stream()
+                    .map(OrderItem::getTotalPrice)
+                    .reduce(0.0, Double::sum);
+            orderTemp.setTotalPrice(totalPrice);
 
-            Cart updatedCart = cartRepository.save(cart);
+            // orderTemp.setTotalPrice(orderRequesDTO.getTotalPrice());
+            orderTemp.setCurrency(orderRequesDTO.getCurrency());
+            orderTemp.setPaymentStatus(orderRequesDTO.getPaymentStatus());
+            orderTemp.setPaymentMethod(orderRequesDTO.getPaymentMethod());
+            orderTemp.setShippingAddress(orderRequesDTO.getShippingAddress());
+            orderTemp.setShippingCity(orderRequesDTO.getShippingCity());
+            orderTemp.setShippingState(orderRequesDTO.getShippingState());
+            orderTemp.setShippingPostalCode(orderRequesDTO.getShippingPostalCode());
+            orderTemp.setShippingCountry(orderRequesDTO.getShippingCountry());
+            orderTemp.setShippingCost(orderRequesDTO.getShippingCost());
 
-            return new ResponseEntity<>(new ApiResponse<>(true, "Items added successfully",
-                    CartDTO.convertToCartDTO(updatedCart)),
-                    HttpStatus.OK);
-        } catch (Exception e) {
+            // Save the order
+            Order savedOrder = orderRepository.save(orderTemp);
+            return new ResponseEntity<>(new ApiResponse<>(true, "Cart created successfully",
+                    OrderDTO.convertToOrderDTO(savedOrder)), HttpStatus.CREATED);
+        } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>(false, "Error adding items into cart", e.getMessage()));
+                    .body(new ApiResponse<>(false, "Error creating cart", e.getMessage()));
         }
     }
 

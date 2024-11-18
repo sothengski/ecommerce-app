@@ -131,7 +131,7 @@ public class UserController {
             // Create a cart for the user
             Cart cart = new Cart();
             cart.setUser(savedUser);
-            cart.setTotalPrice(BigDecimal.ZERO);
+            // cart.setTotalPrice(BigDecimal.ZERO);
 
             // Set the cart in the user (bidirectional relationship)
             savedUser.setCart(cart);

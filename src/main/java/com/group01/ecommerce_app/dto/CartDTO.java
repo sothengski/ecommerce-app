@@ -21,54 +21,54 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CartDTO {
 
-    private Long id;
-    private Long userId;
+        private Long id;
+        private Long userId;
 
-    @JsonProperty("user")
-    @JsonInclude(Include.NON_NULL)
-    private UserDTO userDto;
+        @JsonProperty("user")
+        @JsonInclude(Include.NON_NULL)
+        private UserDTO userDto;
 
-    private List<ItemDTO> items = new ArrayList<>();
-    private BigDecimal totalPrice;
+        // private List<ItemDTO> items = new ArrayList<>();
+        // private BigDecimal totalPrice;
 
-    // Getters and Setters
+        // Getters and Setters
 
-    // Converts Cart entity to CartDTO
-    public static CartDTO convertToCartDTO(final Cart cart) {
-        // return new CartDTO(
-        // cart.getId(),
-        // cart.getItems().stream().map(ItemDTO::convertToItemDTO).toList(),
-        // cart.getTotalPrice());
+        // Converts Cart entity to CartDTO
+        public static CartDTO convertToCartDTO(final Cart cart) {
+                // return new CartDTO(
+                // cart.getId(),
+                // cart.getItems().stream().map(ItemDTO::convertToItemDTO).toList(),
+                // cart.getTotalPrice());
 
-        return CartDTO.builder()
-                .id(cart.getId())
-                .userId(cart.getUser().getId())
-                .userDto(
-                        UserDTO.builder()
+                return CartDTO.builder()
                                 .id(cart.getId())
-                                .build())
-                .items(cart.getItems().stream()
-                        .map(ItemDTO::convertToItemDTO)
-                        .toList()) // Convert each Item to ItemDTO
-                .build();
-    }
+                                .userId(cart.getUser().getId())
+                                // .userDto(
+                                // UserDTO.builder()
+                                // .id(cart.getId())
+                                // .build())
+                                // .items(cart.getItems().stream()
+                                // .map(ItemDTO::convertToItemDTO)
+                                // .toList()) // Convert each Item to ItemDTO
+                                .build();
+        }
 
-    // public static CartDto map(final Cart cart) {
-    // return CartDto.builder()
-    // .cartId(cart.getCartId())
-    // .userId(cart.getUserId())
-    // .userDto(
-    // UserDto.builder()
-    // .userId(cart.getUserId())
-    // .build())
-    // .build();
-    // }
+        // public static CartDto map(final Cart cart) {
+        // return CartDto.builder()
+        // .cartId(cart.getCartId())
+        // .userId(cart.getUserId())
+        // .userDto(
+        // UserDto.builder()
+        // .userId(cart.getUserId())
+        // .build())
+        // .build();
+        // }
 
-    // public static Cart map(final CartDto cartDto) {
-    // return Cart.builder()
-    // .cartId(cartDto.getCartId())
-    // .userId(cartDto.getUserId())
-    // .build();
-    // }
+        // public static Cart map(final CartDto cartDto) {
+        // return Cart.builder()
+        // .cartId(cartDto.getCartId())
+        // .userId(cartDto.getUserId())
+        // .build();
+        // }
 
 }
