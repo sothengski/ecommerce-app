@@ -20,6 +20,7 @@ import com.group01.ecommerce_app.dto.ApiResponse;
 import com.group01.ecommerce_app.dto.UserCreateRequestDTO;
 import com.group01.ecommerce_app.dto.UserDTO;
 import com.group01.ecommerce_app.model.Cart;
+import com.group01.ecommerce_app.model.CartRepository;
 import com.group01.ecommerce_app.model.Role;
 import com.group01.ecommerce_app.model.RoleRepository;
 import com.group01.ecommerce_app.model.User;
@@ -34,6 +35,9 @@ public class UserController {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
 
     // private final BCryptPasswordEncoder passwordEncoder = new
     // BCryptPasswordEncoder();
@@ -133,6 +137,7 @@ public class UserController {
             // cart.setTotalPrice(BigDecimal.ZERO);
 
             // Set the cart in the user (bidirectional relationship)
+            cartRepository.save(cart);
             savedUser.setCart(cart);
 
             // // Convert the saved user to UserDto (excluding password) for the response
