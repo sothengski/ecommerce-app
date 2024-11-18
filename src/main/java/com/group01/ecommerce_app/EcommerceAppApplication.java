@@ -1,6 +1,5 @@
 package com.group01.ecommerce_app;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 

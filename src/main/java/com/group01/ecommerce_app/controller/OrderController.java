@@ -156,10 +156,10 @@ public class OrderController {
     // return new ResponseEntity<>(OrderDTO.convertToOrderDTO(savedOrder),
     // HttpStatus.CREATED);
     // }
-    
+
     @PutMapping("/orders/{id}")
     public ResponseEntity<ApiResponse<OrderDTO>> updateOrder(
-            @PathVariable("id") long id, 
+            @PathVariable("id") long id,
             @RequestBody OrderRequestDTO orderRequestDTO) {
         try {
             // Find the existing order by ID
@@ -183,7 +183,8 @@ public class OrderController {
                 if (orderRequestDTO.getItems() != null) {
                     List<OrderItem> items = orderRequestDTO.getItems().stream().map(itemDTO -> {
                         Product product = productRepository.findById(itemDTO.getProductId())
-                                .orElseThrow(() -> new RuntimeException("Product not found with id " + itemDTO.getProductId()));
+                                .orElseThrow(() -> new RuntimeException(
+                                        "Product not found with id " + itemDTO.getProductId()));
 
                         OrderItem item = new OrderItem();
                         item.setOrder(existingOrder);
@@ -229,7 +230,8 @@ public class OrderController {
                 return new ResponseEntity<>(new ApiResponse<>(true, "Order updated successfully",
                         responseDto), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(new ApiResponse<>(false, "Order with id " + id + " does not exist", "Order not found"),
+                return new ResponseEntity<>(
+                        new ApiResponse<>(false, "Order with id " + id + " does not exist", "Order not found"),
                         HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
@@ -238,14 +240,14 @@ public class OrderController {
         }
     }
 
-
-//    @PutMapping("/orders/{orderId}")
-//    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO orderDTO) {
-//        return orderRepository.findById(orderId).map(order -> {
-//            Order updatedOrder = orderRepository.save(OrderDTO.toOrderEntity(orderDTO));
-//            return ResponseEntity.ok(OrderDTO.convertToOrderDTO(updatedOrder));
-//        }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-//    }
+    // @PutMapping("/orders/{orderId}")
+    // public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId,
+    // @RequestBody OrderDTO orderDTO) {
+    // return orderRepository.findById(orderId).map(order -> {
+    // Order updatedOrder = orderRepository.save(OrderDTO.toOrderEntity(orderDTO));
+    // return ResponseEntity.ok(OrderDTO.convertToOrderDTO(updatedOrder));
+    // }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    // }
 
     @DeleteMapping("/orders/{orderId}")
     public ResponseEntity<HttpStatus> deleteOrder(@PathVariable Long orderId) {

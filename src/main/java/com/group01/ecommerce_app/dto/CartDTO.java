@@ -1,14 +1,9 @@
 package com.group01.ecommerce_app.dto;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.group01.ecommerce_app.model.Cart;
-import com.group01.ecommerce_app.model.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

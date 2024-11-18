@@ -1,7 +1,6 @@
 package com.group01.ecommerce_app.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

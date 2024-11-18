@@ -1,7 +1,5 @@
 package com.group01.ecommerce_app.controller;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -80,7 +78,7 @@ public class CartController {
 
             return new ResponseEntity<>(new ApiResponse<>(true, "Product created successfully",
                     CartDTO.convertToCartDTO(cart)), HttpStatus.CREATED);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ApiResponse<>(false, "Error creating category", e.getMessage()));
         }

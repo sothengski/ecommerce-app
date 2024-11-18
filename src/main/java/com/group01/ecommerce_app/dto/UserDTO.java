@@ -2,7 +2,6 @@ package com.group01.ecommerce_app.dto;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.group01.ecommerce_app.model.Role;
 import com.group01.ecommerce_app.model.User;
