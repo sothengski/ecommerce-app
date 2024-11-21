@@ -1,0 +1,52 @@
+[
+    {
+        "email": "admin1@example.com",
+        "password": "admin123",
+        "role": "admin"
+    },
+    {
+        "email": "admin2@example.com",
+        "password": "admin123",
+        "role": "admin"
+    },
+    {
+        "email": "seller1@example.com",
+        "password": "seller123",
+        "role": "seller"
+    },
+    {
+        "email": "seller2@example.com",
+        "password": "seller123",
+        "role": "seller"
+    },
+    {
+        "email": "seller3@example.com",
+        "password": "seller123",
+        "role": "seller"
+    },
+    {
+        "email": "seller4@example.com",
+        "password": "seller123",
+        "role": "seller"
+    },
+    {
+        "email": "buyer1@example.com",
+        "password": "buyer123",
+        "role": "buyer"
+    },
+    {
+        "email": "buyer2@example.com",
+        "password": "buyer123",
+        "role": "buyer"
+    },
+    {
+        "email": "buyer3@example.com",
+        "password": "buyer123",
+        "role": "buyer"
+    },
+    {
+        "email": "buyer4@example.com",
+        "password": "buyer123",
+        "role": "buyer"
+    }
+]

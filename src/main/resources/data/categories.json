@@ -1,0 +1,122 @@
+[
+    {
+        "name": "T-shirt",
+        "active": true
+    },
+    {
+        "name": "Jeans",
+        "active": true
+    },
+    {
+        "name": "Jackets",
+        "active": true
+    },
+    {
+        "name": "Shoes",
+        "active": true
+    },
+    {
+        "name": "Hats",
+        "active": true
+    },
+    {
+        "name": "Gloves",
+        "active": true
+    },
+    {
+        "name": "Bags",
+        "active": true
+    },
+    {
+        "name": "Watches",
+        "active": true
+    },
+    {
+        "name": "Belts",
+        "active": true
+    },
+    {
+        "name": "Sunglasses",
+        "active": true
+    },
+    {
+        "name": "Dresses",
+        "active": true
+    },
+    {
+        "name": "Skirts",
+        "active": true
+    },
+    {
+        "name": "Shirts",
+        "active": true
+    },
+    {
+        "name": "Pants",
+        "active": true
+    },
+    {
+        "name": "Shorts",
+        "active": true
+    },
+    {
+        "name": "Socks",
+        "active": true
+    },
+    {
+        "name": "Scarves",
+        "active": true
+    },
+    {
+        "name": "Swimwear",
+        "active": true
+    },
+    {
+        "name": "Sportswear",
+        "active": true
+    },
+    {
+        "name": "Blazers",
+        "active": true
+    },
+    {
+        "name": "Underwear",
+        "active": true
+    },
+    {
+        "name": "Nightwear",
+        "active": true
+    },
+    {
+        "name": "Raincoats",
+        "active": true
+    },
+    {
+        "name": "Overcoats",
+        "active": true
+    },
+    {
+        "name": "Jumpers",
+        "active": true
+    },
+    {
+        "name": "Suits",
+        "active": true
+    },
+    {
+        "name": "Ties",
+        "active": true
+    },
+    {
+        "name": "Casualwear",
+        "active": true
+    },
+    {
+        "name": "Formalwear",
+        "active": true
+    },
+    {
+        "name": "Outerwear",
+        "active": true
+    }
+]

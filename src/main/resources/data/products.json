@@ -1,0 +1,1126 @@
+[
+    {
+        "name": "Wool Scarf",
+        "description": "Description for Wool Scarf",
+        "brand": "Gap",
+        "price": 10.64,
+        "stock": 30,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product37.jpg",
+            "https://example.com/images/product9.jpg"
+        ],
+        "user": 7,
+        "category": 27,
+        "active": true
+    },
+    {
+        "name": "Wool Scarf",
+        "description": "Description for Wool Scarf",
+        "brand": "Nike",
+        "price": 18.1,
+        "stock": 61,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product16.jpg",
+            "https://example.com/images/product24.jpg"
+        ],
+        "user": 7,
+        "category": 18,
+        "active": true
+    },
+    {
+        "name": "Classic Watch",
+        "description": "Description for Classic Watch",
+        "brand": "Uniqlo",
+        "price": 66.37,
+        "stock": 10,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product34.jpg",
+            "https://example.com/images/product26.jpg"
+        ],
+        "user": 8,
+        "category": 17,
+        "active": false
+    },
+    {
+        "name": "Slim Fit Blazer",
+        "description": "Description for Slim Fit Blazer",
+        "brand": "Adidas",
+        "price": 59.46,
+        "stock": 80,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product2.jpg",
+            "https://example.com/images/product22.jpg"
+        ],
+        "user": 6,
+        "category": 10,
+        "active": true
+    },
+    {
+        "name": "Cotton Hoodie",
+        "description": "Description for Cotton Hoodie",
+        "brand": "Levi's",
+        "price": 67.6,
+        "stock": 54,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product11.jpg",
+            "https://example.com/images/product38.jpg"
+        ],
+        "user": 6,
+        "category": 19,
+        "active": true
+    },
+    {
+        "name": "Casual Shirt",
+        "description": "Description for Casual Shirt",
+        "brand": "Fossil",
+        "price": 39.58,
+        "stock": 67,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product6.jpg",
+            "https://example.com/images/product30.jpg"
+        ],
+        "user": 7,
+        "category": 18,
+        "active": false
+    },
+    {
+        "name": "Leather Jacket",
+        "description": "Description for Leather Jacket",
+        "brand": "Zara",
+        "price": 14.01,
+        "stock": 31,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Green",
+            "White"
+        ],
+        "images": [
+            "https://example.com/images/product1.jpg",
+            "https://example.com/images/product33.jpg"
+        ],
+        "user": 8,
+        "category": 5,
+        "active": false
+    },
+    {
+        "name": "Slim Fit Jeans",
+        "description": "Description for Slim Fit Jeans",
+        "brand": "Nike",
+        "price": 57.53,
+        "stock": 15,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product5.jpg",
+            "https://example.com/images/product10.jpg"
+        ],
+        "user": 7,
+        "category": 30,
+        "active": true
+    },
+    {
+        "name": "Cotton Hoodie",
+        "description": "Description for Cotton Hoodie",
+        "brand": "Gap",
+        "price": 86.97,
+        "stock": 47,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product12.jpg",
+            "https://example.com/images/product6.jpg"
+        ],
+        "user": 9,
+        "category": 28,
+        "active": false
+    },
+    {
+        "name": "Slim Fit Jeans",
+        "description": "Description for Slim Fit Jeans",
+        "brand": "Nike",
+        "price": 51.77,
+        "stock": 83,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product14.jpg",
+            "https://example.com/images/product25.jpg"
+        ],
+        "user": 9,
+        "category": 30,
+        "active": false
+    },
+    {
+        "name": "Cotton Hoodie",
+        "description": "Description for Cotton Hoodie",
+        "brand": "Armani",
+        "price": 27.26,
+        "stock": 17,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product45.jpg",
+            "https://example.com/images/product21.jpg"
+        ],
+        "user": 9,
+        "category": 30,
+        "active": false
+    },
+    {
+        "name": "Short Sleeve T-Shirt",
+        "description": "Description for Short Sleeve T-Shirt",
+        "brand": "Burberry",
+        "price": 65.97,
+        "stock": 78,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product35.jpg",
+            "https://example.com/images/product18.jpg"
+        ],
+        "user": 6,
+        "category": 16,
+        "active": true
+    },
+    {
+        "name": "Cotton Hoodie",
+        "description": "Description for Cotton Hoodie",
+        "brand": "Fossil",
+        "price": 85.48,
+        "stock": 38,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product21.jpg",
+            "https://example.com/images/product10.jpg"
+        ],
+        "user": 7,
+        "category": 3,
+        "active": false
+    },
+    {
+        "name": "Classic Watch",
+        "description": "Description for Classic Watch",
+        "brand": "Nike",
+        "price": 67.63,
+        "stock": 78,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product38.jpg",
+            "https://example.com/images/product20.jpg"
+        ],
+        "user": 6,
+        "category": 7,
+        "active": true
+    },
+    {
+        "name": "Slim Fit Jeans",
+        "description": "Description for Slim Fit Jeans",
+        "brand": "Armani",
+        "price": 67.71,
+        "stock": 30,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product16.jpg",
+            "https://example.com/images/product28.jpg"
+        ],
+        "user": 7,
+        "category": 7,
+        "active": false
+    },
+    {
+        "name": "Casual Shirt",
+        "description": "Description for Casual Shirt",
+        "brand": "Nike",
+        "price": 79.67,
+        "stock": 10,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product6.jpg",
+            "https://example.com/images/product33.jpg"
+        ],
+        "user": 7,
+        "category": 23,
+        "active": true
+    },
+    {
+        "name": "Slim Fit Blazer",
+        "description": "Description for Slim Fit Blazer",
+        "brand": "Uniqlo",
+        "price": 89.1,
+        "stock": 47,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product24.jpg",
+            "https://example.com/images/product41.jpg"
+        ],
+        "user": 6,
+        "category": 24,
+        "active": true
+    },
+    {
+        "name": "Running Shoes",
+        "description": "Description for Running Shoes",
+        "brand": "Levi's",
+        "price": 64.81,
+        "stock": 98,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product31.jpg",
+            "https://example.com/images/product20.jpg"
+        ],
+        "user": 7,
+        "category": 1,
+        "active": true
+    },
+    {
+        "name": "Slim Fit Blazer",
+        "description": "Description for Slim Fit Blazer",
+        "brand": "Burberry",
+        "price": 21.96,
+        "stock": 37,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product33.jpg",
+            "https://example.com/images/product47.jpg"
+        ],
+        "user": 8,
+        "category": 4,
+        "active": false
+    },
+    {
+        "name": "Classic Watch",
+        "description": "Description for Classic Watch",
+        "brand": "Armani",
+        "price": 95.71,
+        "stock": 96,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product26.jpg",
+            "https://example.com/images/product49.jpg"
+        ],
+        "user": 8,
+        "category": 5,
+        "active": true
+    },
+    {
+        "name": "Slim Fit Jeans",
+        "description": "Description for Slim Fit Jeans",
+        "brand": "Nike",
+        "price": 33.64,
+        "stock": 72,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Green",
+            "White"
+        ],
+        "images": [
+            "https://example.com/images/product5.jpg",
+            "https://example.com/images/product2.jpg"
+        ],
+        "user": 6,
+        "category": 21,
+        "active": true
+    },
+    {
+        "name": "Leather Jacket",
+        "description": "Description for Leather Jacket",
+        "brand": "Gap",
+        "price": 49.96,
+        "stock": 56,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Green",
+            "White"
+        ],
+        "images": [
+            "https://example.com/images/product4.jpg",
+            "https://example.com/images/product17.jpg"
+        ],
+        "user": 9,
+        "category": 4,
+        "active": true
+    },
+    {
+        "name": "Casual Shirt",
+        "description": "Description for Casual Shirt",
+        "brand": "H&M",
+        "price": 34.35,
+        "stock": 57,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product26.jpg",
+            "https://example.com/images/product29.jpg"
+        ],
+        "user": 8,
+        "category": 10,
+        "active": false
+    },
+    {
+        "name": "Slim Fit Blazer",
+        "description": "Description for Slim Fit Blazer",
+        "brand": "Zara",
+        "price": 55.37,
+        "stock": 33,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Green",
+            "White"
+        ],
+        "images": [
+            "https://example.com/images/product41.jpg",
+            "https://example.com/images/product2.jpg"
+        ],
+        "user": 6,
+        "category": 24,
+        "active": false
+    },
+    {
+        "name": "Slim Fit Jeans",
+        "description": "Description for Slim Fit Jeans",
+        "brand": "Burberry",
+        "price": 84.54,
+        "stock": 43,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product26.jpg",
+            "https://example.com/images/product32.jpg"
+        ],
+        "user": 7,
+        "category": 5,
+        "active": true
+    },
+    {
+        "name": "Short Sleeve T-Shirt",
+        "description": "Description for Short Sleeve T-Shirt",
+        "brand": "H&M",
+        "price": 85.82,
+        "stock": 97,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product26.jpg",
+            "https://example.com/images/product27.jpg"
+        ],
+        "user": 8,
+        "category": 6,
+        "active": true
+    },
+    {
+        "name": "Round Neck T-Shirt",
+        "description": "Description for Round Neck T-Shirt",
+        "brand": "Nike",
+        "price": 97.07,
+        "stock": 31,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product49.jpg",
+            "https://example.com/images/product19.jpg"
+        ],
+        "user": 7,
+        "category": 20,
+        "active": false
+    },
+    {
+        "name": "Round Neck T-Shirt",
+        "description": "Description for Round Neck T-Shirt",
+        "brand": "Armani",
+        "price": 40.42,
+        "stock": 69,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Green",
+            "White"
+        ],
+        "images": [
+            "https://example.com/images/product19.jpg",
+            "https://example.com/images/product8.jpg"
+        ],
+        "user": 7,
+        "category": 26,
+        "active": true
+    },
+    {
+        "name": "Casual Shirt",
+        "description": "Description for Casual Shirt",
+        "brand": "Uniqlo",
+        "price": 24.43,
+        "stock": 87,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product22.jpg",
+            "https://example.com/images/product5.jpg"
+        ],
+        "user": 8,
+        "category": 14,
+        "active": false
+    },
+    {
+        "name": "Slim Fit Jeans",
+        "description": "Description for Slim Fit Jeans",
+        "brand": "H&M",
+        "price": 76.5,
+        "stock": 62,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product22.jpg",
+            "https://example.com/images/product39.jpg"
+        ],
+        "user": 9,
+        "category": 6,
+        "active": false
+    },
+    {
+        "name": "Leather Jacket",
+        "description": "Description for Leather Jacket",
+        "brand": "Nike",
+        "price": 11.71,
+        "stock": 39,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product34.jpg",
+            "https://example.com/images/product35.jpg"
+        ],
+        "user": 7,
+        "category": 8,
+        "active": true
+    },
+    {
+        "name": "Wool Scarf",
+        "description": "Description for Wool Scarf",
+        "brand": "Nike",
+        "price": 93.29,
+        "stock": 44,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Green",
+            "White"
+        ],
+        "images": [
+            "https://example.com/images/product17.jpg",
+            "https://example.com/images/product14.jpg"
+        ],
+        "user": 8,
+        "category": 28,
+        "active": true
+    },
+    {
+        "name": "Slim Fit Jeans",
+        "description": "Description for Slim Fit Jeans",
+        "brand": "Uniqlo",
+        "price": 69.5,
+        "stock": 70,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Green",
+            "White"
+        ],
+        "images": [
+            "https://example.com/images/product18.jpg",
+            "https://example.com/images/product26.jpg"
+        ],
+        "user": 9,
+        "category": 8,
+        "active": true
+    },
+    {
+        "name": "Cotton Hoodie",
+        "description": "Description for Cotton Hoodie",
+        "brand": "Uniqlo",
+        "price": 33.98,
+        "stock": 88,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product4.jpg",
+            "https://example.com/images/product15.jpg"
+        ],
+        "user": 8,
+        "category": 9,
+        "active": false
+    },
+    {
+        "name": "Leather Jacket",
+        "description": "Description for Leather Jacket",
+        "brand": "Fossil",
+        "price": 49.57,
+        "stock": 49,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product6.jpg",
+            "https://example.com/images/product34.jpg"
+        ],
+        "user": 9,
+        "category": 6,
+        "active": false
+    },
+    {
+        "name": "Classic Watch",
+        "description": "Description for Classic Watch",
+        "brand": "Gap",
+        "price": 67.97,
+        "stock": 32,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product25.jpg",
+            "https://example.com/images/product38.jpg"
+        ],
+        "user": 8,
+        "category": 6,
+        "active": false
+    },
+    {
+        "name": "Slim Fit Blazer",
+        "description": "Description for Slim Fit Blazer",
+        "brand": "Adidas",
+        "price": 33.75,
+        "stock": 84,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Green",
+            "White"
+        ],
+        "images": [
+            "https://example.com/images/product4.jpg",
+            "https://example.com/images/product36.jpg"
+        ],
+        "user": 9,
+        "category": 5,
+        "active": false
+    },
+    {
+        "name": "Wool Scarf",
+        "description": "Description for Wool Scarf",
+        "brand": "Burberry",
+        "price": 59.18,
+        "stock": 72,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product32.jpg",
+            "https://example.com/images/product11.jpg"
+        ],
+        "user": 7,
+        "category": 28,
+        "active": false
+    },
+    {
+        "name": "Cotton Hoodie",
+        "description": "Description for Cotton Hoodie",
+        "brand": "H&M",
+        "price": 89.76,
+        "stock": 30,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product22.jpg",
+            "https://example.com/images/product2.jpg"
+        ],
+        "user": 9,
+        "category": 27,
+        "active": true
+    },
+    {
+        "name": "Running Shoes",
+        "description": "Description for Running Shoes",
+        "brand": "Zara",
+        "price": 79.02,
+        "stock": 55,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product48.jpg",
+            "https://example.com/images/product50.jpg"
+        ],
+        "user": 8,
+        "category": 28,
+        "active": true
+    },
+    {
+        "name": "Casual Shirt",
+        "description": "Description for Casual Shirt",
+        "brand": "Burberry",
+        "price": 31.25,
+        "stock": 52,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product17.jpg",
+            "https://example.com/images/product2.jpg"
+        ],
+        "user": 7,
+        "category": 29,
+        "active": true
+    },
+    {
+        "name": "Round Neck T-Shirt",
+        "description": "Description for Round Neck T-Shirt",
+        "brand": "Nike",
+        "price": 52.74,
+        "stock": 97,
+        "size": [
+            "XS",
+            "S",
+            "M"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product26.jpg",
+            "https://example.com/images/product43.jpg"
+        ],
+        "user": 8,
+        "category": 10,
+        "active": false
+    },
+    {
+        "name": "Wool Scarf",
+        "description": "Description for Wool Scarf",
+        "brand": "H&M",
+        "price": 24.34,
+        "stock": 40,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product17.jpg",
+            "https://example.com/images/product38.jpg"
+        ],
+        "user": 9,
+        "category": 30,
+        "active": false
+    },
+    {
+        "name": "Short Sleeve T-Shirt",
+        "description": "Description for Short Sleeve T-Shirt",
+        "brand": "H&M",
+        "price": 89.4,
+        "stock": 71,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product19.jpg",
+            "https://example.com/images/product34.jpg"
+        ],
+        "user": 9,
+        "category": 2,
+        "active": true
+    },
+    {
+        "name": "Cotton Hoodie",
+        "description": "Description for Cotton Hoodie",
+        "brand": "Nike",
+        "price": 38.14,
+        "stock": 86,
+        "size": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product26.jpg",
+            "https://example.com/images/product50.jpg"
+        ],
+        "user": 9,
+        "category": 25,
+        "active": false
+    },
+    {
+        "name": "Slim Fit Blazer",
+        "description": "Description for Slim Fit Blazer",
+        "brand": "Gap",
+        "price": 52.98,
+        "stock": 15,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product10.jpg",
+            "https://example.com/images/product22.jpg"
+        ],
+        "user": 7,
+        "category": 23,
+        "active": true
+    },
+    {
+        "name": "Running Shoes",
+        "description": "Description for Running Shoes",
+        "brand": "Gap",
+        "price": 46.56,
+        "stock": 86,
+        "size": [
+            "S",
+            "L"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product34.jpg",
+            "https://example.com/images/product30.jpg"
+        ],
+        "user": 8,
+        "category": 2,
+        "active": false
+    },
+    {
+        "name": "Wool Scarf",
+        "description": "Description for Wool Scarf",
+        "brand": "Zara",
+        "price": 24.04,
+        "stock": 42,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Blue",
+            "Black"
+        ],
+        "images": [
+            "https://example.com/images/product18.jpg",
+            "https://example.com/images/product48.jpg"
+        ],
+        "user": 7,
+        "category": 14,
+        "active": true
+    },
+    {
+        "name": "Running Shoes",
+        "description": "Description for Running Shoes",
+        "brand": "Uniqlo",
+        "price": 43.87,
+        "stock": 96,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Gray",
+            "Red"
+        ],
+        "images": [
+            "https://example.com/images/product36.jpg",
+            "https://example.com/images/product2.jpg"
+        ],
+        "user": 8,
+        "category": 23,
+        "active": true
+    },
+    {
+        "name": "Wool Scarf",
+        "description": "Description for Wool Scarf",
+        "brand": "Armani",
+        "price": 38.82,
+        "stock": 12,
+        "size": [
+            "M",
+            "XL"
+        ],
+        "color": [
+            "Purple",
+            "Yellow"
+        ],
+        "images": [
+            "https://example.com/images/product31.jpg",
+            "https://example.com/images/product30.jpg"
+        ],
+        "user": 6,
+        "category": 30,
+        "active": false
+    }
+]
