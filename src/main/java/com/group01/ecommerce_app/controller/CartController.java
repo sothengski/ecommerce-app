@@ -23,6 +23,7 @@ import com.group01.ecommerce_app.model.ProductRepository;
 import com.group01.ecommerce_app.model.User;
 import com.group01.ecommerce_app.model.UserRepository;
 
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api/carts")
 public class CartController {
