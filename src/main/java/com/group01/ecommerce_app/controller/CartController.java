@@ -19,7 +19,6 @@ import com.group01.ecommerce_app.model.CartRepository;
 import com.group01.ecommerce_app.model.Item;
 import com.group01.ecommerce_app.model.ItemRepository;
 import com.group01.ecommerce_app.model.Order;
-import com.group01.ecommerce_app.model.OrderItem;
 import com.group01.ecommerce_app.model.OrderRepository;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.ProductRepository;
@@ -308,7 +307,7 @@ public class CartController {
                         Order orderTemp = new Order();
 
                         // Associate the order with the cart
-                        orderTemp.setCart(cart);
+                        // orderTemp.setCart(cart);
 
                         if (orderRequesDTO.getUserId() != null) {
                                 Optional<User> user = userRepository.findById(orderRequesDTO.getUserId());
@@ -321,12 +320,12 @@ public class CartController {
                                 }
                                 orderTemp.setUserId(user.get().getId());
                         }
-                        List<OrderItem> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
+                        List<Item> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
                                 Product product = productRepository.findById(itemDTO.getProductId())
                                                 .orElseThrow(() -> new RuntimeException(
                                                                 "Product not found with id " + itemDTO.getProductId()));
 
-                                OrderItem item = new OrderItem();
+                                Item item = new Item();
                                 item.setOrder(orderTemp);
                                 item.setProduct(product);
                                 item.setQuantity(itemDTO.getQuantity());
@@ -345,7 +344,7 @@ public class CartController {
 
                         // Calculate and set total price for the order
                         Double totalPrice = items.stream()
-                                        .map(OrderItem::getTotalPrice)
+                                        .map(Item::getTotalPrice)
                                         .reduce(0.0, Double::sum);
                         orderTemp.setTotalPrice(totalPrice);
 

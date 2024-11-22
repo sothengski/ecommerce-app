@@ -44,11 +44,12 @@ public class Item implements Serializable {
     @Column(name = "total_price", nullable = false)
     private double totalPrice;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "cart_id", nullable = true)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "cart_id", nullable = true) // Allow null
     private Cart cart;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    // @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "product_id")
     private Product product;
 

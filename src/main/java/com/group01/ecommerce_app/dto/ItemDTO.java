@@ -21,17 +21,22 @@ public class ItemDTO {
 
     // Getters and Setters
 
+    // public Double getTotalPrice() {
+    // return unitPrice * quantity;
+    // // return unitPrice.multiply(BigDecimal.valueOf(quantity));
+    // }
+
     // Convert Item entity to ItemDTO
     public static ItemDTO convertToItemDTO(final Item item) {
-        ItemDTO cartItemDTO = new ItemDTO();
-        cartItemDTO.setId(item.getId());
-        cartItemDTO.setUnitPrice(item.getUnitPrice());
-        cartItemDTO.setQuantity(item.getQuantity());
-        cartItemDTO.setTotalPrice(item.getUnitPrice() * item.getQuantity());
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setId(item.getId());
+        itemDTO.setUnitPrice(item.getUnitPrice());
+        itemDTO.setQuantity(item.getQuantity());
+        itemDTO.setTotalPrice(item.getUnitPrice() * item.getQuantity());
         // Convert Product to ProductDTO
         if (item.getProduct() != null) {
-            cartItemDTO.setProduct(ProductDTO.convertToProductDTO(item.getProduct()));
+            itemDTO.setProduct(ProductDTO.convertToProductDTO(item.getProduct()));
         }
-        return cartItemDTO;
+        return itemDTO;
     }
 }

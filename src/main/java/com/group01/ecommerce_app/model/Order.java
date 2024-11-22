@@ -83,11 +83,11 @@ public class Order implements Serializable {
     // private String billingCountry;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
-    private List<OrderItem> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY) // or FetchType.EAGER
-    @JoinColumn(name = "cart_id", nullable = true)
-    private Cart cart; // Many-to-One relationship with Cart
+    // @ManyToOne(fetch = FetchType.LAZY) // or FetchType.EAGER
+    // @JoinColumn(name = "cart_id", nullable = true)
+    // private Cart cart; // Many-to-One relationship with Cart
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

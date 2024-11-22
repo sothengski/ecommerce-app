@@ -12,15 +12,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.group01.ecommerce_app.loader.JsonLoader;
 import com.group01.ecommerce_app.model.Cart;
 import com.group01.ecommerce_app.model.CartRepository;
 import com.group01.ecommerce_app.model.Category;
 import com.group01.ecommerce_app.model.CategoryRepository;
+import com.group01.ecommerce_app.model.Item;
+import com.group01.ecommerce_app.model.ItemRepository;
 import com.group01.ecommerce_app.model.Order;
-import com.group01.ecommerce_app.model.OrderItem;
-import com.group01.ecommerce_app.model.OrderItemRepository;
 import com.group01.ecommerce_app.model.OrderRepository;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.ProductRepository;
@@ -48,10 +47,10 @@ public class EcommerceAppApplication {
 	private OrderRepository orderRepository;
 
 	@Autowired
-	private OrderItemRepository orderItemRepository;
+	private CartRepository cartRepository;
 
 	@Autowired
-	private CartRepository cartRepository;
+	private ItemRepository itemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceAppApplication.class, args);
@@ -170,36 +169,37 @@ public class EcommerceAppApplication {
 			order2.setShippingPostalCode("90001");
 			order2.setShippingCountry("USA");
 			order2.setShippingCost(4.99);
-			order2.setCart(cart);
+			// order2.setCart(cart);
 
 			// Save Orders
 			order1 = orderRepository.save(order1);
 			order2 = orderRepository.save(order2);
 
 			// Order Items
-			OrderItem item1 = new OrderItem();
+			Item item1 = new Item();
 			item1.setOrder(order1);
 			item1.setProduct(pro1);
 			item1.setQuantity(2);
-			item1.setUnitPrice(50.00);
-			item1.setTotalPrice(100.00);
+			item1.setUnitPrice(pro1.getPrice());
+			item1.setTotalPrice(item1.getQuantity() * item1.getUnitPrice());
+			item1.setCart(cart);
 
-			OrderItem item2 = new OrderItem();
+			Item item2 = new Item();
 			item2.setOrder(order1);
 			item2.setProduct(pro2);
 			item2.setQuantity(1);
-			item2.setUnitPrice(25.00);
-			item2.setTotalPrice(25.00);
+			item1.setUnitPrice(pro1.getPrice());
+			item1.setTotalPrice(item1.getQuantity() * item1.getUnitPrice());
 
-			OrderItem item3 = new OrderItem();
+			Item item3 = new Item();
 			item3.setOrder(order2);
 			item3.setProduct(pro3);
 			item3.setQuantity(1);
-			item3.setUnitPrice(50.00);
-			item3.setTotalPrice(50.00);
+			item1.setUnitPrice(pro1.getPrice());
+			item1.setTotalPrice(item1.getQuantity() * item1.getUnitPrice());
 
 			// Save Order Items
-			orderItemRepository.saveAll(List.of(item1, item2, item3));
+			itemRepository.saveAll(List.of(item1, item2, item3));
 
 		};
 	}

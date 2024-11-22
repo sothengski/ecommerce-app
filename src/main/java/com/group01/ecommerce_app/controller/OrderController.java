@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.group01.ecommerce_app.dto.ApiResponse;
 import com.group01.ecommerce_app.dto.OrderDTO;
 import com.group01.ecommerce_app.dto.OrderRequestDTO;
+import com.group01.ecommerce_app.model.Item;
 import com.group01.ecommerce_app.model.Order;
-import com.group01.ecommerce_app.model.OrderItem;
 import com.group01.ecommerce_app.model.OrderRepository;
 import com.group01.ecommerce_app.model.Product;
 import com.group01.ecommerce_app.model.ProductRepository;
@@ -100,11 +100,11 @@ public class OrderController {
                 }
                 orderTemp.setUserId(user.get().getId());
             }
-            List<OrderItem> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
+            List<Item> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
                 Product product = productRepository.findById(itemDTO.getProductId())
                         .orElseThrow(() -> new RuntimeException("Product not found with id " + itemDTO.getProductId()));
 
-                OrderItem item = new OrderItem();
+                Item item = new Item();
                 item.setOrder(orderTemp);
                 item.setProduct(product);
                 item.setQuantity(itemDTO.getQuantity());
@@ -123,7 +123,7 @@ public class OrderController {
 
             // Calculate and set total price for the order
             Double totalPrice = items.stream()
-                    .map(OrderItem::getTotalPrice)
+                    .map(Item::getTotalPrice)
                     .reduce(0.0, Double::sum);
             orderTemp.setTotalPrice(totalPrice);
 
@@ -183,12 +183,12 @@ public class OrderController {
 
                 // Update items
                 if (orderRequestDTO.getItems() != null) {
-                    List<OrderItem> items = orderRequestDTO.getItems().stream().map(itemDTO -> {
+                    List<Item> items = orderRequestDTO.getItems().stream().map(itemDTO -> {
                         Product product = productRepository.findById(itemDTO.getProductId())
                                 .orElseThrow(() -> new RuntimeException(
                                         "Product not found with id " + itemDTO.getProductId()));
 
-                        OrderItem item = new OrderItem();
+                        Item item = new Item();
                         item.setOrder(existingOrder);
                         item.setProduct(product);
                         item.setQuantity(itemDTO.getQuantity());
@@ -208,7 +208,7 @@ public class OrderController {
                 // Calculate and update total price
                 if (orderRequestDTO.getItems() != null) {
                     Double totalPrice = existingOrder.getItems().stream()
-                            .map(OrderItem::getTotalPrice)
+                            .map(Item::getTotalPrice)
                             .reduce(0.0, Double::sum);
                     existingOrder.setTotalPrice(totalPrice);
                 }
