@@ -17,6 +17,7 @@ import com.group01.ecommerce_app.dto.OrderRequestDTO;
 import com.group01.ecommerce_app.model.Cart;
 import com.group01.ecommerce_app.model.CartRepository;
 import com.group01.ecommerce_app.model.Item;
+import com.group01.ecommerce_app.model.ItemRepository;
 import com.group01.ecommerce_app.model.Order;
 import com.group01.ecommerce_app.model.OrderItem;
 import com.group01.ecommerce_app.model.OrderRepository;
@@ -41,6 +42,9 @@ public class CartController {
 
         @Autowired
         private OrderRepository orderRepository;
+
+        @Autowired
+        private ItemRepository itemRepository;
 
         @GetMapping("/{cartId}")
         public ResponseEntity<ApiResponse<CartDTO>> getCartById(@PathVariable("cartId") Long cartId) {
@@ -112,8 +116,8 @@ public class CartController {
                 // return ResponseEntity.status(HttpStatus.CREATED).body(cartDTO);
         }
 
-        @PostMapping("/{cartId}/add-product")
-        public ResponseEntity<ApiResponse<CartDTO>> addProductToCart(
+        @PostMapping("/{cartId}/add-item")
+        public ResponseEntity<ApiResponse<CartDTO>> addItemToCart(
                         @PathVariable("cartId") Long cartId,
                         // @RequestParam("productId") Long productId,
                         // @RequestParam("quantity") int quantity
@@ -171,6 +175,51 @@ public class CartController {
                         return new ResponseEntity<>(
                                         new ApiResponse<>(true, "Product added to cart successfully",
                                                         CartDTO.convertToCartDTO(updatedCart)),
+                                        HttpStatus.OK);
+                } catch (RuntimeException e) {
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(false, e.getMessage(), null),
+                                        HttpStatus.BAD_REQUEST);
+                }
+        }
+
+        @DeleteMapping("/{cartId}/remove-item")
+        public ResponseEntity<ApiResponse<CartDTO>> removeItemFromCart(
+                        @PathVariable("cartId") Long cartId,
+                        @RequestParam("itemId") Long itemId) {
+                try {
+                        // CartDTO updatedCart = cartService.removeItemFromCart(cartId, itemId);
+
+                        // Fetch the cart by ID
+                        Cart cart = cartRepository.findById(cartId)
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Cart with ID " + cartId + " not found"));
+
+                        // Find the item to be removed
+                        Item itemToRemove = cart.getItems().stream()
+                                        .filter(item -> item.getId().equals(itemId))
+                                        .findFirst()
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Item with ID " + itemId + " not found in cart"));
+
+                        // Remove the item from the cart
+                        cart.getItems().remove(itemToRemove);
+
+                        // Recalculate the cart's total quantity and price
+                        int totalQuantity = cart.getItems().stream().mapToInt(Item::getQuantity).sum();
+                        double totalPrice = cart.getItems().stream().mapToDouble(Item::getTotalPrice).sum();
+
+                        cart.setQuantity(totalQuantity);
+                        cart.setTotalPrice(totalPrice);
+
+                        // Save the updated cart and delete the item
+                        cartRepository.save(cart);
+                        itemRepository.delete(itemToRemove);
+
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(true, "Item removed from cart successfully",
+                                                        CartDTO.convertToCartDTO(
+                                                                        cart)),
                                         HttpStatus.OK);
                 } catch (RuntimeException e) {
                         return new ResponseEntity<>(
