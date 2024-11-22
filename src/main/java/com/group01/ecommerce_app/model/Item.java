@@ -1,51 +1,68 @@
-// package com.group01.ecommerce_app.model;
+package com.group01.ecommerce_app.model;
 
-// import java.io.Serializable;
-// import java.math.BigDecimal;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
-// import jakarta.persistence.CascadeType;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.FetchType;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Id;
-// import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.ManyToOne;
-// import jakarta.persistence.OneToOne;
-// import jakarta.persistence.Table;
-// import lombok.AllArgsConstructor;
-// import lombok.Builder;
-// import lombok.Data;
-// import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-// @NoArgsConstructor
-// @AllArgsConstructor
-// @Data // @Getter @Setter @RequiredArgsConstructor @ToString
-// @EqualsAndHashCode
-// @Builder
-// @Entity
-// @Table(name = "items")
-// public class Item implements Serializable {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-// @Id
-// @GeneratedValue(strategy = GenerationType.IDENTITY)
-// private Long id;
+@NoArgsConstructor
+@AllArgsConstructor
+@Data // @Getter @Setter @RequiredArgsConstructor @ToString
+@Builder
+@Entity
+@Table(name = "items")
+public class Item implements Serializable {
 
-// @ManyToOne(fetch = FetchType.EAGER, optional = false)
-// @JoinColumn(name = "cart_id")
-// private Cart cart;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-// @OneToOne(cascade = CascadeType.PERSIST)
-// @JoinColumn(name = "product_id")
-// private Product product;
+    @Column(name = "quantity", nullable = false)
+    private int quantity;
 
-// @ManyToOne
-// @JoinColumn(name = "order_id", nullable = false)
-// private Order order;
+    @Column(name = "unit_price", nullable = false)
+    private double unitPrice;
 
-// private Integer quantity;
-// private BigDecimal unitPrice;
-// private BigDecimal totalPrice;
+    @Column(name = "total_price", nullable = false)
+    private double totalPrice;
 
-// // Getters and Setters
-// }
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "cart_id", nullable = true)
+    private Cart cart;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = true)
+    private Order order;
+
+    @CreationTimestamp
+    @Column(updatable = false, name = "created_at")
+    private Date createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+    // Getters and Setters
+}

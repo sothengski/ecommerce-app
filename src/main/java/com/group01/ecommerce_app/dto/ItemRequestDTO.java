@@ -1,19 +1,19 @@
-// package com.group01.ecommerce_app.dto;
+package com.group01.ecommerce_app.dto;
 
-// import lombok.AllArgsConstructor;
-// import lombok.Data;
-// import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-// @NoArgsConstructor
-// @AllArgsConstructor
-// @Data
-// public class ItemRequestDTO {
-// private Long productId;
-// private int quantity;
-// private double unitPrice;
-// // private double totalPrice;
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class ItemRequestDTO {
+    private Long productId;
+    private int quantity;
+    private double unitPrice;
+    // private double totalPrice;
 
-// public Double getTotalPrice() {
-// return unitPrice * quantity;
-// }
-// }
+    public Double getTotalPrice() {
+        return unitPrice * quantity;
+    }
+}

@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import com.group01.ecommerce_app.dto.ApiResponse;
 import com.group01.ecommerce_app.dto.CartDTO;
+import com.group01.ecommerce_app.dto.ItemRequestDTO;
 import com.group01.ecommerce_app.dto.OrderDTO;
 import com.group01.ecommerce_app.dto.OrderRequestDTO;
 import com.group01.ecommerce_app.model.Cart;
 import com.group01.ecommerce_app.model.CartRepository;
+import com.group01.ecommerce_app.model.Item;
 import com.group01.ecommerce_app.model.Order;
 import com.group01.ecommerce_app.model.OrderItem;
 import com.group01.ecommerce_app.model.OrderRepository;
@@ -61,6 +63,24 @@ public class CartController {
                                 HttpStatus.NOT_FOUND);
         }
 
+        @GetMapping("/users/{userId}")
+        public ResponseEntity<ApiResponse<CartDTO>> getCartByUserId(@PathVariable("userId") Long userId) {
+
+                Optional<Cart> cartData = cartRepository.findByUserId(userId);
+
+                if (cartData.isPresent()) {
+                        Cart cartTemp = cartData.get();
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(true, "Cart retrieved successfully",
+                                                        CartDTO.convertToCartDTO(cartTemp)),
+                                        HttpStatus.OK);
+                }
+                return new ResponseEntity<>(
+                                new ApiResponse<>(false, "Cart for user with id " + userId + " does not exist",
+                                                "Cart not found"),
+                                HttpStatus.NOT_FOUND);
+        }
+
         @PostMapping("/users/{userId}")
         public ResponseEntity<ApiResponse<CartDTO>> createCartForUser(@PathVariable Long userId) {
                 try {
@@ -90,6 +110,73 @@ public class CartController {
                 }
                 // CartDTO cartDTO = cartService.createCartForUser(userId);
                 // return ResponseEntity.status(HttpStatus.CREATED).body(cartDTO);
+        }
+
+        @PostMapping("/{cartId}/add-product")
+        public ResponseEntity<ApiResponse<CartDTO>> addProductToCart(
+                        @PathVariable("cartId") Long cartId,
+                        // @RequestParam("productId") Long productId,
+                        // @RequestParam("quantity") int quantity
+                        @RequestBody ItemRequestDTO itemRequesDTO) {
+                try {
+                        // CartDTO updatedCart = cartService.addProductToCart(cartId, productId,
+                        // quantity);
+
+                        // Fetch the cart by ID
+                        Cart cart = cartRepository.findById(cartId)
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Cart with ID " + cartId + " not found"));
+
+                        // Fetch the product by ID
+                        Product product = productRepository.findById(
+                                        itemRequesDTO.getProductId())
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Product with ID " + itemRequesDTO.getProductId()
+                                                                        + " not found"));
+
+                        // Check if the product already exists in the cart
+                        Optional<Item> existingItem = cart.getItems().stream()
+                                        .filter(item -> item.getProduct().getId().equals(itemRequesDTO
+                                                        .getProductId()))
+                                        .findFirst();
+
+                        if (existingItem.isPresent()) {
+                                // Update the existing item
+                                Item item = existingItem.get();
+                                item.setUnitPrice(product.getPrice()); // Assuming `Product` has a `price` field
+                                item.setQuantity(item.getQuantity() + itemRequesDTO.getQuantity());
+                                item.setTotalPrice(item.getQuantity() * item.getUnitPrice());
+                        } else {
+                                // Add a new item to the cart
+                                Item newItem = new Item();
+                                newItem.setProduct(product);
+                                newItem.setQuantity(itemRequesDTO.getQuantity());
+                                newItem.setUnitPrice(product.getPrice()); // Assuming `Product` has a `price` field
+                                newItem.setTotalPrice(itemRequesDTO.getQuantity() * product.getPrice());
+                                newItem.setCart(cart);
+
+                                cart.getItems().add(newItem);
+                        }
+
+                        // Update the cart's total quantity and price
+                        int totalQuantity = cart.getItems().stream().mapToInt(Item::getQuantity).sum();
+                        double totalPrice = cart.getItems().stream().mapToDouble(Item::getTotalPrice).sum();
+
+                        cart.setQuantity(totalQuantity);
+                        cart.setTotalPrice(totalPrice);
+
+                        // Save the updated cart
+                        Cart updatedCart = cartRepository.save(cart);
+
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(true, "Product added to cart successfully",
+                                                        CartDTO.convertToCartDTO(updatedCart)),
+                                        HttpStatus.OK);
+                } catch (RuntimeException e) {
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(false, e.getMessage(), null),
+                                        HttpStatus.BAD_REQUEST);
+                }
         }
 
         @PostMapping("/{cartId}/orders")
