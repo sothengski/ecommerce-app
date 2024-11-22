@@ -1,5 +1,8 @@
 package com.group01.ecommerce_app.controller;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -284,6 +287,63 @@ public class CartController {
                 }
         }
 
+        @PostMapping("/{cartId}/checkout")
+        public ResponseEntity<ApiResponse<OrderDTO>> checkoutCart(@PathVariable("cartId") Long cartId) {
+                try {
+                        // OrderDTO order = cartService.checkoutCart(cartId);
+
+                        // Fetch the cart by ID
+                        Cart cart = cartRepository.findById(cartId)
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Cart with ID " + cartId + " not found"));
+
+                        // Ensure the cart has items
+                        if (cart.getItems().isEmpty()) {
+                                throw new RuntimeException("Cart is empty. Add items to the cart before checkout.");
+                        }
+
+                        // Create a new order
+                        Order order = new Order();
+                        order.setUser(cart.getUser());
+                        order.setOrderDate(order.getCreatedAt());
+                        order.setTotalPrice(cart.getTotalPrice());
+                        order.setItems(new ArrayList<>());
+
+                        // Transfer cart items to order items
+                        for (Item cartItem : cart.getItems()) {
+                                Item orderItem = new Item();
+                                orderItem.setProduct(cartItem.getProduct());
+                                orderItem.setQuantity(cartItem.getQuantity());
+                                orderItem.setUnitPrice(cartItem.getUnitPrice());
+                                orderItem.setTotalPrice(cartItem.getTotalPrice());
+                                orderItem.setOrder(order);
+
+                                // Add the order item to the order
+                                order.getItems().add(orderItem);
+                        }
+
+                        // Save the order
+                        Order savedOrder = orderRepository.save(order);
+
+                        // Clear the cart
+                        cart.getItems().clear();
+                        cart.setQuantity(0);
+                        cart.setTotalPrice(0.0);
+                        cartRepository.save(cart);
+
+                        // Convert to DTO and return
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(true, "Cart checked out successfully",
+                                                        OrderDTO.convertToOrderDTO(
+                                                                        savedOrder)),
+                                        HttpStatus.OK);
+                } catch (RuntimeException e) {
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(false, e.getMessage(), null),
+                                        HttpStatus.BAD_REQUEST);
+                }
+        }
+
         @PostMapping("/{cartId}/orders")
         public ResponseEntity<ApiResponse<OrderDTO>> addOrderToCart(@PathVariable Long cartId,
                         @RequestBody OrderRequestDTO orderRequesDTO) {
@@ -318,7 +378,7 @@ public class CartController {
                                                         "User not found"),
                                                         HttpStatus.BAD_REQUEST);
                                 }
-                                orderTemp.setUserId(user.get().getId());
+                                orderTemp.setUser(user.get());
                         }
                         List<Item> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
                                 Product product = productRepository.findById(itemDTO.getProductId())

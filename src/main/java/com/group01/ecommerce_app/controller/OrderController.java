@@ -98,7 +98,7 @@ public class OrderController {
                             "User not found"),
                             HttpStatus.BAD_REQUEST);
                 }
-                orderTemp.setUserId(user.get().getId());
+                orderTemp.setUser(user.get());
             }
             List<Item> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
                 Product product = productRepository.findById(itemDTO.getProductId())
@@ -178,7 +178,7 @@ public class OrderController {
                                 "User not found"),
                                 HttpStatus.BAD_REQUEST);
                     }
-                    existingOrder.setUserId(user.get().getId());
+                    existingOrder.setUser(user.get());
                 }
 
                 // Update items

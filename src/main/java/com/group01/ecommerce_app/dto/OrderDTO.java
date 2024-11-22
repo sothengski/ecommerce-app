@@ -52,7 +52,7 @@ public class OrderDTO {
     public static OrderDTO convertToOrderDTO(Order order) {
         OrderDTO dto = new OrderDTO();
         dto.setOrderId(order.getId());
-        dto.setUserId(order.getUserId());
+        dto.setUserId(order.getUser().getId());
         // dto.setCartId(order.getCart() == null ? null : order.getCart().getId());
         dto.setOrderNumber(order.getOrderNumber());
         dto.setOrderStatus(order.getOrderStatus());

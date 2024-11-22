@@ -1,8 +1,10 @@
 package com.group01.ecommerce_app.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -70,6 +72,10 @@ public class User implements Serializable {
     // @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
 
     @Column(name = "active", nullable = false)
     private Boolean active;

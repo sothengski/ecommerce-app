@@ -22,8 +22,8 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    // @Column(name = "user_id", nullable = false)
+    // private Long userId;
 
     @Column(name = "order_number", nullable = false, unique = true)
     private String orderNumber;
@@ -84,6 +84,10 @@ public class Order implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
     private List<Item> items = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     // @ManyToOne(fetch = FetchType.LAZY) // or FetchType.EAGER
     // @JoinColumn(name = "cart_id", nullable = true)
