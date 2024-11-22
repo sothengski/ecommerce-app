@@ -183,6 +183,63 @@ public class CartController {
                 }
         }
 
+        @PutMapping("/{cartId}/update-item")
+        public ResponseEntity<ApiResponse<CartDTO>> updateItemInCart(
+                        @PathVariable("cartId") Long cartId,
+                        // @PathVariable("itemId") Long itemId,
+                        @RequestParam("itemId") Long itemId,
+                        @RequestParam("newQuantity") int newQuantity
+        // @RequestBody ItemRequestDTO itemRequesDTO
+        ) {
+                try {
+                        // CartDTO updatedCart = cartService.updateItemInCart(cartId, itemId,
+                        // newQuantity);
+
+                        if (newQuantity <= 0) {
+                                throw new RuntimeException("Quantity must be greater than zero");
+                        }
+
+                        // Fetch the cart by ID
+                        Cart cart = cartRepository.findById(cartId)
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Cart with ID " + cartId + " not found"));
+
+                        // Find the item to be updated
+                        Item itemToUpdate = cart.getItems().stream()
+                                        .filter(item -> item.getId().equals(
+                                                        itemId))
+                                        .findFirst()
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Item with ID " + itemId
+                                                                        + " not found in cart"));
+
+                        // Update the item's quantity and total price
+                        itemToUpdate.setQuantity(newQuantity);
+                        itemToUpdate.setTotalPrice(newQuantity * itemToUpdate.getUnitPrice());
+
+                        // Recalculate the cart's total quantity and price
+                        int totalQuantity = cart.getItems().stream().mapToInt(Item::getQuantity).sum();
+                        double totalPrice = cart.getItems().stream().mapToDouble(Item::getTotalPrice).sum();
+
+                        cart.setQuantity(totalQuantity);
+                        cart.setTotalPrice(totalPrice);
+
+                        // Save the updated cart
+                        Cart updatedCart = cartRepository.save(cart);
+
+                        // Convert to DTO and return
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(true, "Item updated in cart successfully",
+                                                        CartDTO.convertToCartDTO(
+                                                                        updatedCart)),
+                                        HttpStatus.OK);
+                } catch (RuntimeException e) {
+                        return new ResponseEntity<>(
+                                        new ApiResponse<>(false, e.getMessage(), null),
+                                        HttpStatus.BAD_REQUEST);
+                }
+        }
+
         @DeleteMapping("/{cartId}/remove-item")
         public ResponseEntity<ApiResponse<CartDTO>> removeItemFromCart(
                         @PathVariable("cartId") Long cartId,
