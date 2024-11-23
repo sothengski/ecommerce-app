@@ -83,6 +83,32 @@ public class OrderController {
         }
     }
 
+    @GetMapping("/users/{userId}/orders")
+    public ResponseEntity<ApiResponse<List<OrderDTO>>> getOrdersByUserId(@PathVariable("userId") Long userId) {
+        try {
+            // Fetch orders by user ID
+            List<Order> orders = orderRepository.findByUser_Id(userId);
+
+            // Convert orders to DTOs
+            List<OrderDTO> orderDTOs = orders.stream()
+                    .map(OrderDTO::convertToOrderDTO)
+                    .toList();
+
+            // Check if the list is empty
+            if (orders.isEmpty()) {
+                return new ResponseEntity<>(new ApiResponse<>(true, "Orders retrieved successfully",
+                        orderDTOs, "No orders found"), HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>(
+                    new ApiResponse<>(true, "Orders retrieved successfully", orderDTOs),
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Error getting orders for user", e.getMessage()));
+        }
+    }
+
     @PostMapping("/orders")
     public ResponseEntity<ApiResponse<OrderDTO>> createOrder(@RequestBody OrderRequestDTO orderRequesDTO) {
         try {
