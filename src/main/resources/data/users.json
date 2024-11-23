@@ -1,51 +1,101 @@
 [
     {
         "email": "admin1@example.com",
+        "userName": "john_doe01",
+        "firstName": "John",
+        "lastName": "Doe",
+        "phone": "+1-123-456-7890",
+        "shippingAddress": "123 Main St, Springfield, IL",
         "password": "admin123",
         "role": "admin"
     },
     {
         "email": "admin2@example.com",
+        "userName": "jane_smith02",
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "phone": "+1-234-567-8901",
+        "shippingAddress": "456 Elm St, Springfield, IL",
         "password": "admin123",
         "role": "admin"
     },
     {
         "email": "seller1@example.com",
+        "userName": "mike_johnson03",
+        "firstName": "Mike",
+        "lastName": "Johnson",
+        "phone": "+1-345-678-9012",
+        "shippingAddress": "789 Oak St, Springfield, IL",
         "password": "seller123",
         "role": "seller"
     },
     {
         "email": "seller2@example.com",
+        "userName": "sarah_brown04",
+        "firstName": "Sarah",
+        "lastName": "Brown",
+        "phone": "+1-456-789-0123",
+        "shippingAddress": "321 Pine St, Springfield, IL",
         "password": "seller123",
         "role": "seller"
     },
     {
         "email": "seller3@example.com",
+        "userName": "alex_davis05",
+        "firstName": "Alex",
+        "lastName": "Davis",
+        "phone": "+1-567-890-1234",
+        "shippingAddress": "654 Cedar St, Springfield, IL",
         "password": "seller123",
         "role": "seller"
     },
     {
         "email": "seller4@example.com",
+        "userName": "chris_white06",
+        "firstName": "Chris",
+        "lastName": "White",
+        "phone": "+1-678-901-2345",
+        "shippingAddress": "987 Birch St, Springfield, IL",
         "password": "seller123",
         "role": "seller"
     },
     {
         "email": "buyer1@example.com",
+        "userName": "emma_green07",
+        "firstName": "Emma",
+        "lastName": "Green",
+        "phone": "+1-789-012-3456",
+        "shippingAddress": "159 Maple St, Springfield, IL",
         "password": "buyer123",
         "role": "buyer"
     },
     {
         "email": "buyer2@example.com",
+        "userName": "daniel_clark08",
+        "firstName": "Daniel",
+        "lastName": "Clark",
+        "phone": "+1-890-123-4567",
+        "shippingAddress": "753 Willow St, Springfield, IL",
         "password": "buyer123",
         "role": "buyer"
     },
     {
         "email": "buyer3@example.com",
+        "userName": "olivia_wright09",
+        "firstName": "Olivia",
+        "lastName": "Wright",
+        "phone": "+1-901-234-5678",
+        "shippingAddress": "258 Walnut St, Springfield, IL",
         "password": "buyer123",
         "role": "buyer"
     },
     {
         "email": "buyer4@example.com",
+        "userName": "james_hall10",
+        "firstName": "James",
+        "lastName": "Hall",
+        "phone": "+1-012-345-6789",
+        "shippingAddress": "951 Chestnut St, Springfield, IL",
         "password": "buyer123",
         "role": "buyer"
     }

@@ -69,9 +69,17 @@ public class EcommerceAppApplication {
 			// addRoleIfNotFound("buyer");
 
 			// Initialize sample users
-			User admin = addUserIfNotFound("admin@example.com", "admin123", "admin");
-			User seller = addUserIfNotFound("seller@example.com", "seller123", "seller");
-			User buyer = addUserIfNotFound("buyer@example.com", "buyer123", "buyer");
+			User admin = new User("admin@example.com", "admin123", roleRepository.findById(1).get(), "mia_adams15",
+					"Mia", "Adams", "+1-567-890-1234",
+					"963 Fir St, Springfield, IL");
+			User seller = new User("seller@example.com", "seller123", roleRepository.findById(2).get(),
+					"ethan_baker16", "Ethan", "Baker", "+1-678-901-2345",
+					"147 Spruce St, Springfield, IL");
+			User buyer = new User("buyer@example.com", "buyer123", roleRepository.findById(3).get(),
+					"lucas_martin18", "Lucas", "Martin", "+1-890-123-4567",
+					"369 Palm St, Springfield, IL");
+			userRepository.saveAll(List.of(admin, seller, buyer));
+
 			List<User> users = loadUsers();
 			System.out.println("Users loaded: " + users.size());
 
@@ -130,9 +138,9 @@ public class EcommerceAppApplication {
 			// Example of creating an order with items
 
 			// Create a cart
-			Cart cart = cartRepository.findById(buyer.getId()).get();
+			// Cart cart = cartRepository.findById(buyer.getId()).get();
 			// cart.setUser(buyer); // Assuming user is already created
-			cart.setTotalPrice(0.0);
+			// cart.setTotalPrice(0.0);
 			// cartRepository.save(cart);
 
 			// Sample Orders
@@ -146,11 +154,11 @@ public class EcommerceAppApplication {
 			order1.setCurrency("USD");
 			order1.setPaymentStatus("Pending");
 			order1.setPaymentMethod("Credit Card");
-			order1.setShippingAddress("123 Main St");
-			order1.setShippingCity("New York");
-			order1.setShippingState("NY");
-			order1.setShippingPostalCode("10001");
-			order1.setShippingCountry("USA");
+			order1.setShippingAddress("123 Main St, New York, NY, USA, 10001");
+			// order1.setShippingCity("New York");
+			// order1.setShippingState("NY");
+			// order1.setShippingPostalCode("10001");
+			// order1.setShippingCountry("USA");
 			order1.setShippingCost(5.99);
 
 			Order order2 = new Order();
@@ -163,11 +171,11 @@ public class EcommerceAppApplication {
 			order2.setCurrency("USD");
 			order2.setPaymentStatus("Paid");
 			order2.setPaymentMethod("PayPal");
-			order2.setShippingAddress("456 Elm St");
-			order2.setShippingCity("Los Angeles");
-			order2.setShippingState("CA");
-			order2.setShippingPostalCode("90001");
-			order2.setShippingCountry("USA");
+			order2.setShippingAddress("456 Elm St,Los Angeles, CA, USA, 90001");
+			// order2.setShippingCity("Los Angeles");
+			// order2.setShippingState("CA");
+			// order2.setShippingPostalCode("90001");
+			// order2.setShippingCountry("USA");
 			order2.setShippingCost(4.99);
 			// order2.setCart(cart);
 
@@ -182,7 +190,7 @@ public class EcommerceAppApplication {
 			item1.setQuantity(2);
 			item1.setUnitPrice(pro1.getPrice());
 			item1.setTotalPrice(item1.getQuantity() * item1.getUnitPrice());
-			item1.setCart(cart);
+			// item1.setCart(cart);
 
 			Item item2 = new Item();
 			item2.setOrder(order1);
@@ -228,7 +236,10 @@ public class EcommerceAppApplication {
 			});
 			System.out.println("Loaded Users:");
 			users.forEach(user -> {
-				addUserIfNotFound(user.getEmail(), user.getPassword(), user.getRole().getName());
+				addUserIfNotFound(user);
+
+				// addUserIfNotFound(user.getEmail(), user.getPassword(),
+				// user.getRole().getName());
 				// System.out.println("User added: " + user.getEmail());
 			});
 			System.out.println("All users loaded successfully.");
@@ -307,11 +318,18 @@ public class EcommerceAppApplication {
 		roleRepository.findByName(roleName).orElseGet(() -> roleRepository.save(new Role(roleName)));
 	}
 
-	private User addUserIfNotFound(String email, String password, String roleName) {
-		Role role = roleRepository.findByName(roleName)
+	// private User addUserIfNotFound(String email, String password, String
+	// roleName) {
+	private User addUserIfNotFound(User userData) {
+
+		Role role = roleRepository.findByName(
+				userData.getRole().getName())
 				.orElseThrow(() -> new RuntimeException("Role not found"));
 
-		User newUser = new User(email, password, role);
+		User newUser = userData;
+
+		newUser.setRole(role);
+		newUser.setActive(true);
 
 		// Create a cart for the user
 		Cart cart = new Cart();
@@ -320,7 +338,7 @@ public class EcommerceAppApplication {
 		// Set the cart in the user (bidirectional relationship)
 		newUser.setCart(cart);
 
-		return userRepository.findByEmail(email).orElseGet(() -> userRepository.save(newUser));
+		return userRepository.save(newUser);
 	}
 
 }

@@ -53,17 +53,17 @@ public class Order implements Serializable {
     @Column(name = "shipping_address", nullable = false)
     private String shippingAddress;
 
-    @Column(name = "shipping_city", nullable = false)
-    private String shippingCity;
+    // @Column(name = "shipping_city", nullable = false)
+    // private String shippingCity;
 
-    @Column(name = "shipping_state", nullable = false)
-    private String shippingState;
+    // @Column(name = "shipping_state", nullable = false)
+    // private String shippingState;
 
-    @Column(name = "shipping_postal_code", nullable = false)
-    private String shippingPostalCode;
+    // @Column(name = "shipping_postal_code", nullable = false)
+    // private String shippingPostalCode;
 
-    @Column(name = "shipping_country", nullable = false)
-    private String shippingCountry;
+    // @Column(name = "shipping_country", nullable = false)
+    // private String shippingCountry;
 
     @Column(name = "shipping_cost", nullable = false)
     private double shippingCost;

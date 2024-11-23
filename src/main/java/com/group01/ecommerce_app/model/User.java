@@ -31,7 +31,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+// @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode
@@ -57,10 +57,10 @@ public class User implements Serializable {
     @Column(name = "last_name", nullable = true, length = 100)
     private String lastName;
 
-    @Column(name = "phone", nullable = true, length = 9)
+    @Column(name = "phone", nullable = true, length = 20)
     private String phone;
 
-    @Column(name = "shippingAddress", nullable = true, length = 100)
+    @Column(name = "shipping_address", nullable = true, length = 100)
     private String shippingAddress;
 
     // @JsonIgnore // This will exclude `password` from all JSON responses
@@ -81,7 +81,7 @@ public class User implements Serializable {
     private List<Order> orders = new ArrayList<>();
 
     @Column(name = "active", nullable = false)
-    private Boolean active;
+    private Boolean active = false;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
@@ -112,6 +112,10 @@ public class User implements Serializable {
         this.products = products;
     }
 
+    public User() {
+        this.active = false;
+    }
+
     public User(Boolean active) {
         this.active = active;
     }
@@ -132,6 +136,20 @@ public class User implements Serializable {
         this.lastName = Objects.requireNonNullElse(lastName, "");
         this.phone = Objects.requireNonNullElse(phone, "");
         this.shippingAddress = Objects.requireNonNullElse(address, "");
+    }
+
+    public User(String email, String password, Role role, String userName, String firstName, String lastName,
+            String phone,
+            String address) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.shippingAddress = address;
+        this.active = false;
     }
 
     // Getters and Setters

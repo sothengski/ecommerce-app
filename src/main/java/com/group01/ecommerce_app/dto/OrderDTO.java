@@ -29,10 +29,10 @@ public class OrderDTO {
     private String paymentMethod;
 
     private String shippingAddress;
-    private String shippingCity;
-    private String shippingState;
-    private String shippingPostalCode;
-    private String shippingCountry;
+    // private String shippingCity;
+    // private String shippingState;
+    // private String shippingPostalCode;
+    // private String shippingCountry;
     private double shippingCost;
 
     // private String billingAddress;
@@ -63,10 +63,10 @@ public class OrderDTO {
         dto.setPaymentStatus(order.getPaymentStatus());
         dto.setPaymentMethod(order.getPaymentMethod());
         dto.setShippingAddress(order.getShippingAddress());
-        dto.setShippingCity(order.getShippingCity());
-        dto.setShippingState(order.getShippingState());
-        dto.setShippingPostalCode(order.getShippingPostalCode());
-        dto.setShippingCountry(order.getShippingCountry());
+        // dto.setShippingCity(order.getShippingCity());
+        // dto.setShippingState(order.getShippingState());
+        // dto.setShippingPostalCode(order.getShippingPostalCode());
+        // dto.setShippingCountry(order.getShippingCountry());
         dto.setShippingCost(order.getShippingCost());
         // dto.setBillingAddress(order.getBillingAddress());
         // dto.setBillingCity(order.getBillingCity());

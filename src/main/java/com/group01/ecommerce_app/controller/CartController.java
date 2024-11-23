@@ -345,11 +345,11 @@ public class CartController {
                         order.setCurrency("USD");
                         order.setPaymentStatus("Pending");
                         order.setPaymentMethod("Credit Card");
-                        order.setShippingAddress("123 Main St");
-                        order.setShippingCity("New York");
-                        order.setShippingState("NY");
-                        order.setShippingPostalCode("10001");
-                        order.setShippingCountry("USA");
+                        order.setShippingAddress("123 Main St, New York, NY, USA, 10001");
+                        // order.setShippingCity("New York");
+                        // order.setShippingState("NY");
+                        // order.setShippingPostalCode("10001");
+                        // order.setShippingCountry("USA");
                         order.setShippingCost(5.00);
                         // order.setOrderNumber("ORD123456111");
 

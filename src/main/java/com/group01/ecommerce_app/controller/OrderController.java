@@ -158,10 +158,10 @@ public class OrderController {
             orderTemp.setPaymentStatus(orderRequesDTO.getPaymentStatus());
             orderTemp.setPaymentMethod(orderRequesDTO.getPaymentMethod());
             orderTemp.setShippingAddress(orderRequesDTO.getShippingAddress());
-            orderTemp.setShippingCity(orderRequesDTO.getShippingCity());
-            orderTemp.setShippingState(orderRequesDTO.getShippingState());
-            orderTemp.setShippingPostalCode(orderRequesDTO.getShippingPostalCode());
-            orderTemp.setShippingCountry(orderRequesDTO.getShippingCountry());
+            // orderTemp.setShippingCity(orderRequesDTO.getShippingCity());
+            // orderTemp.setShippingState(orderRequesDTO.getShippingState());
+            // orderTemp.setShippingPostalCode(orderRequesDTO.getShippingPostalCode());
+            // orderTemp.setShippingCountry(orderRequesDTO.getShippingCountry());
             orderTemp.setShippingCost(orderRequesDTO.getShippingCost());
 
             Order savedOrder = orderRepository.save(orderTemp);
@@ -243,10 +243,10 @@ public class OrderController {
                 existingOrder.setPaymentStatus(orderRequestDTO.getPaymentStatus());
                 existingOrder.setPaymentMethod(orderRequestDTO.getPaymentMethod());
                 existingOrder.setShippingAddress(orderRequestDTO.getShippingAddress());
-                existingOrder.setShippingCity(orderRequestDTO.getShippingCity());
-                existingOrder.setShippingState(orderRequestDTO.getShippingState());
-                existingOrder.setShippingPostalCode(orderRequestDTO.getShippingPostalCode());
-                existingOrder.setShippingCountry(orderRequestDTO.getShippingCountry());
+                // existingOrder.setShippingCity(orderRequestDTO.getShippingCity());
+                // existingOrder.setShippingState(orderRequestDTO.getShippingState());
+                // existingOrder.setShippingPostalCode(orderRequestDTO.getShippingPostalCode());
+                // existingOrder.setShippingCountry(orderRequestDTO.getShippingCountry());
                 existingOrder.setShippingCost(orderRequestDTO.getShippingCost());
 
                 // Save the updated order to the database
