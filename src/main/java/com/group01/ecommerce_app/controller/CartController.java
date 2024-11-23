@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,20 +28,31 @@ import com.group01.ecommerce_app.model.UserRepository;
 @RequestMapping("/api/carts")
 public class CartController {
 
-        @Autowired
-        private CartRepository cartRepository;
+        // @Autowired
+        private final CartRepository cartRepository;
 
-        @Autowired
-        private ProductRepository productRepository;
+        // @Autowired
+        private final ProductRepository productRepository;
 
-        @Autowired
-        private UserRepository userRepository;
+        // @Autowired
+        private final UserRepository userRepository;
 
-        @Autowired
-        private OrderRepository orderRepository;
+        // @Autowired
+        private final OrderRepository orderRepository;
 
-        @Autowired
-        private ItemRepository itemRepository;
+        // @Autowired
+        private final ItemRepository itemRepository;
+
+        public CartController(
+                        UserRepository userRepository, ProductRepository productRepository,
+                        OrderRepository orderRepository, CartRepository cartRepository,
+                        ItemRepository itemRepository) {
+                this.userRepository = userRepository;
+                this.productRepository = productRepository;
+                this.orderRepository = orderRepository;
+                this.cartRepository = cartRepository;
+                this.itemRepository = itemRepository;
+        }
 
         @GetMapping("/{cartId}")
         public ResponseEntity<ApiResponse<CartDTO>> getCartById(@PathVariable("cartId") Long cartId) {

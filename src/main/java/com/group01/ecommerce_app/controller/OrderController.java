@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,14 +34,21 @@ import com.group01.ecommerce_app.model.UserRepository;
 @RequestMapping("/api")
 public class OrderController {
 
-    @Autowired
-    private OrderRepository orderRepository;
+    // @Autowired
+    private final OrderRepository orderRepository;
 
-    @Autowired
-    UserRepository userRepository;
+    // @Autowired
+    private final UserRepository userRepository;
 
-    @Autowired
-    ProductRepository productRepository;
+    // @Autowired
+    private final ProductRepository productRepository;
+
+    public OrderController(
+            UserRepository userRepository, OrderRepository orderRepository, ProductRepository productRepository) {
+        this.userRepository = userRepository;
+        this.orderRepository = orderRepository;
+        this.productRepository = productRepository;
+    }
 
     @GetMapping("/orders")
     public ResponseEntity<ApiResponse<List<OrderDTO>>> getAllOrders(@RequestParam(required = false) String name) {
@@ -289,7 +295,7 @@ public class OrderController {
 }
 
 /*
- * // TODO
+ * 
  * ==================================================================
  * 
  * Get Order Summary (Cart View)

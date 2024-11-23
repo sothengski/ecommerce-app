@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,21 +32,21 @@ import com.group01.ecommerce_app.model.UserRepository;
 @RequestMapping("/api")
 public class ProductController {
 
-	@Autowired
-	ProductRepository productRepository;
+	// @Autowired
+	private final ProductRepository productRepository;
 
-	// private final ProductRepository productRepository;
+	// @Autowired
+	private final CategoryRepository categoryRepository;
 
-	// // Constructor Injection
-	// public ProductController(ProductRepository productRepository) {
-	// this.productRepository = productRepository;
-	// }
+	// @Autowired
+	private final UserRepository userRepository;
 
-	@Autowired
-	CategoryRepository categoryRepository;
-
-	@Autowired
-	UserRepository userRepository;
+	public ProductController(
+			UserRepository userRepository, ProductRepository productRepository, CategoryRepository categoryRepository) {
+		this.userRepository = userRepository;
+		this.productRepository = productRepository;
+		this.categoryRepository = categoryRepository;
+	}
 
 	// Get a list of all Product records
 	@GetMapping("/products")

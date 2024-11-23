@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,26 +30,40 @@ import com.group01.ecommerce_app.model.UserRepository;
 @SpringBootApplication
 public class EcommerceAppApplication {
 
-	@Autowired
-	private RoleRepository roleRepository;
+	// @Autowired
+	private final RoleRepository roleRepository;
 
-	@Autowired
-	private UserRepository userRepository;
+	// @Autowired
+	private final UserRepository userRepository;
 
-	@Autowired
-	private CategoryRepository categoryRepository;
+	// @Autowired
+	private final CategoryRepository categoryRepository;
 
-	@Autowired
-	private ProductRepository productRepository;
+	// @Autowired
+	private final ProductRepository productRepository;
 
-	@Autowired
-	private OrderRepository orderRepository;
+	// @Autowired
+	private final OrderRepository orderRepository;
 
-	@Autowired
-	private CartRepository cartRepository;
+	// @Autowired
+	private final CartRepository cartRepository;
 
-	@Autowired
-	private ItemRepository itemRepository;
+	// @Autowired
+	private final ItemRepository itemRepository;
+
+	public EcommerceAppApplication(
+			RoleRepository roleRepository, UserRepository userRepository,
+			CategoryRepository categoryRepository, ProductRepository productRepository,
+			OrderRepository orderRepository, CartRepository cartRepository,
+			ItemRepository itemRepository) {
+		this.roleRepository = roleRepository;
+		this.userRepository = userRepository;
+		this.categoryRepository = categoryRepository;
+		this.productRepository = productRepository;
+		this.orderRepository = orderRepository;
+		this.cartRepository = cartRepository;
+		this.itemRepository = itemRepository;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceAppApplication.class, args);
@@ -218,10 +231,7 @@ public class EcommerceAppApplication {
 			List<String> roles = JsonLoader.loadFromJson("data/roles.json", new TypeReference<List<String>>() {
 			});
 			System.out.println("Loaded Roles:");
-			roles.forEach(role -> {
-				addRoleIfNotFound(role);
-				// System.out.println("Role added: " + role);
-			});
+			roles.forEach(this::addRoleIfNotFound);
 			System.out.println("All roles loaded successfully.");
 
 		} catch (Exception e) {

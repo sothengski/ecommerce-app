@@ -3,7 +3,6 @@ package com.group01.ecommerce_app.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,8 +24,13 @@ import com.group01.ecommerce_app.model.CategoryRepository;
 @RequestMapping("/api")
 public class CategoryController {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    // @Autowired
+    private final CategoryRepository categoryRepository;
+
+    public CategoryController(
+            CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     // Get all categories
     @GetMapping("/categories")

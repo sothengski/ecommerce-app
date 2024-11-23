@@ -2,7 +2,6 @@ package com.group01.ecommerce_app.controller;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,8 +21,13 @@ import com.group01.ecommerce_app.model.UserRepository;
 @RequestMapping("/api")
 public class LoginController {
 
-    @Autowired
-    UserRepository userRepository;
+    // @Autowired
+    private final UserRepository userRepository;
+
+    public LoginController(
+            UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<UserDTO>> login(@RequestBody UserLoginDTO loginRequest) {

@@ -11,4 +11,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByActiveTrue(); // Fetch only active users
 
     List<User> findByActiveFalse(); // Fetch only inactive users
+
+    // Custom query to fetch users by role ID
+    // @Query("SELECT u FROM User u WHERE u.role.id = :roleId")
+    // List<User> findByRoleId(@Param("roleId") Long roleId);
+    List<User> findByRoleId(Long roleId);
+
 }

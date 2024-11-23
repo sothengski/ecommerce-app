@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,23 +28,29 @@ import com.group01.ecommerce_app.model.UserRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+    // @Autowired
+    private final UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    // @Autowired
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private CartRepository cartRepository;
+    // @Autowired
+    private final CartRepository cartRepository;
+
+    public UserController(RoleRepository roleRepository, UserRepository userRepository, CartRepository cartRepository) {
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+        this.cartRepository = cartRepository;
+    }
 
     // private final BCryptPasswordEncoder passwordEncoder = new
     // BCryptPasswordEncoder();
     // import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-    @GetMapping
+    @GetMapping("/users")
     public ResponseEntity<ApiResponse<List<UserDTO>>> getAllUsers() {
         try {
             // List<UserDTO> users = userRepository.findAll().stream()
@@ -83,7 +88,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<ApiResponse<UserDTO>> getUserById(@PathVariable("id") Long id) {
         try {
             Optional<User> userData = userRepository.findById(id);
@@ -100,7 +105,27 @@ public class UserController {
         }
     }
 
-    @PostMapping
+    // Get all users by role ID
+    @GetMapping("/roles/{roleId}/users")
+    public ResponseEntity<ApiResponse<List<UserDTO>>> getUsersByRoleId(@PathVariable("roleId") Long roleId) {
+
+        List<User> users = userRepository.findByRoleId(roleId);
+        List<UserDTO> userDTOs = new ArrayList<>();
+        for (User user : users) {
+            userDTOs.add(UserDTO.convertToUserDTO(user));
+        }
+
+        // List of users is Empty
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        // List of users have the data
+        return new ResponseEntity<>(new ApiResponse<>(true, "User retrieved successfully",
+                userDTOs), HttpStatus.OK);
+    }
+
+    @PostMapping("/users")
     public ResponseEntity<ApiResponse<UserDTO>> createUser(@RequestBody UserCreateRequestDTO userData) {
         try {
             // // Encrypt the password
@@ -152,7 +177,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("users/{id}")
     public ResponseEntity<ApiResponse<UserDTO>> updateUser(@PathVariable("id") Long id,
             @RequestBody UserCreateRequestDTO userDetails) {
         try {
@@ -202,7 +227,7 @@ public class UserController {
     // not exist";
     // }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("users/{id}")
     public ResponseEntity<ApiResponse<String>> deleteUser(@PathVariable("id") Long id) {
         try {
             userRepository.deleteById(id);
@@ -216,7 +241,7 @@ public class UserController {
     }
 
     // Activate user
-    @PutMapping("/activate/{id}")
+    @PutMapping("users/activate/{id}")
     public ResponseEntity<ApiResponse<UserDTO>> activateUser(@PathVariable("id") Long id) {
         try {
             Optional<User> userOpt = userRepository.findById(id);
@@ -246,7 +271,7 @@ public class UserController {
     }
 
     // Deactivate user
-    @PutMapping("/deactivate/{id}")
+    @PutMapping("users/deactivate/{id}")
     public ResponseEntity<ApiResponse<UserDTO>> deactivateUser(@PathVariable("id") Long id) {
         Optional<User> userOpt = userRepository.findById(id);
         if (userOpt.isPresent()) {

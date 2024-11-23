@@ -3,7 +3,6 @@ package com.group01.ecommerce_app.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,15 +23,13 @@ import com.group01.ecommerce_app.model.RoleRepository;
 @RequestMapping("/api")
 public class RoleController {
 
-    @Autowired
-    private RoleRepository roleRepository;
-
     // Constructor injection instead of Autowired
-    // private final RoleRepository roleRepository;
+    // @Autowired
+    private final RoleRepository roleRepository;
 
-    // public RoleController(RoleRepository roleRepository) {
-    // this.roleRepository = roleRepository;
-    // }
+    public RoleController(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
 
     // Get all roles
     @GetMapping("/roles")
@@ -68,9 +65,6 @@ public class RoleController {
             // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    // Get all users by roleID
-    // @GetMapping("/roles/{id}/users")
 
     // Create a new role
     @PostMapping("/roles")
