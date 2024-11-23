@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.group01.ecommerce_app.dto.CartDTO;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,11 +17,13 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data // @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode
+@EqualsAndHashCode
 @Builder
 @Entity
 @Table(name = "carts")
@@ -42,6 +42,7 @@ public class Cart implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)
+    @EqualsAndHashCode.Exclude // Exclude to prevent recursion
     private User user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)

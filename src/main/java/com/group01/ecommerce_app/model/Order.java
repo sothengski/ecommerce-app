@@ -2,6 +2,7 @@ package com.group01.ecommerce_app.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
@@ -108,5 +109,14 @@ public class Order implements Serializable {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public static String generateOrderNumber(Long userId) {
+        // Get current date and time
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+        // Format order number
+        return "ORD" + userId + now.format(formatter);
     }
 }

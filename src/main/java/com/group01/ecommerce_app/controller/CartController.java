@@ -305,31 +305,67 @@ public class CartController {
                         // Create a new order
                         Order order = new Order();
                         order.setUser(cart.getUser());
-                        order.setOrderDate(order.getCreatedAt());
+                        // order.setOrderDate(order.getCreatedAt());
                         order.setTotalPrice(cart.getTotalPrice());
                         order.setItems(new ArrayList<>());
 
-                        // Transfer cart items to order items
-                        for (Item cartItem : cart.getItems()) {
-                                Item orderItem = new Item();
-                                orderItem.setProduct(cartItem.getProduct());
-                                orderItem.setQuantity(cartItem.getQuantity());
-                                orderItem.setUnitPrice(cartItem.getUnitPrice());
-                                orderItem.setTotalPrice(cartItem.getTotalPrice());
-                                orderItem.setOrder(order);
+                        // // Transfer cart items to order items
+                        // for (Item cartItem : cart.getItems()) {
+                        // Item orderItem = new Item();
+                        // orderItem.setProduct(cartItem.getProduct());
+                        // orderItem.setQuantity(cartItem.getQuantity());
+                        // orderItem.setUnitPrice(cartItem.getUnitPrice());
+                        // orderItem.setTotalPrice(cartItem.getTotalPrice());
+                        // orderItem.setOrder(order);
 
-                                // Add the order item to the order
-                                order.getItems().add(orderItem);
+                        // // Add the order item to the order
+                        // order.getItems().add(orderItem);
+                        // }
+
+                        // Transfer items from cart to order
+                        for (Item cartItem : cart.getItems()) {
+                                // Set order reference in the item
+                                cartItem.setOrder(order);
+
+                                // Nullify the cart reference in the item
+                                cartItem.setCart(null);
+
+                                // Add the item to the order's item list
+                                order.getItems().add(cartItem);
                         }
+
+                        // Generate order number
+                        String orderNumber = Order.generateOrderNumber(cart.getUser().getId());
+                        order.setOrderNumber(orderNumber);
+
+                        order.setOrderStatus("Processing");
+                        order.setOrderDate(LocalDateTime.now());
+                        order.setTotalQuantity(cart.getItems().size());
+                        // order.setTotalPrice(150.00);
+                        order.setCurrency("USD");
+                        order.setPaymentStatus("Pending");
+                        order.setPaymentMethod("Credit Card");
+                        order.setShippingAddress("123 Main St");
+                        order.setShippingCity("New York");
+                        order.setShippingState("NY");
+                        order.setShippingPostalCode("10001");
+                        order.setShippingCountry("USA");
+                        order.setShippingCost(5.00);
+                        // order.setOrderNumber("ORD123456111");
 
                         // Save the order
                         Order savedOrder = orderRepository.save(order);
 
                         // Clear the cart
-                        cart.getItems().clear();
+                        // cart.getItems().clear();
+                        // Temporarily break the cyclic relationship
+                        cart.getItems().forEach(item -> item.setCart(null));
                         cart.setQuantity(0);
                         cart.setTotalPrice(0.0);
                         cartRepository.save(cart);
+
+                        // Restore the relationship if needed (optional, depending on use case)
+                        cart.getItems().forEach(item -> item.setCart(cart));
 
                         // Convert to DTO and return
                         return new ResponseEntity<>(
@@ -344,88 +380,90 @@ public class CartController {
                 }
         }
 
-        @PostMapping("/{cartId}/orders")
-        public ResponseEntity<ApiResponse<OrderDTO>> addOrderToCart(@PathVariable Long cartId,
-                        @RequestBody OrderRequestDTO orderRequesDTO) {
-                try {
-                        // Retrieve the cart
-                        Cart cart = new Cart();
-                        if (cartId != null) {
-                                Optional<Cart> cartTemp = cartRepository.findById(cartId);
-                                if (cartTemp.isEmpty()) {
+        // @PostMapping("/{cartId}/orders")
+        // public ResponseEntity<ApiResponse<OrderDTO>> addOrderToCart(@PathVariable
+        // Long cartId,
+        // @RequestBody OrderRequestDTO orderRequesDTO) {
+        // try {
+        // // Retrieve the cart
+        // Cart cart = new Cart();
+        // if (cartId != null) {
+        // Optional<Cart> cartTemp = cartRepository.findById(cartId);
+        // if (cartTemp.isEmpty()) {
 
-                                        return new ResponseEntity<>(new ApiResponse<>(false,
-                                                        "Cart not found with id "
-                                                                        + cartId,
-                                                        "Cart not found"),
-                                                        HttpStatus.BAD_REQUEST);
-                                }
-                                cart = cartTemp.get();
-                        }
+        // return new ResponseEntity<>(new ApiResponse<>(false,
+        // "Cart not found with id "
+        // + cartId,
+        // "Cart not found"),
+        // HttpStatus.BAD_REQUEST);
+        // }
+        // cart = cartTemp.get();
+        // }
 
-                        // Convert DTO to Order entity
-                        Order orderTemp = new Order();
+        // // Convert DTO to Order entity
+        // Order orderTemp = new Order();
 
-                        // Associate the order with the cart
-                        // orderTemp.setCart(cart);
+        // // Associate the order with the cart
+        // // orderTemp.setCart(cart);
 
-                        if (orderRequesDTO.getUserId() != null) {
-                                Optional<User> user = userRepository.findById(orderRequesDTO.getUserId());
-                                if (user.isEmpty()) {
-                                        return new ResponseEntity<>(new ApiResponse<>(false,
-                                                        "User not found with id "
-                                                                        + orderRequesDTO.getUserId(),
-                                                        "User not found"),
-                                                        HttpStatus.BAD_REQUEST);
-                                }
-                                orderTemp.setUser(user.get());
-                        }
-                        List<Item> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
-                                Product product = productRepository.findById(itemDTO.getProductId())
-                                                .orElseThrow(() -> new RuntimeException(
-                                                                "Product not found with id " + itemDTO.getProductId()));
+        // if (orderRequesDTO.getUserId() != null) {
+        // Optional<User> user = userRepository.findById(orderRequesDTO.getUserId());
+        // if (user.isEmpty()) {
+        // return new ResponseEntity<>(new ApiResponse<>(false,
+        // "User not found with id "
+        // + orderRequesDTO.getUserId(),
+        // "User not found"),
+        // HttpStatus.BAD_REQUEST);
+        // }
+        // orderTemp.setUser(user.get());
+        // }
+        // List<Item> items = orderRequesDTO.getItems().stream().map(itemDTO -> {
+        // Product product = productRepository.findById(itemDTO.getProductId())
+        // .orElseThrow(() -> new RuntimeException(
+        // "Product not found with id " + itemDTO.getProductId()));
 
-                                Item item = new Item();
-                                item.setOrder(orderTemp);
-                                item.setProduct(product);
-                                item.setQuantity(itemDTO.getQuantity());
-                                item.setUnitPrice(product.getPrice());
-                                item.setTotalPrice(product.getPrice() * itemDTO.getQuantity());
-                                return item;
-                        })
-                                        .collect(Collectors.toList());
+        // Item item = new Item();
+        // item.setOrder(orderTemp);
+        // item.setProduct(product);
+        // item.setQuantity(itemDTO.getQuantity());
+        // item.setUnitPrice(product.getPrice());
+        // item.setTotalPrice(product.getPrice() * itemDTO.getQuantity());
+        // return item;
+        // })
+        // .collect(Collectors.toList());
 
-                        orderTemp.setItems(items);
+        // orderTemp.setItems(items);
 
-                        orderTemp.setOrderNumber(orderRequesDTO.getOrderNumber());
-                        orderTemp.setOrderStatus(orderRequesDTO.getOrderStatus());
-                        orderTemp.setOrderDate(orderRequesDTO.getOrderDate());
-                        orderTemp.setTotalQuantity(orderRequesDTO.getTotalQuantity());
+        // orderTemp.setOrderNumber(orderRequesDTO.getOrderNumber());
+        // orderTemp.setOrderStatus(orderRequesDTO.getOrderStatus());
+        // orderTemp.setOrderDate(orderRequesDTO.getOrderDate());
+        // orderTemp.setTotalQuantity(orderRequesDTO.getTotalQuantity());
 
-                        // Calculate and set total price for the order
-                        Double totalPrice = items.stream()
-                                        .map(Item::getTotalPrice)
-                                        .reduce(0.0, Double::sum);
-                        orderTemp.setTotalPrice(totalPrice);
+        // // Calculate and set total price for the order
+        // Double totalPrice = items.stream()
+        // .map(Item::getTotalPrice)
+        // .reduce(0.0, Double::sum);
+        // orderTemp.setTotalPrice(totalPrice);
 
-                        // orderTemp.setTotalPrice(orderRequesDTO.getTotalPrice());
-                        orderTemp.setCurrency(orderRequesDTO.getCurrency());
-                        orderTemp.setPaymentStatus(orderRequesDTO.getPaymentStatus());
-                        orderTemp.setPaymentMethod(orderRequesDTO.getPaymentMethod());
-                        orderTemp.setShippingAddress(orderRequesDTO.getShippingAddress());
-                        orderTemp.setShippingCity(orderRequesDTO.getShippingCity());
-                        orderTemp.setShippingState(orderRequesDTO.getShippingState());
-                        orderTemp.setShippingPostalCode(orderRequesDTO.getShippingPostalCode());
-                        orderTemp.setShippingCountry(orderRequesDTO.getShippingCountry());
-                        orderTemp.setShippingCost(orderRequesDTO.getShippingCost());
+        // // orderTemp.setTotalPrice(orderRequesDTO.getTotalPrice());
+        // orderTemp.setCurrency(orderRequesDTO.getCurrency());
+        // orderTemp.setPaymentStatus(orderRequesDTO.getPaymentStatus());
+        // orderTemp.setPaymentMethod(orderRequesDTO.getPaymentMethod());
+        // orderTemp.setShippingAddress(orderRequesDTO.getShippingAddress());
+        // orderTemp.setShippingCity(orderRequesDTO.getShippingCity());
+        // orderTemp.setShippingState(orderRequesDTO.getShippingState());
+        // orderTemp.setShippingPostalCode(orderRequesDTO.getShippingPostalCode());
+        // orderTemp.setShippingCountry(orderRequesDTO.getShippingCountry());
+        // orderTemp.setShippingCost(orderRequesDTO.getShippingCost());
 
-                        // Save the order
-                        Order savedOrder = orderRepository.save(orderTemp);
-                        return new ResponseEntity<>(new ApiResponse<>(true, "Cart created successfully",
-                                        OrderDTO.convertToOrderDTO(savedOrder)), HttpStatus.CREATED);
-                } catch (RuntimeException e) {
-                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                        .body(new ApiResponse<>(false, "Error creating cart", e.getMessage()));
-                }
-        }
+        // // Save the order
+        // Order savedOrder = orderRepository.save(orderTemp);
+        // return new ResponseEntity<>(new ApiResponse<>(true, "Cart created
+        // successfully",
+        // OrderDTO.convertToOrderDTO(savedOrder)), HttpStatus.CREATED);
+        // } catch (RuntimeException e) {
+        // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+        // .body(new ApiResponse<>(false, "Error creating cart", e.getMessage()));
+        // }
+        // }
 }
