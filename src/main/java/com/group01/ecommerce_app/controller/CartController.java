@@ -335,7 +335,7 @@ public class CartController {
                         }
 
                         // Generate order number
-                        String orderNumber = Order.generateOrderNumber(cart.getUser().getId());
+                        String orderNumber = Order.generateOrderNumber(cart.getUser().getId(), false);
                         order.setOrderNumber(orderNumber);
 
                         order.setOrderStatus("Processing");

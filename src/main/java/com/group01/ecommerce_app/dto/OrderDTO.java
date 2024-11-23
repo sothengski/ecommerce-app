@@ -43,7 +43,7 @@ public class OrderDTO {
 
     private List<ItemDTO> items;
 
-    private Long cartId;
+    // private Long cartId;
 
     // Getters and Setters
     // You can use Lombok annotations like @Data or @Getter and @Setter here as well

@@ -142,7 +142,7 @@ public class OrderController {
 
             orderTemp.setItems(items);
 
-            orderTemp.setOrderNumber(orderRequesDTO.getOrderNumber());
+            orderTemp.setOrderNumber(Order.generateOrderNumber(orderRequesDTO.getUserId(), false));
             orderTemp.setOrderStatus(orderRequesDTO.getOrderStatus());
             orderTemp.setOrderDate(orderRequesDTO.getOrderDate());
             orderTemp.setTotalQuantity(orderRequesDTO.getTotalQuantity());

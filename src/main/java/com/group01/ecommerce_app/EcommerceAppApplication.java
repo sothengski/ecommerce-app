@@ -138,7 +138,7 @@ public class EcommerceAppApplication {
 			// Sample Orders
 			Order order1 = new Order();
 			order1.setUser(buyer);
-			order1.setOrderNumber("ORD123456");
+			order1.setOrderNumber(Order.generateOrderNumber(buyer.getId(), false));
 			order1.setOrderStatus("Processing");
 			order1.setOrderDate(LocalDateTime.now());
 			order1.setTotalQuantity(3);
@@ -155,7 +155,7 @@ public class EcommerceAppApplication {
 
 			Order order2 = new Order();
 			order2.setUser(buyer);
-			order2.setOrderNumber("ORD123457");
+			order2.setOrderNumber(Order.generateOrderNumber(buyer.getId(), true));
 			order2.setOrderStatus("Shipped");
 			order2.setOrderDate(LocalDateTime.now().minusDays(1));
 			order2.setTotalQuantity(2);

@@ -111,9 +111,16 @@ public class Order implements Serializable {
         updatedAt = LocalDateTime.now();
     }
 
-    public static String generateOrderNumber(Long userId) {
+    public static String generateOrderNumber(Long userId, boolean increment) {
         // Get current date and time
         LocalDateTime now = LocalDateTime.now();
+
+        // Add seconds if increment is true
+        if (increment) {
+            now = now.plusSeconds(1);
+        }
+
+        // Format order number
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
         // Format order number
