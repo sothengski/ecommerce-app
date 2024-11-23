@@ -29,7 +29,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 // @NoArgsConstructor
 @AllArgsConstructor
@@ -78,9 +77,11 @@ public class User implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @Builder.Default
     private List<Order> orders = new ArrayList<>();
 
     @Column(name = "active", nullable = false)
+    @Builder.Default
     private Boolean active = false;
 
     @CreationTimestamp
@@ -97,6 +98,7 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
+    @Builder.Default
     private Set<Product> products = new HashSet<>();
 
     public void addProduct(Product product) {

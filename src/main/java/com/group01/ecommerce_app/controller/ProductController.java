@@ -36,13 +36,20 @@ public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
 
+	// private final ProductRepository productRepository;
+
+	// // Constructor Injection
+	// public ProductController(ProductRepository productRepository) {
+	// this.productRepository = productRepository;
+	// }
+
 	@Autowired
 	CategoryRepository categoryRepository;
 
 	@Autowired
 	UserRepository userRepository;
 
-	// 1. Get a list of all Product records
+	// Get a list of all Product records
 	@GetMapping("/products")
 	public ResponseEntity<ApiResponse<List<ProductDTO>>> getAllProducts(@RequestParam(required = false) String name) {
 		try {
@@ -68,7 +75,7 @@ public class ProductController {
 		}
 	}
 
-	// 2. Get a Product record by its id
+	// Get a Product record by its id
 	@GetMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<ProductDTO>> getProductById(@PathVariable("id") long id) {
 		try {
@@ -87,7 +94,62 @@ public class ProductController {
 		}
 	}
 
-	// 3. Search product by name, brand, color, size, userId and categoryId
+	// Get a list of all Product records by user id
+	@GetMapping("/users/{userId}/products")
+	public ResponseEntity<ApiResponse<List<ProductDTO>>> getProductsByUserId(@PathVariable("userId") Long userId) {
+		try {
+			// Fetch products by user ID
+			List<Product> products = productRepository.findByUser_Id(userId);
+
+			// Convert products to DTOs
+			List<ProductDTO> productDTOs = products.stream()
+					.map(ProductDTO::convertToProductDTO)
+					.toList();
+
+			// Check if the list is empty
+			if (products.isEmpty()) {
+				return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully",
+						productDTOs, "No products found"), HttpStatus.OK);
+			}
+
+			// List of products have the data
+			return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully",
+					productDTOs), HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(new ApiResponse<>(false, "Error getting products for user", e.getMessage()));
+		}
+	}
+
+	// Get a list of all Product records by category id
+	@GetMapping("/categories/{categoryId}/products")
+	public ResponseEntity<ApiResponse<List<ProductDTO>>> getProductsByCategoryId(
+			@PathVariable("categoryId") Long categoryId) {
+		try {
+			// Fetch products by user ID
+			List<Product> products = productRepository.findByCategory_Id(categoryId);
+
+			// Convert products to DTOs
+			List<ProductDTO> productDTOs = products.stream()
+					.map(ProductDTO::convertToProductDTO)
+					.toList();
+
+			// Check if the list is empty
+			if (products.isEmpty()) {
+				return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully",
+						productDTOs, "No products found"), HttpStatus.OK);
+			}
+
+			// List of products have the data
+			return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully",
+					productDTOs), HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(new ApiResponse<>(false, "Error getting products for category", e.getMessage()));
+		}
+	}
+
+	// Search product by name, brand, color, size, userId and categoryId
 	@GetMapping("/products/search")
 	public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProducts(
 			@RequestParam(required = false, defaultValue = "") String name,
@@ -117,7 +179,7 @@ public class ProductController {
 		}
 	}
 
-	// 4. Create a new Product record
+	// Create a new Product record
 	@PostMapping("/products")
 	public ResponseEntity<ApiResponse<ProductDTO>> createProduct(@RequestBody ProductCreateRequestDTO productRequest) {
 		try {
@@ -171,7 +233,7 @@ public class ProductController {
 		}
 	}
 
-	// 5. Update an existing Product record with its id
+	// Update an existing Product record with its id
 	@PutMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable("id") long id,
 			@RequestBody ProductCreateRequestDTO productToBeUpdated) {
@@ -229,7 +291,7 @@ public class ProductController {
 		}
 	}
 
-	// 6. Delete an existing Product record with its id
+	// Delete an existing Product record with its id
 	@DeleteMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<HttpStatus>> deleteProduct(@PathVariable("id") long id) {
 		try {
@@ -241,30 +303,4 @@ public class ProductController {
 		}
 	}
 
-	// 7. Get a list of all Product records by user id
-	@GetMapping("/users/{userId}/products")
-	public ResponseEntity<ApiResponse<List<ProductDTO>>> getProductsByUserId(@PathVariable("userId") Long userId) {
-		try {
-			// Fetch products by user ID
-			List<Product> products = productRepository.findByUser_Id(userId);
-
-			// Convert products to DTOs
-			List<ProductDTO> productDTOs = products.stream()
-					.map(ProductDTO::convertToProductDTO)
-					.toList();
-
-			// Check if the list is empty
-			if (products.isEmpty()) {
-				return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully",
-						productDTOs, "No categories found"), HttpStatus.OK);
-			}
-
-			// List of products have the data
-			return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully",
-					productDTOs), HttpStatus.OK);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body(new ApiResponse<>(false, "Error getting products for user", e.getMessage()));
-		}
-	}
 }

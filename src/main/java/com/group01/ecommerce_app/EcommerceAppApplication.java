@@ -235,13 +235,7 @@ public class EcommerceAppApplication {
 			List<User> users = JsonLoader.loadFromJson("data/users.json", new TypeReference<List<User>>() {
 			});
 			System.out.println("Loaded Users:");
-			users.forEach(user -> {
-				addUserIfNotFound(user);
-
-				// addUserIfNotFound(user.getEmail(), user.getPassword(),
-				// user.getRole().getName());
-				// System.out.println("User added: " + user.getEmail());
-			});
+			users.forEach(this::addUserIfNotFound);
 			System.out.println("All users loaded successfully.");
 			return users;
 

@@ -38,6 +38,7 @@ public class Role implements Serializable {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // , orphanRemoval = true
+	@Builder.Default
 	private List<User> users = new ArrayList<>();
 
 	public void addUser(User user) {

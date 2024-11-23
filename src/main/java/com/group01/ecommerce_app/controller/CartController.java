@@ -2,10 +2,7 @@ package com.group01.ecommerce_app.controller;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +13,6 @@ import com.group01.ecommerce_app.dto.ApiResponse;
 import com.group01.ecommerce_app.dto.CartDTO;
 import com.group01.ecommerce_app.dto.ItemRequestDTO;
 import com.group01.ecommerce_app.dto.OrderDTO;
-import com.group01.ecommerce_app.dto.OrderRequestDTO;
 import com.group01.ecommerce_app.model.Cart;
 import com.group01.ecommerce_app.model.CartRepository;
 import com.group01.ecommerce_app.model.Item;

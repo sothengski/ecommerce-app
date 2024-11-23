@@ -42,6 +42,7 @@ public class Category implements Serializable {
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
+	@Builder.Default
 	private Set<Product> products = new HashSet<>();
 
 	public void addProduct(Product product) {

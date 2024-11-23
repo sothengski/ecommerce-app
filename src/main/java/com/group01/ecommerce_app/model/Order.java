@@ -84,6 +84,7 @@ public class Order implements Serializable {
     // private String billingCountry;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
+    @Builder.Default
     private List<Item> items = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)

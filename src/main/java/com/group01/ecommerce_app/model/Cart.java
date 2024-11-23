@@ -45,6 +45,7 @@ public class Cart implements Serializable {
     @EqualsAndHashCode.Exclude // Exclude to prevent recursion
     private User user;
 
+    @Builder.Default
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 

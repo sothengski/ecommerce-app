@@ -16,6 +16,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	// Find products by user ID using derived query
 	List<Product> findByUser_Id(Long userId);
 
+	// Fetch products by category ID
+	// @Query("SELECT p FROM Product p WHERE p.category.id = :categoryId")
+	// List<Product> findByCategoryId(@Param("categoryId") Long categoryId);
+
+	// Find products by user ID using derived query
+	List<Product> findByCategory_Id(Long categoryId);
+
 	// Existing method to find by name (if needed)
 	List<Product> findByName(String name);
 	// List<Product> findByBrand(String brand);
