@@ -240,4 +240,31 @@ public class ProductController {
 					.body(new ApiResponse<>(false, "Error deleting product", e.getMessage()));
 		}
 	}
+
+	// 7. Get a list of all Product records by user id
+	@GetMapping("/users/{userId}/products")
+	public ResponseEntity<ApiResponse<List<ProductDTO>>> getProductsByUserId(@PathVariable("userId") Long userId) {
+		try {
+			// Fetch products by user ID
+			List<Product> products = productRepository.findByUser_Id(userId);
+
+			// Convert products to DTOs
+			List<ProductDTO> productDTOs = products.stream()
+					.map(ProductDTO::convertToProductDTO)
+					.toList();
+
+			// Check if the list is empty
+			if (products.isEmpty()) {
+				return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully",
+						productDTOs, "No categories found"), HttpStatus.OK);
+			}
+
+			// List of products have the data
+			return new ResponseEntity<>(new ApiResponse<>(true, "Products retrieved successfully",
+					productDTOs), HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(new ApiResponse<>(false, "Error getting products for user", e.getMessage()));
+		}
+	}
 }
