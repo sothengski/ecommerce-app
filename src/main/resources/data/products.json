@@ -1,7 +1,7 @@
 [
     {
         "name": "Wool Scarf",
-        "description": "Description for Wool Scarf",
+        "description": "Soft wool scarf with a cozy texture",
         "brand": "Gap",
         "price": 10.64,
         "stock": 30,
@@ -23,7 +23,7 @@
     },
     {
         "name": "Wool Scarf",
-        "description": "Description for Wool Scarf",
+        "description": "Soft wool scarf designed for warmth and style, perfect for chilly days",
         "brand": "Nike",
         "price": 18.1,
         "stock": 61,
@@ -45,7 +45,7 @@
     },
     {
         "name": "Classic Watch",
-        "description": "Description for Classic Watch",
+        "description": "Sleek and minimalist watch with a refined design for everyday wear",
         "brand": "Uniqlo",
         "price": 66.37,
         "stock": 10,
@@ -67,7 +67,7 @@
     },
     {
         "name": "Slim Fit Blazer",
-        "description": "Description for Slim Fit Blazer",
+        "description": "Tailored slim fit blazer that offers a sharp, modern silhouette",
         "brand": "Adidas",
         "price": 59.46,
         "stock": 80,
@@ -89,7 +89,7 @@
     },
     {
         "name": "Cotton Hoodie",
-        "description": "Description for Cotton Hoodie",
+        "description": "Comfortable cotton hoodie, perfect for casual outings or lounging",
         "brand": "Levi's",
         "price": 67.6,
         "stock": 54,
@@ -112,7 +112,7 @@
     },
     {
         "name": "Casual Shirt",
-        "description": "Description for Casual Shirt",
+        "description": "Versatile casual shirt designed for easy styling and comfort",
         "brand": "Fossil",
         "price": 39.58,
         "stock": 67,
@@ -125,8 +125,7 @@
             "Black"
         ],
         "images": [
-            "https://m.media-amazon.com/images/I/71mN87YECDL._AC_UY1000_.jpg",
-            "https://example.com/images/product30.jpg"
+            "https://m.media-amazon.com/images/I/71mN87YECDL._AC_UY1000_.jpg"
         ],
         "user": 7,
         "category": 18,
@@ -134,7 +133,7 @@
     },
     {
         "name": "Leather Jacket",
-        "description": "Description for Leather Jacket",
+        "description": "Stylish leather jacket with a bold and timeless look",
         "brand": "Zara",
         "price": 14.01,
         "stock": 31,
@@ -157,7 +156,7 @@
     },
     {
         "name": "Slim Fit Jeans",
-        "description": "Description for Slim Fit Jeans",
+        "description": "Contemporary slim fit jeans designed for a tailored, clean look",
         "brand": "Nike",
         "price": 57.53,
         "stock": 15,
@@ -179,7 +178,7 @@
     },
     {
         "name": "Cotton Hoodie",
-        "description": "Description for Cotton Hoodie",
+        "description": "Soft and cozy hoodie ideal for layering or casual wear",
         "brand": "Gap",
         "price": 86.97,
         "stock": 47,
@@ -201,7 +200,7 @@
     },
     {
         "name": "Slim Fit Jeans",
-        "description": "Description for Slim Fit Jeans",
+        "description": "Modern slim fit jeans offering a sleek, streamlined look",
         "brand": "Nike",
         "price": 51.77,
         "stock": 83,
@@ -223,7 +222,7 @@
     },
     {
         "name": "Cotton Hoodie",
-        "description": "Description for Cotton Hoodie",
+        "description": "Comfortable hoodie made from premium cotton for casual wear",
         "brand": "Armani",
         "price": 27.26,
         "stock": 17,
@@ -245,7 +244,7 @@
     },
     {
         "name": "Short Sleeve T-Shirt",
-        "description": "Description for Short Sleeve T-Shirt",
+        "description": "Classic short-sleeve T-shirt with a versatile and timeless design",
         "brand": "Burberry",
         "price": 65.97,
         "stock": 78,
@@ -268,7 +267,7 @@
     },
     {
         "name": "Cotton Hoodie",
-        "description": "Description for Cotton Hoodie",
+        "description": "Soft cotton hoodie, perfect for layering or staying cozy",
         "brand": "Fossil",
         "price": 85.48,
         "stock": 38,
@@ -291,7 +290,7 @@
     },
     {
         "name": "Classic Watch",
-        "description": "Description for Classic Watch",
+        "description": "Elegant watch with a timeless design for everyday or formal occasions",
         "brand": "Nike",
         "price": 67.63,
         "stock": 78,
@@ -314,7 +313,7 @@
     },
     {
         "name": "Slim Fit Jeans",
-        "description": "Description for Slim Fit Jeans",
+        "description": "Tailored jeans offering a sleek fit for a modern look",
         "brand": "Armani",
         "price": 67.71,
         "stock": 30,
@@ -336,7 +335,7 @@
     },
     {
         "name": "Casual Shirt",
-        "description": "Description for Casual Shirt",
+        "description": "Lightweight shirt designed for casual outings or relaxed settings",
         "brand": "Nike",
         "price": 79.67,
         "stock": 10,
@@ -358,7 +357,7 @@
     },
     {
         "name": "Slim Fit Blazer",
-        "description": "Description for Slim Fit Blazer",
+        "description": "Sharp blazer with a tailored fit for professional or semi-formal wear",
         "brand": "Uniqlo",
         "price": 89.1,
         "stock": 47,
@@ -381,7 +380,7 @@
     },
     {
         "name": "Running Shoes",
-        "description": "Description for Running Shoes",
+        "description": "Durable running shoes designed for comfort and performance",
         "brand": "Levi's",
         "price": 64.81,
         "stock": 98,
@@ -403,7 +402,7 @@
     },
     {
         "name": "Slim Fit Blazer",
-        "description": "Description for Slim Fit Blazer",
+        "description": "Fashionable blazer with a contemporary fit, perfect for events",
         "brand": "Burberry",
         "price": 21.96,
         "stock": 37,
@@ -426,7 +425,7 @@
     },
     {
         "name": "Classic Watch",
-        "description": "Description for Classic Watch",
+        "description": "Sophisticated watch with a clean and functional design",
         "brand": "Armani",
         "price": 95.71,
         "stock": 96,
@@ -448,7 +447,7 @@
     },
     {
         "name": "Slim Fit Jeans",
-        "description": "Description for Slim Fit Jeans",
+        "description": "Slim-fit jeans combining comfort and style for everyday wear",
         "brand": "Nike",
         "price": 33.64,
         "stock": 72,
@@ -471,7 +470,7 @@
     },
     {
         "name": "Leather Jacket",
-        "description": "Description for Leather Jacket",
+        "description": "Classic leather jacket with a bold design for a striking look",
         "brand": "Gap",
         "price": 49.96,
         "stock": 56,
@@ -494,7 +493,7 @@
     },
     {
         "name": "Casual Shirt",
-        "description": "Description for Casual Shirt",
+        "description": "Relaxed shirt with a smart-casual style for versatile use",
         "brand": "H&M",
         "price": 34.35,
         "stock": 57,
@@ -517,7 +516,7 @@
     },
     {
         "name": "Slim Fit Blazer",
-        "description": "Description for Slim Fit Blazer",
+        "description": "Tailored blazer offering a polished appearance for any occasion",
         "brand": "Zara",
         "price": 55.37,
         "stock": 33,
@@ -540,7 +539,7 @@
     },
     {
         "name": "Slim Fit Jeans",
-        "description": "Description for Slim Fit Jeans",
+        "description": "Modern slim jeans crafted for a tailored and stylish fit",
         "brand": "Burberry",
         "price": 84.54,
         "stock": 43,
@@ -562,7 +561,7 @@
     },
     {
         "name": "Short Sleeve T-Shirt",
-        "description": "Description for Short Sleeve T-Shirt",
+        "description": "Essential T-shirt with a comfortable fit for everyday wear",
         "brand": "H&M",
         "price": 85.82,
         "stock": 97,
@@ -585,7 +584,7 @@
     },
     {
         "name": "Round Neck T-Shirt",
-        "description": "Description for Round Neck T-Shirt",
+        "description": "Classic round neck T-shirt made for casual comfort and style",
         "brand": "Nike",
         "price": 97.07,
         "stock": 31,
@@ -608,7 +607,7 @@
     },
     {
         "name": "Round Neck T-Shirt",
-        "description": "Description for Round Neck T-Shirt",
+        "description": "Stylish round neck T-shirt with a sleek design and premium fabric",
         "brand": "Armani",
         "price": 40.42,
         "stock": 69,
@@ -631,7 +630,7 @@
     },
     {
         "name": "Casual Shirt",
-        "description": "Description for Casual Shirt",
+        "description": "Casual shirt offering a relaxed fit, perfect for day-to-day wear",
         "brand": "Uniqlo",
         "price": 24.43,
         "stock": 87,
@@ -653,7 +652,7 @@
     },
     {
         "name": "Slim Fit Jeans",
-        "description": "Description for Slim Fit Jeans",
+        "description": "Tailored slim-fit jeans for a modern, sharp look",
         "brand": "H&M",
         "price": 76.5,
         "stock": 62,
@@ -676,7 +675,7 @@
     },
     {
         "name": "Leather Jacket",
-        "description": "Description for Leather Jacket",
+        "description": "High-quality leather jacket with a timeless design",
         "brand": "Nike",
         "price": 11.71,
         "stock": 39,
@@ -698,7 +697,7 @@
     },
     {
         "name": "Wool Scarf",
-        "description": "Description for Wool Scarf",
+        "description": "Warm and soft wool scarf, perfect for chilly days",
         "brand": "Nike",
         "price": 93.29,
         "stock": 44,
@@ -721,7 +720,7 @@
     },
     {
         "name": "Slim Fit Jeans",
-        "description": "Description for Slim Fit Jeans",
+        "description": "Slim-fit jeans offering a comfortable, yet stylish fit",
         "brand": "Uniqlo",
         "price": 69.5,
         "stock": 70,
@@ -744,7 +743,7 @@
     },
     {
         "name": "Cotton Hoodie",
-        "description": "Description for Cotton Hoodie",
+        "description": "Soft cotton hoodie, ideal for layering or casual wear",
         "brand": "Uniqlo",
         "price": 33.98,
         "stock": 88,
@@ -766,7 +765,7 @@
     },
     {
         "name": "Leather Jacket",
-        "description": "Description for Leather Jacket",
+        "description": "Classic leather jacket that adds a rugged edge to any outfit",
         "brand": "Fossil",
         "price": 49.57,
         "stock": 49,
@@ -789,7 +788,7 @@
     },
     {
         "name": "Classic Watch",
-        "description": "Description for Classic Watch",
+        "description": "Stylish watch with a minimalist design, perfect for daily wear",
         "brand": "Gap",
         "price": 67.97,
         "stock": 32,
@@ -812,7 +811,7 @@
     },
     {
         "name": "Slim Fit Blazer",
-        "description": "Description for Slim Fit Blazer",
+        "description": "Sleek blazer offering a tailored fit for a professional look",
         "brand": "Adidas",
         "price": 33.75,
         "stock": 84,
@@ -834,7 +833,7 @@
     },
     {
         "name": "Wool Scarf",
-        "description": "Description for Wool Scarf",
+        "description": "Luxurious wool scarf, providing warmth with a premium touch",
         "brand": "Burberry",
         "price": 59.18,
         "stock": 72,
@@ -857,7 +856,7 @@
     },
     {
         "name": "Cotton Hoodie",
-        "description": "Description for Cotton Hoodie",
+        "description": "Casual cotton hoodie designed for comfort and style",
         "brand": "H&M",
         "price": 89.76,
         "stock": 30,
@@ -880,7 +879,7 @@
     },
     {
         "name": "Running Shoes",
-        "description": "Description for Running Shoes",
+        "description": "Comfortable running shoes designed for high performance",
         "brand": "Zara",
         "price": 79.02,
         "stock": 55,
@@ -903,7 +902,7 @@
     },
     {
         "name": "Casual Shirt",
-        "description": "Description for Casual Shirt",
+        "description": "Elegant casual shirt with a versatile design for various occasions",
         "brand": "Burberry",
         "price": 31.25,
         "stock": 52,
@@ -925,7 +924,7 @@
     },
     {
         "name": "Round Neck T-Shirt",
-        "description": "Description for Round Neck T-Shirt",
+        "description": "Classic round neck T-shirt designed for everyday wear",
         "brand": "Nike",
         "price": 52.74,
         "stock": 97,
@@ -948,7 +947,7 @@
     },
     {
         "name": "Wool Scarf",
-        "description": "Description for Wool Scarf",
+        "description": "Warm wool scarf with a simple, stylish design for all occasions",
         "brand": "H&M",
         "price": 24.34,
         "stock": 40,
@@ -970,7 +969,7 @@
     },
     {
         "name": "Short Sleeve T-Shirt",
-        "description": "Description for Short Sleeve T-Shirt",
+        "description": "Lightweight short-sleeve T-shirt with a classic and versatile design",
         "brand": "H&M",
         "price": 89.4,
         "stock": 71,
@@ -992,7 +991,7 @@
     },
     {
         "name": "Cotton Hoodie",
-        "description": "Description for Cotton Hoodie",
+        "description": "Casual cotton hoodie designed for comfort and layering",
         "brand": "Nike",
         "price": 38.14,
         "stock": 86,
@@ -1015,7 +1014,7 @@
     },
     {
         "name": "Slim Fit Blazer",
-        "description": "Description for Slim Fit Blazer",
+        "description": "Tailored slim-fit blazer offering a polished and modern look",
         "brand": "Gap",
         "price": 52.98,
         "stock": 15,
@@ -1037,7 +1036,7 @@
     },
     {
         "name": "Running Shoes",
-        "description": "Description for Running Shoes",
+        "description": "Durable and lightweight running shoes ideal for active lifestyles",
         "brand": "Gap",
         "price": 46.56,
         "stock": 86,
@@ -1059,7 +1058,7 @@
     },
     {
         "name": "Wool Scarf",
-        "description": "Description for Wool Scarf",
+        "description": "Soft wool scarf offering a blend of style and warmth",
         "brand": "Zara",
         "price": 24.04,
         "stock": 42,
@@ -1081,7 +1080,7 @@
     },
     {
         "name": "Running Shoes",
-        "description": "Description for Running Shoes",
+        "description": "Comfortable running shoes built for both performance and everyday wear",
         "brand": "Uniqlo",
         "price": 43.87,
         "stock": 96,
@@ -1103,7 +1102,7 @@
     },
     {
         "name": "Wool Scarf",
-        "description": "Description for Wool Scarf",
+        "description": "Elegant wool scarf designed to add a touch of sophistication to any outfit",
         "brand": "Armani",
         "price": 38.82,
         "stock": 12,
