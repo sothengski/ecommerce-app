@@ -189,10 +189,9 @@ public class UserController {
                 // userTemp.setEmail(userDetails.getEmail());
                 userTemp.setFirstName(userDetails.getFirstName());
                 userTemp.setLastName(userDetails.getLastName());
-                // userTemp.setPhone(userDetails.getPhone());
-                // userTemp.setShippingAddress(userDetails.getAddress());
+                userTemp.setPhone(userDetails.getPhone());
+                userTemp.setShippingAddress(userDetails.getAddress());
                 // userTemp.setPassword(userDetails.getPassword());
-                // userTemp.setRole(userDetails.getRole());
                 // Fetch and set Role by roleId
                 if (userDetails.getRoleId() != null) {
                     Optional<Role> roleOpt = roleRepository.findById(userDetails.getRoleId());

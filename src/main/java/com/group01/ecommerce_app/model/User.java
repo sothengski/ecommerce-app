@@ -25,6 +25,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -47,6 +48,8 @@ public class User implements Serializable {
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
 
+    // Transient field for computed userName
+    @Transient
     @Column(name = "user_name", nullable = true, unique = true, length = 100)
     private String userName;
 
@@ -155,6 +158,15 @@ public class User implements Serializable {
     }
 
     // Getters and Setters
+
+    // Generate the userName
+    public String getUserName() {
+        return (firstName != null ? firstName : "") +
+                "_" +
+                (lastName != null ? lastName : "") +
+                "" +
+                (id != null ? id : "");
+    }
     // public Long getId() {
     // return id;
     // }
