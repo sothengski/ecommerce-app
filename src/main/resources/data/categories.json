@@ -44,63 +44,7 @@
         "active": true
     },
     {
-        "name": "Shorts",
-        "active": true
-    },
-    {
-        "name": "Socks",
-        "active": true
-    },
-    {
         "name": "Scarves",
-        "active": true
-    },
-    {
-        "name": "Swimwear",
-        "active": true
-    },
-    {
-        "name": "Sportswear",
-        "active": true
-    },
-    {
-        "name": "Underwear",
-        "active": true
-    },
-    {
-        "name": "Nightwear",
-        "active": true
-    },
-    {
-        "name": "Raincoats",
-        "active": true
-    },
-    {
-        "name": "Overcoats",
-        "active": true
-    },
-    {
-        "name": "Jumpers",
-        "active": true
-    },
-    {
-        "name": "Suits",
-        "active": true
-    },
-    {
-        "name": "Ties",
-        "active": true
-    },
-    {
-        "name": "Casualwear",
-        "active": true
-    },
-    {
-        "name": "Formalwear",
-        "active": true
-    },
-    {
-        "name": "Outerwear",
         "active": true
     }
 ]

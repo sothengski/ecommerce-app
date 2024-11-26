@@ -16,7 +16,7 @@
             "https://www.gapcanada.ca/webcontent/0057/088/246/cn57088246.jpg"
         ],
         "user": 7,
-        "category": 18,
+        "category": 16,
         "active": true
     },
     {
@@ -36,7 +36,7 @@
             "https://images.asos-media.com/products/nike-reversible-swoosh-scarf-in-black-and-off-white/205119841-1-black?$n_750w$&wid=750&hei=750&fit=crop"
         ],
         "user": 7,
-        "category": 18,
+        "category": 16,
         "active": true
     },
     {
@@ -80,7 +80,7 @@
             "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/cd5f8147-b3e4-4948-bb97-70e864908f8d/W+BLAZER+MID+%2777.png"
         ],
         "user": 6,
-        "category": 6,
+        "category": 4,
         "active": true
     },
     {
@@ -445,7 +445,7 @@
             "https://cdn.dsmcdn.com/ty1081/product/media/images/prod/SPM/PIM/20231207/15/f76888b7-766d-35bc-a3c2-7bbb9f65a428/1_org_zoom.jpg"
         ],
         "user": 9,
-        "category": 4,
+        "category": 3,
         "active": true
     },
     {
@@ -597,7 +597,7 @@
             "https://images.footlocker.com/is/image/EBFL2/D7845010"
         ],
         "user": 7,
-        "category": 4,
+        "category": 3,
         "active": true
     },
     {
@@ -618,7 +618,7 @@
             "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470736/item/goods_15_470736_3x4.jpg?width=494"
         ],
         "user": 8,
-        "category": 18,
+        "category": 16,
         "active": true
     },
     {
@@ -682,7 +682,7 @@
             "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8c4158c4c39a4ab09b8ba8c000c96fd0_9366/Samba_OG_Shoes_White_B75806_01_01_hover_standard.jpg"
         ],
         "user": 8,
-        "category": 28,
+        "category": 4,
         "active": true
     }
    ]
