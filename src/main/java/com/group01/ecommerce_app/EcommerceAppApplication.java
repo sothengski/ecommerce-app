@@ -114,8 +114,7 @@ public class EcommerceAppApplication {
 					50,
 					List.of("S", "M", "L"),
 					List.of("White", "Black", "Blue"),
-					List.of("https://example.com/images/product1.jpg",
-							"https://example.com/images/product2.jpg"),
+					List.of("https://static.zara.net/assets/public/1a8a/50b2/96094c07a08d/cec91c89c160/04174672800-e1/04174672800-e1.jpg?ts=1727705114633"),
 					admin, tShirtCategory, true);
 			Product pro3 = new Product("Short Sleeve T-Shirt",
 					"Comfortable linen t-shirt",
@@ -124,20 +123,18 @@ public class EcommerceAppApplication {
 					20,
 					List.of("S", "L"),
 					List.of("Purple", "Yellow"),
-					List.of("https://example.com/images/product12.jpg",
-							"https://example.com/images/product22.jpg"),
+					List.of("https://image.hm.com/assets/hm/80/6e/806e59c617ed68309078af4911ef39978bf3113f.jpg?imwidth=2160"),
 					seller, tShirtCategory, true);
 			productRepository.save(pro1);
 			productRepository.save(pro3);
 			Product pro2 = new Product("High Waist Pants",
 					"Pants with front pockets and black welt pockets",
-					"Levi's",
-					49.99,
+					"Zara",
+					65.99,
 					10,
 					List.of("28", "30", "34"),
-					List.of("Dark Blue", "Gray"),
-					List.of("https://example.com/images/product1.jpg",
-							"https://example.com/images/product2.jpg"),
+					List.of("Black", "Gray"),
+					List.of("https://static.zara.net/assets/public/17d2/537d/9e3b423eba07/2ee5be4ba407/04387327800-a3/04387327800-a3.jpg?ts=1723207655861"),
 					buyer, pantsCategory, true);
 			productRepository.save(pro2);
 

@@ -1,52 +1,48 @@
 [
     {
-        "name": "Wool Scarf",
+        "name": "Chunky Scarf",
         "description": "Soft wool scarf with a cozy texture",
         "brand": "Gap",
         "price": 10.64,
         "stock": 30,
         "size": [
-            "S",
-            "L"
+            "One size"
         ],
         "color": [
-            "Purple",
-            "Yellow"
+            "Pink",
+            "Beige"
         ],
         "images": [
-            "https://example.com/images/product37.jpg",
-            "https://example.com/images/product9.jpg"
-        ],
-        "user": 7,
-        "category": 27,
-        "active": true
-    },
-    {
-        "name": "Wool Scarf",
-        "description": "Soft wool scarf designed for warmth and style, perfect for chilly days",
-        "brand": "Nike",
-        "price": 18.1,
-        "stock": 61,
-        "size": [
-            "M",
-            "XL"
-        ],
-        "color": [
-            "Gray",
-            "Red"
-        ],
-        "images": [
-            "https://example.com/images/product16.jpg",
-            "https://example.com/images/product24.jpg"
+            "https://www.gapcanada.ca/webcontent/0057/088/246/cn57088246.jpg"
         ],
         "user": 7,
         "category": 18,
         "active": true
     },
     {
-        "name": "Classic Watch",
+        "name": "Sporty Scarf",
+        "description": "Soft wool scarf designed for warmth and style, perfect for chilly days",
+        "brand": "Nike",
+        "price": 18.1,
+        "stock": 61,
+        "size": [
+            "One size"
+        ],
+        "color": [
+            "Black",
+            "Red"
+        ],
+        "images": [
+            "https://images.asos-media.com/products/nike-reversible-swoosh-scarf-in-black-and-off-white/205119841-1-black?$n_750w$&wid=750&hei=750&fit=crop"
+        ],
+        "user": 7,
+        "category": 18,
+        "active": true
+    },
+    {
+        "name": "Stainless Watch",
         "description": "Sleek and minimalist watch with a refined design for everyday wear",
-        "brand": "Uniqlo",
+        "brand": "Fossil",
         "price": 66.37,
         "stock": 10,
         "size": [
@@ -55,40 +51,40 @@
         ],
         "color": [
             "Gray",
-            "Red"
+            "Green",
+            "Black"
         ],
         "images": [
-            "https://example.com/images/product34.jpg",
-            "https://example.com/images/product26.jpg"
+            "https://i0.wp.com/unique-fashion.in/wp-content/uploads/2024/09/f753ce2a-7669-455c-bae8-f068fb7709d7.jpeg?fit=1284%2C1600&ssl=1"
         ],
         "user": 8,
-        "category": 17,
+        "category": 10,
         "active": false
     },
     {
-        "name": "Slim Fit Blazer",
-        "description": "Tailored slim fit blazer that offers a sharp, modern silhouette",
-        "brand": "Adidas",
-        "price": 59.46,
+        "name": "Blazer Mid Shoes",
+        "description": "The Nike Blazer Mid '77 delivers a timeless design that's easy to wear",
+        "brand": "Nike",
+        "price": 139.46,
         "stock": 80,
         "size": [
-            "S",
-            "L"
+            "6",
+            "7.5",
+            "8"
         ],
         "color": [
             "Gray",
-            "Red"
+            "White"
         ],
         "images": [
-            "https://example.com/images/product2.jpg",
-            "https://example.com/images/product22.jpg"
+            "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/cd5f8147-b3e4-4948-bb97-70e864908f8d/W+BLAZER+MID+%2777.png"
         ],
         "user": 6,
-        "category": 10,
+        "category": 6,
         "active": true
     },
     {
-        "name": "Cotton Hoodie",
+        "name": "Graphic Standard Hoodie",
         "description": "Comfortable cotton hoodie, perfect for casual outings or lounging",
         "brand": "Levi's",
         "price": 67.6,
@@ -100,39 +96,37 @@
         ],
         "color": [
             "Blue",
-            "Black"
+            "Green"
         ],
         "images": [
-            "https://example.com/images/product11.jpg",
-            "https://example.com/images/product38.jpg"
+            "https://media-www.marks.com/product/marks-work-wearhouse/mens-world/mens-sweater-and-fleece/410035231964/levi-s-men-s-batwing-pullover-kangaroo-pocket-fleece-hoodie-65e078ab-6a81-4cd4-a9d7-15dc073fd1fc-jpgrendition.jpg"
         ],
         "user": 6,
-        "category": 19,
+        "category": 7,
         "active": true
     },
     {
-        "name": "Casual Shirt",
-        "description": "Versatile casual shirt designed for easy styling and comfort",
+        "name": "Leather Hobo Bags",
+        "description": "Hobo bag boasts 1 hidden side phone pocket with magnetic snap",
         "brand": "Fossil",
-        "price": 39.58,
+        "price": 305.58,
         "stock": 67,
         "size": [
-            "M",
-            "XL"
+            "One size"
         ],
         "color": [
-            "Blue",
-            "Black"
+            "Purple",
+            "Brown"
         ],
         "images": [
-            "https://m.media-amazon.com/images/I/71mN87YECDL._AC_UY1000_.jpg"
+			"https://fossil.scene7.com/is/image/FossilPartners/ZB1434200_main?$sfcc_fos_large$"
         ],
         "user": 7,
-        "category": 18,
+        "category": 9,
         "active": false
     },
     {
-        "name": "Leather Jacket",
+        "name": "Biker Leather Jacket",
         "description": "Stylish leather jacket with a bold and timeless look",
         "brand": "Zara",
         "price": 14.01,
@@ -147,33 +141,31 @@
             "White"
         ],
         "images": [
-            "https://example.com/images/product1.jpg",
-            "https://example.com/images/product33.jpg"
+            "https://static.zara.net/assets/public/b055/c136/3a5644889a21/51bd81793fb9/03427736800-e1/03427736800-e1.jpg?ts=1723535831526"
         ],
         "user": 8,
-        "category": 5,
+        "category": 3,
         "active": false
     },
     {
-        "name": "Slim Fit Jeans",
+        "name": "Baggy Jeans",
         "description": "Contemporary slim fit jeans designed for a tailored, clean look",
         "brand": "Nike",
         "price": 57.53,
         "stock": 15,
         "size": [
-            "S",
-            "L"
+            "26",
+            "30"
         ],
         "color": [
             "Gray",
             "Red"
         ],
         "images": [
-            "https://example.com/images/product5.jpg",
-            "https://example.com/images/product10.jpg"
+          "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRCLBj3MZQRnf-33Fn5kMy6nkb4reLzdWvfFPsFtr2ZjRx7-wwyJOhBpvuYCjpGN8ioqcgR6eA"
         ],
         "user": 7,
-        "category": 30,
+        "category": 5,
         "active": true
     },
     {
@@ -191,37 +183,34 @@
             "Black"
         ],
         "images": [
-            "https://example.com/images/product12.jpg",
-            "https://example.com/images/product6.jpg"
+            "https://www.gap.com/webcontent/0056/735/011/cn56735011.jpg"
         ],
         "user": 9,
-        "category": 28,
+        "category": 7,
         "active": false
     },
     {
-        "name": "Slim Fit Jeans",
-        "description": "Modern slim fit jeans offering a sleek, streamlined look",
+        "name": "Nike Sportwear Bags",
+        "description": "a comfortable carry-all with room for storing a reusable water bottle and packable jacket",
         "brand": "Nike",
         "price": 51.77,
         "stock": 83,
         "size": [
-            "S",
-            "L"
+            "One size"
         ],
         "color": [
-            "Gray",
-            "Red"
+            "Brown",
+            "Black"
         ],
         "images": [
-            "https://example.com/images/product14.jpg",
-            "https://example.com/images/product25.jpg"
+			"https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1ef4cbe9-fe4c-4c60-b010-ab51a9a80f4f/NK+NSW+ESSENTIALS+SLING+BAG.png"
         ],
         "user": 9,
-        "category": 30,
+        "category": 9,
         "active": false
     },
     {
-        "name": "Cotton Hoodie",
+        "name": "Hooded Hoodie",
         "description": "Comfortable hoodie made from premium cotton for casual wear",
         "brand": "Armani",
         "price": 27.26,
@@ -235,106 +224,78 @@
             "Black"
         ],
         "images": [
-            "https://example.com/images/product45.jpg",
-            "https://example.com/images/product21.jpg"
+            "https://assets.armani.com/image/upload/f_auto,q_auto:best,ar_4:5,w_1350,c_fill/8NZM94_ZJKRZ_1510_A_SS2024.jpg"
         ],
         "user": 9,
-        "category": 30,
+        "category": 7,
         "active": false
     },
     {
-        "name": "Short Sleeve T-Shirt",
+        "name": "Cotton Polo T-Shirt",
         "description": "Classic short-sleeve T-shirt with a versatile and timeless design",
         "brand": "Burberry",
-        "price": 65.97,
-        "stock": 78,
+        "price": 765.97,
+        "stock": 18,
         "size": [
             "XS",
             "S",
             "M"
         ],
         "color": [
-            "Purple",
+            "White",
             "Yellow"
         ],
         "images": [
-            "https://example.com/images/product35.jpg",
-            "https://example.com/images/product18.jpg"
+            "https://goamen.com/cdn/shop/files/O1CN013N4SYn1FxJz5YnIgw__2200534510553-0-cib.jpg?v=1720156358"
         ],
         "user": 6,
-        "category": 16,
+        "category": 1,
         "active": true
     },
+   
     {
-        "name": "Cotton Hoodie",
-        "description": "Soft cotton hoodie, perfect for layering or staying cozy",
-        "brand": "Fossil",
-        "price": 85.48,
-        "stock": 38,
-        "size": [
-            "XS",
-            "S",
-            "M"
-        ],
-        "color": [
-            "Gray",
-            "Red"
-        ],
-        "images": [
-            "https://example.com/images/product21.jpg",
-            "https://example.com/images/product10.jpg"
-        ],
-        "user": 7,
-        "category": 3,
-        "active": false
-    },
-    {
-        "name": "Classic Watch",
+        "name": "Wedding Wear Watch",
         "description": "Elegant watch with a timeless design for everyday or formal occasions",
-        "brand": "Nike",
-        "price": 67.63,
-        "stock": 78,
+        "brand": "Burberry",
+        "price": 1550.00,
+        "stock": 3,
         "size": [
-            "XS",
-            "S",
-            "M"
+            "One size"
         ],
         "color": [
-            "Purple",
-            "Yellow"
+            "Gold",
+            "Silver"
         ],
         "images": [
-            "https://example.com/images/product38.jpg",
-            "https://example.com/images/product20.jpg"
+            "https://5.imimg.com/data5/ANDROID/Default/2020/10/BC/GX/XV/19051907/product-jpeg-500x500.jpg"
         ],
         "user": 6,
-        "category": 7,
+        "category": 10,
         "active": true
     },
     {
-        "name": "Slim Fit Jeans",
+        "name": "Skinny Jeans",
         "description": "Tailored jeans offering a sleek fit for a modern look",
         "brand": "Armani",
         "price": 67.71,
         "stock": 30,
         "size": [
-            "S",
-            "L"
+            "22",
+            "24"
         ],
         "color": [
             "Blue",
             "Black"
         ],
         "images": [
-            "https://example.com/images/product16.jpg",
-            "https://example.com/images/product28.jpg"
+            "https://cdn-images.farfetch-contents.com/19/80/55/68/19805568_44429291_600.jpg"
         ],
         "user": 7,
-        "category": 7,
+        "category": 5,
         "active": false
     },
     {
-        "name": "Casual Shirt",
+        "name": "Button Up Shirt",
         "description": "Lightweight shirt designed for casual outings or relaxed settings",
         "brand": "Nike",
         "price": 79.67,
@@ -344,19 +305,18 @@
             "XL"
         ],
         "color": [
-            "Purple",
+            "Black",
             "Yellow"
         ],
         "images": [
-            "https://example.com/images/product6.jpg",
-            "https://example.com/images/product33.jpg"
+			"https://n.nordstrommedia.com/it/b2c5ecca-0602-439a-aaee-4393377c2d77.jpeg?h=365&w=240&dpr=2"
         ],
         "user": 7,
-        "category": 23,
+        "category": 15,
         "active": true
     },
     {
-        "name": "Slim Fit Blazer",
+        "name": "Airsense Blazer",
         "description": "Sharp blazer with a tailored fit for professional or semi-formal wear",
         "brand": "Uniqlo",
         "price": 89.1,
@@ -367,15 +327,15 @@
             "XXL"
         ],
         "color": [
-            "Gray",
-            "Red"
+            "Beige",
+            "White",
+            "Navy"
         ],
         "images": [
-            "https://example.com/images/product24.jpg",
-            "https://example.com/images/product41.jpg"
+			"https://image.hm.com/assets/hm/a9/ea/a9ea1f3bfffb18428d6094574af4dd9761dfe6f8.jpg?imwidth=2160"
         ],
         "user": 6,
-        "category": 24,
+        "category": 6,
         "active": true
     },
     {
@@ -385,23 +345,22 @@
         "price": 64.81,
         "stock": 98,
         "size": [
-            "M",
-            "XL"
+            "6",
+            "8"
         ],
         "color": [
-            "Gray",
-            "Red"
+            "Orange",
+            "Black"
         ],
         "images": [
-            "https://example.com/images/product31.jpg",
-            "https://example.com/images/product20.jpg"
+            "https://cdnp1.stackassets.com/76ffd4c2aa1cf58b18a4d12e0ecd145b09d70005/store/cbfde8329b1cc116a44c8b723819f2324509991137bfdc425e9ea0cb24d9/image_processing20210202-69-5azymq.jpg"
         ],
         "user": 7,
-        "category": 1,
+        "category": 4,
         "active": true
     },
     {
-        "name": "Slim Fit Blazer",
+        "name": "Sand Blazer",
         "description": "Fashionable blazer with a contemporary fit, perfect for events",
         "brand": "Burberry",
         "price": 21.96,
@@ -413,18 +372,18 @@
         ],
         "color": [
             "Blue",
-            "Black"
+            "Beige",
+            "Brown"
         ],
         "images": [
-            "https://example.com/images/product33.jpg",
-            "https://example.com/images/product47.jpg"
+            "https://cdn-images.farfetch-contents.com/burberry-monogram-print-slim-fit-blazer_14384561_21845907_400.jpg"
         ],
         "user": 8,
-        "category": 4,
+        "category": 6,
         "active": false
     },
     {
-        "name": "Classic Watch",
+        "name": "Emporio Armani Watch",
         "description": "Sophisticated watch with a clean and functional design",
         "brand": "Armani",
         "price": 95.71,
@@ -438,38 +397,36 @@
             "Red"
         ],
         "images": [
-            "https://example.com/images/product26.jpg",
-            "https://example.com/images/product49.jpg"
+            "https://di2ponv0v5otw.cloudfront.net/posts/2023/07/27/64c3585c253a8c12dbf4717a/m_wp_64c358c08634cbf211fce505.webp"
         ],
         "user": 8,
+        "category": 10,
+        "active": true
+    },
+    {
+        "name": "Flared Fit Jeans",
+        "description": "Slim-fit jeans combining comfort and style for everyday wear",
+        "brand": "Zara",
+        "price": 33.64,
+        "stock": 72,
+        "size": [
+            "24",
+            "28",
+            "30"
+        ],
+        "color": [
+            "Blue",
+            "White"
+        ],
+        "images": [
+            "https://static.zara.net/assets/public/9b5c/6cf4/84244f26b099/f73ddbc47b31/00840303406-a1/00840303406-a1.jpg?ts=1720781761699&w=824"
+        ],
+        "user": 6,
         "category": 5,
         "active": true
     },
     {
-        "name": "Slim Fit Jeans",
-        "description": "Slim-fit jeans combining comfort and style for everyday wear",
-        "brand": "Nike",
-        "price": 33.64,
-        "stock": 72,
-        "size": [
-            "XS",
-            "S",
-            "M"
-        ],
-        "color": [
-            "Green",
-            "White"
-        ],
-        "images": [
-            "https://example.com/images/product5.jpg",
-            "https://example.com/images/product2.jpg"
-        ],
-        "user": 6,
-        "category": 21,
-        "active": true
-    },
-    {
-        "name": "Leather Jacket",
+        "name": "Faux Leather Jacket",
         "description": "Classic leather jacket with a bold design for a striking look",
         "brand": "Gap",
         "price": 49.96,
@@ -480,19 +437,19 @@
             "M"
         ],
         "color": [
-            "Green",
-            "White"
+            "Brown",
+            "Black",
+            "Red"
         ],
         "images": [
-            "https://example.com/images/product4.jpg",
-            "https://example.com/images/product17.jpg"
+            "https://cdn.dsmcdn.com/ty1081/product/media/images/prod/SPM/PIM/20231207/15/f76888b7-766d-35bc-a3c2-7bbb9f65a428/1_org_zoom.jpg"
         ],
         "user": 9,
         "category": 4,
         "active": true
     },
     {
-        "name": "Casual Shirt",
+        "name": "Resort Shirt",
         "description": "Relaxed shirt with a smart-casual style for versatile use",
         "brand": "H&M",
         "price": 34.35,
@@ -504,18 +461,17 @@
         ],
         "color": [
             "Blue",
-            "Black"
+            "Green"
         ],
         "images": [
-            "https://example.com/images/product26.jpg",
-            "https://example.com/images/product29.jpg"
+            "https://image.hm.com/assets/hm/14/d7/14d71686a671f64becf513c1f91fe7e84b6f218e.jpg?imwidth=1260"
         ],
         "user": 8,
-        "category": 10,
+        "category": 15,
         "active": false
     },
     {
-        "name": "Slim Fit Blazer",
+        "name": "Longline Straight Blazer",
         "description": "Tailored blazer offering a polished appearance for any occasion",
         "brand": "Zara",
         "price": 55.37,
@@ -526,64 +482,18 @@
             "XXL"
         ],
         "color": [
-            "Green",
+            "Brown",
             "White"
         ],
         "images": [
-            "https://example.com/images/product41.jpg",
-            "https://example.com/images/product2.jpg"
+            "https://static.zara.net/assets/public/0d1e/3ac1/17a94f1bbdc0/aee6d4671c36/05758675707-a1/05758675707-a1.jpg?ts=1724768971415&w=412"
         ],
         "user": 6,
-        "category": 24,
+        "category": 6,
         "active": false
     },
     {
-        "name": "Slim Fit Jeans",
-        "description": "Modern slim jeans crafted for a tailored and stylish fit",
-        "brand": "Burberry",
-        "price": 84.54,
-        "stock": 43,
-        "size": [
-            "S",
-            "L"
-        ],
-        "color": [
-            "Purple",
-            "Yellow"
-        ],
-        "images": [
-            "https://example.com/images/product26.jpg",
-            "https://example.com/images/product32.jpg"
-        ],
-        "user": 7,
-        "category": 5,
-        "active": true
-    },
-    {
-        "name": "Short Sleeve T-Shirt",
-        "description": "Essential T-shirt with a comfortable fit for everyday wear",
-        "brand": "H&M",
-        "price": 85.82,
-        "stock": 97,
-        "size": [
-            "L",
-            "XL",
-            "XXL"
-        ],
-        "color": [
-            "Blue",
-            "Black"
-        ],
-        "images": [
-            "https://example.com/images/product26.jpg",
-            "https://example.com/images/product27.jpg"
-        ],
-        "user": 8,
-        "category": 6,
-        "active": true
-    },
-    {
-        "name": "Round Neck T-Shirt",
+        "name": "Victory Crew T-Shirt",
         "description": "Classic round neck T-shirt made for casual comfort and style",
         "brand": "Nike",
         "price": 97.07,
@@ -594,15 +504,14 @@
             "M"
         ],
         "color": [
-            "Gray",
+            "Pink",
             "Red"
         ],
         "images": [
-            "https://example.com/images/product49.jpg",
-            "https://example.com/images/product19.jpg"
+            "https://www.svpsports.ca/cdn/shop/files/adidas---Women_s-Aeroready-Train-Essentials-V-Neck-T-Shirt-_HR7876_-05.jpg?v=1722891448&width=2400"
         ],
         "user": 7,
-        "category": 20,
+        "category": 1,
         "active": false
     },
     {
@@ -617,15 +526,14 @@
             "XXL"
         ],
         "color": [
-            "Green",
-            "White"
+            "Red",
+            "Black"
         ],
         "images": [
-            "https://example.com/images/product19.jpg",
-            "https://example.com/images/product8.jpg"
+            "https://imagescdn.simons.ca/images/21625-24515-61-A1_2/iconic-logo-t-shirt.jpg?__=7"
         ],
         "user": 7,
-        "category": 26,
+        "category": 1,
         "active": true
     },
     {
@@ -643,109 +551,102 @@
             "Black"
         ],
         "images": [
-            "https://example.com/images/product22.jpg",
-            "https://example.com/images/product5.jpg"
-        ],
+"https://cdn.mall.adeptmind.ai/https%3A%2F%2Fimage.uniqlo.com%2FUQ%2FST3%2FWesternCommon%2Fimagesgoods%2F456630%2Fitem%2Fgoods_64_456630.jpg_large.webp"        ],
         "user": 8,
-        "category": 14,
+        "category": 15,
         "active": false
     },
     {
-        "name": "Slim Fit Jeans",
-        "description": "Tailored slim-fit jeans for a modern, sharp look",
+        "name": "Cargo Pants",
+        "description": "Low waist, covered elastic at back of waistband, and zip fly with snap fastener",
         "brand": "H&M",
         "price": 76.5,
         "stock": 62,
         "size": [
-            "XS",
-            "S",
-            "M"
+            "2",
+            "6",
+            "8"
         ],
         "color": [
             "Gray",
-            "Red"
+            "Green"
         ],
         "images": [
-            "https://example.com/images/product22.jpg",
-            "https://example.com/images/product39.jpg"
+            "https://image.hm.com/assets/hm/19/95/199551b45be445965caf1fa9dd68d82de610aa48.jpg?imwidth=2160"
         ],
         "user": 9,
-        "category": 6,
+        "category": 2,
         "active": false
     },
     {
-        "name": "Leather Jacket",
+        "name": "Varsity Leather Jacket",
         "description": "High-quality leather jacket with a timeless design",
         "brand": "Nike",
-        "price": 11.71,
-        "stock": 39,
+        "price": 249.71,
+        "stock": 29,
         "size": [
             "S",
             "L"
         ],
         "color": [
-            "Gray",
+            "Green",
+            "Black",
+            "Orange"
+        ],
+        "images": [
+            "https://images.footlocker.com/is/image/EBFL2/D7845010"
+        ],
+        "user": 7,
+        "category": 4,
+        "active": true
+    },
+    {
+        "name": "Heattech Scarf",
+        "description": "Warm and soft wool scarf, perfect for chilly days",
+        "brand": "Uniqlo",
+        "price": 19.29,
+        "stock": 44,
+        "size": [
+            "One size"
+        ],
+        "color": [
+            "Green",
+            "White",
             "Red"
         ],
         "images": [
-            "https://example.com/images/product34.jpg",
-            "https://example.com/images/product35.jpg"
-        ],
-        "user": 7,
-        "category": 8,
-        "active": true
-    },
-    {
-        "name": "Wool Scarf",
-        "description": "Warm and soft wool scarf, perfect for chilly days",
-        "brand": "Nike",
-        "price": 93.29,
-        "stock": 44,
-        "size": [
-            "L",
-            "XL",
-            "XXL"
-        ],
-        "color": [
-            "Green",
-            "White"
-        ],
-        "images": [
-            "https://example.com/images/product17.jpg",
-            "https://example.com/images/product14.jpg"
+            "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/470736/item/goods_15_470736_3x4.jpg?width=494"
         ],
         "user": 8,
-        "category": 28,
+        "category": 18,
         "active": true
     },
     {
-        "name": "Slim Fit Jeans",
-        "description": "Slim-fit jeans offering a comfortable, yet stylish fit",
-        "brand": "Uniqlo",
-        "price": 69.5,
-        "stock": 70,
+        "name": "Check Backpack",
+        "description": "The spacious design is lined in nylon and has leather trims and a quilted back panel for comfort",
+        "brand": "Burberry",
+        "price": 1990.00,
+        "stock": 5,
         "size": [
-            "XS",
-            "S",
-            "M"
+            "One size"
         ],
         "color": [
-            "Green",
-            "White"
+            "Black",
+            "White",
+            "Yellow"
         ],
         "images": [
-            "https://example.com/images/product18.jpg",
-            "https://example.com/images/product26.jpg"
+            "https://assets.burberry.com/is/image/Burberryltd/825625F2-1644-46A4-8B23-AFF5959E046F?$BBY_V3_SL_1$&wid=2100&hei=2100"
         ],
         "user": 9,
-        "category": 8,
+        "category": 9,
         "active": true
     },
     {
-        "name": "Cotton Hoodie",
+        "name": "Therma Hoodie",
         "description": "Soft cotton hoodie, ideal for layering or casual wear",
-        "brand": "Uniqlo",
-        "price": 33.98,
+        "brand": "Nike",
+        "price": 78.98,
         "stock": 88,
         "size": [
             "M",
@@ -753,373 +654,35 @@
         ],
         "color": [
             "Gray",
-            "Red"
+            "Black"
         ],
         "images": [
-            "https://example.com/images/product4.jpg",
-            "https://example.com/images/product15.jpg"
+            "https://apim.sportchek.ca/v1/product/api/v1/product/image/11993654f?baseStoreId=SC&lang=en_CA&subscription-key=c01ef3612328420c9f5cd9277e815a0e&imwidth=640&impolicy=mZoom"
         ],
         "user": 8,
         "category": 9,
         "active": false
     },
     {
-        "name": "Leather Jacket",
-        "description": "Classic leather jacket that adds a rugged edge to any outfit",
-        "brand": "Fossil",
-        "price": 49.57,
-        "stock": 49,
-        "size": [
-            "L",
-            "XL",
-            "XXL"
-        ],
-        "color": [
-            "Blue",
-            "Black"
-        ],
-        "images": [
-            "https://example.com/images/product6.jpg",
-            "https://example.com/images/product34.jpg"
-        ],
-        "user": 9,
-        "category": 6,
-        "active": false
-    },
-    {
-        "name": "Classic Watch",
-        "description": "Stylish watch with a minimalist design, perfect for daily wear",
-        "brand": "Gap",
-        "price": 67.97,
-        "stock": 32,
-        "size": [
-            "L",
-            "XL",
-            "XXL"
-        ],
-        "color": [
-            "Gray",
-            "Red"
-        ],
-        "images": [
-            "https://example.com/images/product25.jpg",
-            "https://example.com/images/product38.jpg"
-        ],
-        "user": 8,
-        "category": 6,
-        "active": false
-    },
-    {
-        "name": "Slim Fit Blazer",
-        "description": "Sleek blazer offering a tailored fit for a professional look",
-        "brand": "Adidas",
-        "price": 33.75,
-        "stock": 84,
-        "size": [
-            "S",
-            "L"
-        ],
-        "color": [
-            "Green",
-            "White"
-        ],
-        "images": [
-            "https://example.com/images/product4.jpg",
-            "https://example.com/images/product36.jpg"
-        ],
-        "user": 9,
-        "category": 5,
-        "active": false
-    },
-    {
-        "name": "Wool Scarf",
-        "description": "Luxurious wool scarf, providing warmth with a premium touch",
-        "brand": "Burberry",
-        "price": 59.18,
-        "stock": 72,
-        "size": [
-            "XS",
-            "S",
-            "M"
-        ],
-        "color": [
-            "Gray",
-            "Red"
-        ],
-        "images": [
-            "https://example.com/images/product32.jpg",
-            "https://example.com/images/product11.jpg"
-        ],
-        "user": 7,
-        "category": 28,
-        "active": false
-    },
-    {
-        "name": "Cotton Hoodie",
-        "description": "Casual cotton hoodie designed for comfort and style",
-        "brand": "H&M",
-        "price": 89.76,
-        "stock": 30,
-        "size": [
-            "XS",
-            "S",
-            "M"
-        ],
-        "color": [
-            "Purple",
-            "Yellow"
-        ],
-        "images": [
-            "https://example.com/images/product22.jpg",
-            "https://example.com/images/product2.jpg"
-        ],
-        "user": 9,
-        "category": 27,
-        "active": true
-    },
-    {
-        "name": "Running Shoes",
+        "name": "Samba OG Shoes",
         "description": "Comfortable running shoes designed for high performance",
-        "brand": "Zara",
-        "price": 79.02,
+        "brand": "Adidas",
+        "price": 129.02,
         "stock": 55,
         "size": [
-            "XS",
-            "S",
-            "M"
+            "6",
+            "7",
+            "8"
         ],
         "color": [
-            "Blue",
+            "White",
             "Black"
         ],
         "images": [
-            "https://example.com/images/product48.jpg",
-            "https://example.com/images/product50.jpg"
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8c4158c4c39a4ab09b8ba8c000c96fd0_9366/Samba_OG_Shoes_White_B75806_01_01_hover_standard.jpg"
         ],
         "user": 8,
         "category": 28,
         "active": true
-    },
-    {
-        "name": "Casual Shirt",
-        "description": "Elegant casual shirt with a versatile design for various occasions",
-        "brand": "Burberry",
-        "price": 31.25,
-        "stock": 52,
-        "size": [
-            "S",
-            "L"
-        ],
-        "color": [
-            "Blue",
-            "Black"
-        ],
-        "images": [
-            "https://example.com/images/product17.jpg",
-            "https://example.com/images/product2.jpg"
-        ],
-        "user": 7,
-        "category": 29,
-        "active": true
-    },
-    {
-        "name": "Round Neck T-Shirt",
-        "description": "Classic round neck T-shirt designed for everyday wear",
-        "brand": "Nike",
-        "price": 52.74,
-        "stock": 97,
-        "size": [
-            "XS",
-            "S",
-            "M"
-        ],
-        "color": [
-            "Purple",
-            "Yellow"
-        ],
-        "images": [
-            "https://example.com/images/product26.jpg",
-            "https://example.com/images/product43.jpg"
-        ],
-        "user": 8,
-        "category": 10,
-        "active": false
-    },
-    {
-        "name": "Wool Scarf",
-        "description": "Warm wool scarf with a simple, stylish design for all occasions",
-        "brand": "H&M",
-        "price": 24.34,
-        "stock": 40,
-        "size": [
-            "M",
-            "XL"
-        ],
-        "color": [
-            "Blue",
-            "Black"
-        ],
-        "images": [
-            "https://example.com/images/product17.jpg",
-            "https://example.com/images/product38.jpg"
-        ],
-        "user": 9,
-        "category": 30,
-        "active": false
-    },
-    {
-        "name": "Short Sleeve T-Shirt",
-        "description": "Lightweight short-sleeve T-shirt with a classic and versatile design",
-        "brand": "H&M",
-        "price": 89.4,
-        "stock": 71,
-        "size": [
-            "M",
-            "XL"
-        ],
-        "color": [
-            "Purple",
-            "Yellow"
-        ],
-        "images": [
-            "https://example.com/images/product19.jpg",
-            "https://example.com/images/product34.jpg"
-        ],
-        "user": 9,
-        "category": 2,
-        "active": true
-    },
-    {
-        "name": "Cotton Hoodie",
-        "description": "Casual cotton hoodie designed for comfort and layering",
-        "brand": "Nike",
-        "price": 38.14,
-        "stock": 86,
-        "size": [
-            "L",
-            "XL",
-            "XXL"
-        ],
-        "color": [
-            "Gray",
-            "Red"
-        ],
-        "images": [
-            "https://example.com/images/product26.jpg",
-            "https://example.com/images/product50.jpg"
-        ],
-        "user": 9,
-        "category": 25,
-        "active": false
-    },
-    {
-        "name": "Slim Fit Blazer",
-        "description": "Tailored slim-fit blazer offering a polished and modern look",
-        "brand": "Gap",
-        "price": 52.98,
-        "stock": 15,
-        "size": [
-            "M",
-            "XL"
-        ],
-        "color": [
-            "Gray",
-            "Red"
-        ],
-        "images": [
-            "https://example.com/images/product10.jpg",
-            "https://example.com/images/product22.jpg"
-        ],
-        "user": 7,
-        "category": 23,
-        "active": true
-    },
-    {
-        "name": "Running Shoes",
-        "description": "Durable and lightweight running shoes ideal for active lifestyles",
-        "brand": "Gap",
-        "price": 46.56,
-        "stock": 86,
-        "size": [
-            "S",
-            "L"
-        ],
-        "color": [
-            "Gray",
-            "Red"
-        ],
-        "images": [
-            "https://example.com/images/product34.jpg",
-            "https://example.com/images/product30.jpg"
-        ],
-        "user": 8,
-        "category": 2,
-        "active": false
-    },
-    {
-        "name": "Wool Scarf",
-        "description": "Soft wool scarf offering a blend of style and warmth",
-        "brand": "Zara",
-        "price": 24.04,
-        "stock": 42,
-        "size": [
-            "M",
-            "XL"
-        ],
-        "color": [
-            "Blue",
-            "Black"
-        ],
-        "images": [
-            "https://example.com/images/product18.jpg",
-            "https://example.com/images/product48.jpg"
-        ],
-        "user": 7,
-        "category": 14,
-        "active": true
-    },
-    {
-        "name": "Running Shoes",
-        "description": "Comfortable running shoes built for both performance and everyday wear",
-        "brand": "Uniqlo",
-        "price": 43.87,
-        "stock": 96,
-        "size": [
-            "M",
-            "XL"
-        ],
-        "color": [
-            "Gray",
-            "Red"
-        ],
-        "images": [
-            "https://example.com/images/product36.jpg",
-            "https://example.com/images/product2.jpg"
-        ],
-        "user": 8,
-        "category": 23,
-        "active": true
-    },
-    {
-        "name": "Wool Scarf",
-        "description": "Elegant wool scarf designed to add a touch of sophistication to any outfit",
-        "brand": "Armani",
-        "price": 38.82,
-        "stock": 12,
-        "size": [
-            "M",
-            "XL"
-        ],
-        "color": [
-            "Purple",
-            "Yellow"
-        ],
-        "images": [
-            "https://example.com/images/product31.jpg",
-            "https://example.com/images/product30.jpg"
-        ],
-        "user": 6,
-        "category": 30,
-        "active": false
     }
-]
+   ]

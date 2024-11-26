@@ -1,22 +1,14 @@
 [
     {
-        "name": "T-shirt",
-        "active": true
-    },
-    {
         "name": "Jeans",
         "active": true
     },
     {
-        "name": "Jackets",
+        "name": "Blazers",
         "active": true
     },
     {
-        "name": "Shoes",
-        "active": true
-    },
-    {
-        "name": "Hats",
+        "name": "Hoodies",
         "active": true
     },
     {
@@ -52,10 +44,6 @@
         "active": true
     },
     {
-        "name": "Pants",
-        "active": true
-    },
-    {
         "name": "Shorts",
         "active": true
     },
@@ -73,10 +61,6 @@
     },
     {
         "name": "Sportswear",
-        "active": true
-    },
-    {
-        "name": "Blazers",
         "active": true
     },
     {
