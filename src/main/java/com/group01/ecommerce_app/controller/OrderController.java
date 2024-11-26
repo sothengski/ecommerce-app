@@ -191,13 +191,13 @@ public class OrderController {
     // HttpStatus.CREATED);
     // }
 
-    @PutMapping("/orders/{id}")
+    @PutMapping("/orders/{orderId}")
     public ResponseEntity<ApiResponse<OrderDTO>> updateOrder(
-            @PathVariable("id") long id,
+            @PathVariable("orderId") long id,
             @RequestBody OrderRequestDTO orderRequestDTO) {
         try {
             // Find the existing order by ID
-            Optional<Order> orderData = orderRepository.findById(id);
+            Optional<Order> orderData = orderRepository.findById(orderId);
             if (orderData.isPresent()) {
                 Order existingOrder = orderData.get();
 
@@ -265,7 +265,7 @@ public class OrderController {
                         responseDto), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(
-                        new ApiResponse<>(false, "Order with id " + id + " does not exist", "Order not found"),
+                        new ApiResponse<>(false, "Order with id " + orderId + " does not exist", "Order not found"),
                         HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
