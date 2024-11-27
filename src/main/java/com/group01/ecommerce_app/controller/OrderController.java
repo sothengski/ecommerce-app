@@ -193,7 +193,7 @@ public class OrderController {
 
     @PutMapping("/orders/{orderId}")
     public ResponseEntity<ApiResponse<OrderDTO>> updateOrder(
-            @PathVariable("orderId") long id,
+            @PathVariable("orderId") long orderId,
             @RequestBody OrderRequestDTO orderRequestDTO) {
         try {
             // Find the existing order by ID
