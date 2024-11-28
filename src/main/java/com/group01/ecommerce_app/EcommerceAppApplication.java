@@ -110,7 +110,7 @@ public class EcommerceAppApplication {
 			Product pro1 = new Product("Long Sleeve T-Shirt",
 					"Comfortable cotton t-shirt",
 					"Zara",
-					19.99,
+					31.99,
 					50,
 					List.of("S", "M", "L"),
 					List.of("White", "Black", "Blue"),
