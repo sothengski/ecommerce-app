@@ -43,7 +43,7 @@
         "name": "Stainless Watch",
         "description": "Sleek and minimalist watch with a refined design for everyday wear",
         "brand": "Fossil",
-        "price": 66.37,
+        "price": 1663.37,
         "stock": 10,
         "size": [
             "M",
@@ -213,7 +213,7 @@
         "name": "Hooded Hoodie",
         "description": "Comfortable hoodie made from premium cotton for casual wear",
         "brand": "Armani",
-        "price": 27.26,
+        "price": 784.26,
         "stock": 17,
         "size": [
             "M",
@@ -277,7 +277,7 @@
         "name": "Skinny Jeans",
         "description": "Tailored jeans offering a sleek fit for a modern look",
         "brand": "Armani",
-        "price": 67.71,
+        "price": 957.71,
         "stock": 30,
         "size": [
             "22",
@@ -363,7 +363,7 @@
         "name": "Sand Blazer",
         "description": "Fashionable blazer with a contemporary fit, perfect for events",
         "brand": "Burberry",
-        "price": 21.96,
+        "price": 1100.96,
         "stock": 37,
         "size": [
             "XS",
@@ -386,7 +386,7 @@
         "name": "Emporio Armani Watch",
         "description": "Sophisticated watch with a clean and functional design",
         "brand": "Armani",
-        "price": 95.71,
+        "price": 1457.71,
         "stock": 96,
         "size": [
             "S",
