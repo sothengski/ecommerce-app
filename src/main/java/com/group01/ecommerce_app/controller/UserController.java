@@ -193,6 +193,8 @@ public class UserController {
                 userTemp.setLastName(userDetails.getLastName());
                 userTemp.setPhone(userDetails.getPhone());
                 userTemp.setShippingAddress(userDetails.getAddress());
+                userTemp.setActive(userDetails.getActive());
+
                 // userTemp.setPassword(userDetails.getPassword());
                 // Fetch and set Role by roleId
                 if (userDetails.getRoleId() != null) {
