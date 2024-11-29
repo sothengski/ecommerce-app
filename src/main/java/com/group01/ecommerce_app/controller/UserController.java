@@ -149,8 +149,10 @@ public class UserController {
             userTemp.setEmail(userData.getEmail());
             userTemp.setFirstName(userData.getFirstName());
             userTemp.setLastName(userData.getLastName());
+            userTemp.setPhone(userData.getPhone());
+            userTemp.setShippingAddress(userData.getAddress());
             userTemp.setPassword(userData.getPassword());
-            userTemp.setActive(false);
+            userTemp.setActive(userData.getActive());
             // // userTemp.setPassword(passwordEncoder.encode(userDto.getPassword())); //
             // // Encrypt password
             userTemp.setRole(role); // Attach role to user

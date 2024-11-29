@@ -14,6 +14,7 @@ public class UserCreateRequestDTO {
     private String address;
     private String password;
     private Integer roleId;
+    private Boolean active = false;
 
     // Getters and setters
 }
