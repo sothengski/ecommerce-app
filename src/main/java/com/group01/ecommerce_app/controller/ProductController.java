@@ -76,7 +76,7 @@ public class ProductController {
 
 	// Get a Product record by its id
 	@GetMapping("/products/{productId}")
-	public ResponseEntity<ApiResponse<ProductDTO>> getProductById(@PathVariable("id") long productId) {
+	public ResponseEntity<ApiResponse<ProductDTO>> getProductById(@PathVariable("productId") long productId) {
 		try {
 			Optional<Product> productData = productRepository.findById(productId);
 			if (productData.isPresent()) {
@@ -234,7 +234,7 @@ public class ProductController {
 
 	// Update an existing Product record with its id
 	@PutMapping("/products/{productId}")
-	public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable("id") long productId,
+	public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable("productId") long productId,
 			@RequestBody ProductCreateRequestDTO productToBeUpdated) {
 		try {
 			Optional<Product> productData = productRepository.findById(productId);
@@ -292,8 +292,9 @@ public class ProductController {
 
 	// Delete an existing Product record with its id
 	@DeleteMapping("/products/{productId}")
-	public ResponseEntity<ApiResponse<HttpStatus>> deleteProduct(@PathVariable("id") long productId) {
+	public ResponseEntity<ApiResponse<HttpStatus>> deleteProduct(@PathVariable("productId") long productId) {
 		try {
+			
 			productRepository.deleteById(productId);
 			return ResponseEntity.noContent().build();
 		} catch (Exception e) {

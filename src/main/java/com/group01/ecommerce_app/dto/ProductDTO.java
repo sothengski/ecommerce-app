@@ -176,21 +176,6 @@ public class ProductDTO implements Serializable {
 
 	// Converts Product entity to ProductDTO
 	public static ProductDTO convertToProductDTO(final Product product) {
-		// return ProductDTO.builder()
-		// .id(product.getId())
-		// .name(product.getName())
-		// .description(product.getDescription())
-		// .brand(product.getBrand())
-		// .price(product.getPrice())
-		// .stock(product.getStock())
-		// .size(product.getSize().toString())
-		// .color(product.getColor().toString())
-		// .images(product.getImages())
-		// .userDTO(UserDTO.builder()
-		// .id(product.getUser().getId())
-		// .email(product.getUser().getEmail())
-		// .build())
-		// .build();
 
 		return new ProductDTO(
 				product.getId(),
