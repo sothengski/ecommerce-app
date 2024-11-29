@@ -75,16 +75,16 @@ public class ProductController {
 	}
 
 	// Get a Product record by its id
-	@GetMapping("/products/{id}")
-	public ResponseEntity<ApiResponse<ProductDTO>> getProductById(@PathVariable("id") long id) {
+	@GetMapping("/products/{productId}")
+	public ResponseEntity<ApiResponse<ProductDTO>> getProductById(@PathVariable("id") long productId) {
 		try {
-			Optional<Product> productData = productRepository.findById(id);
+			Optional<Product> productData = productRepository.findById(productId);
 			if (productData.isPresent()) {
 				return new ResponseEntity<>(new ApiResponse<>(true, "Product retrieved successfully",
 						ProductDTO.convertToProductDTO(productData.get())), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(
-						new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product is not found"),
+						new ApiResponse<>(false, "Product with id " + productId + " does not exist", "Product is not found"),
 						HttpStatus.NOT_FOUND);
 			}
 		} catch (Exception e) {
@@ -233,11 +233,11 @@ public class ProductController {
 	}
 
 	// Update an existing Product record with its id
-	@PutMapping("/products/{id}")
-	public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable("id") long id,
+	@PutMapping("/products/{productId}")
+	public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable("id") long productId,
 			@RequestBody ProductCreateRequestDTO productToBeUpdated) {
 		try {
-			Optional<Product> productData = productRepository.findById(id);
+			Optional<Product> productData = productRepository.findById(productId);
 			if (productData.isPresent()) {
 				Product updatedProduct = productData.get();
 
@@ -281,7 +281,7 @@ public class ProductController {
 						HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(
-						new ApiResponse<>(false, "Product with id " + id + " does not exist", "Product not found"),
+						new ApiResponse<>(false, "Product with id " + productId + " does not exist", "Product not found"),
 						HttpStatus.NOT_FOUND);
 			}
 		} catch (Exception e) {
@@ -291,10 +291,10 @@ public class ProductController {
 	}
 
 	// Delete an existing Product record with its id
-	@DeleteMapping("/products/{id}")
-	public ResponseEntity<ApiResponse<HttpStatus>> deleteProduct(@PathVariable("id") long id) {
+	@DeleteMapping("/products/{productId}")
+	public ResponseEntity<ApiResponse<HttpStatus>> deleteProduct(@PathVariable("id") long productId) {
 		try {
-			productRepository.deleteById(id);
+			productRepository.deleteById(productId);
 			return ResponseEntity.noContent().build();
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

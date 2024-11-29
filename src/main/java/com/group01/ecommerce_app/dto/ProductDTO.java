@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class ProductDTO implements Serializable {
-	private Long id;
+	private Long productId;
 	private String name;
 	private String description;
 	private String brand;
@@ -41,10 +41,10 @@ public class ProductDTO implements Serializable {
 	private List<String> images; // Assuming URLs are stored for images
 
 	// Constructor
-	public ProductDTO(Long id, String name, String description, String brand, double price, int stock,
+	public ProductDTO(Long productId, String name, String description, String brand, double price, int stock,
 			List<String> size, List<String> color, List<String> imgList,
 			UserDTO userDTO, Category category, boolean isActive) {
-		this.id = id;
+		this.productId = productId;
 		this.name = name;
 		this.description = description;
 		this.brand = brand;
@@ -59,7 +59,7 @@ public class ProductDTO implements Serializable {
 	}
 
 	public ProductDTO(Product product) {
-		this.id = product.getId();
+		this.productId = product.getId();
 		this.name = product.getName();
 		this.description = product.getDescription();
 		this.brand = product.getBrand();
@@ -78,11 +78,11 @@ public class ProductDTO implements Serializable {
 	}
 
 	public Long getId() {
-		return id;
+		return productId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long productId) {
+		this.productId = productId;
 	}
 
 	public void setName(String name) {

@@ -32,7 +32,7 @@ public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false, updatable = false)
-	private Long id;
+	private Long productId;
 
 	@Column(name = "name")
 	private String name;
@@ -95,11 +95,11 @@ public class Product implements Serializable {
 	}
 
 	public Long getId() {
-		return id;
+		return productId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long productId) {
+		this.productId = productId;
 	}
 
 	public String getName() {
@@ -184,7 +184,7 @@ public class Product implements Serializable {
 
 	@Override
 	public String toString() {
-		return this.id + " " + this.name + " " + this.description + " " +
+		return this.productId + " " + this.name + " " + this.description + " " +
 				this.brand + " " + this.price + " " +
 				this.stock + " " + this.size + " " + this.color + " " + this.isActive;
 	}
