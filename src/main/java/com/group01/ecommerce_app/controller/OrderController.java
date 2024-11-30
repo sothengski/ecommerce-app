@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.group01.ecommerce_app.dto.ApiResponse;
+import com.group01.ecommerce_app.dto.ItemRequestDTO;
 import com.group01.ecommerce_app.dto.OrderDTO;
 import com.group01.ecommerce_app.dto.OrderRequestDTO;
 import com.group01.ecommerce_app.model.Item;
@@ -215,20 +216,58 @@ public class OrderController {
 
                 // Update items
                 if (orderRequestDTO.getItems() != null) {
-                    List<Item> items = orderRequestDTO.getItems().stream().map(itemDTO -> {
-                        Product product = productRepository.findById(itemDTO.getProductId())
-                                .orElseThrow(() -> new RuntimeException(
-                                        "Product not found with id " + itemDTO.getProductId()));
+                    // List<Item> items = orderRequestDTO.getItems().stream().map(itemDTO -> {
+                    // Product product = productRepository.findById(itemDTO.getProductId())
+                    // .orElseThrow(() -> new RuntimeException(
+                    // "Product not found with id " + itemDTO.getProductId()));
 
-                        Item item = new Item();
-                        item.setOrder(existingOrder);
-                        item.setProduct(product);
-                        item.setQuantity(itemDTO.getQuantity());
-                        item.setUnitPrice(product.getPrice());
-                        item.setTotalPrice(product.getPrice() * itemDTO.getQuantity());
-                        return item;
-                    }).collect(Collectors.toList());
-                    existingOrder.setItems(items);
+                    // Item item = new Item();
+                    // item.setOrder(existingOrder);
+                    // item.setProduct(product);
+                    // item.setQuantity(itemDTO.getQuantity());
+                    // item.setUnitPrice(product.getPrice());
+                    // item.setTotalPrice(product.getPrice() * itemDTO.getQuantity());
+                    // return item;
+                    // }).collect(Collectors.toList());
+                    // existingOrder.setItems(items);
+
+                    // Iterate over each item in the request
+                    for (ItemRequestDTO itemDTO : orderRequestDTO.getItems()) {
+                        // Find the existing item in the order by matching the product ID
+                        Optional<Item> existingItemOpt = existingOrder.getItems().stream()
+                                .filter(item -> item.getProduct().getId().equals(itemDTO.getProductId()))
+                                .findFirst();
+
+                        if (existingItemOpt.isPresent()) {
+                            // Update existing item if found
+                            Item existingItem = existingItemOpt.get();
+                            Product product = productRepository.findById(itemDTO.getProductId())
+                                    .orElseThrow(() -> new RuntimeException(
+                                            "Product not found with id " + itemDTO.getProductId()));
+
+                            // Update the item details
+                            existingItem.setQuantity(itemDTO.getQuantity());
+                            existingItem.setUnitPrice(product.getPrice());
+                            existingItem.setTotalPrice(product.getPrice() * itemDTO.getQuantity()); // Update total
+                                                                                                    // price
+                        } else {
+                            // If the item doesn't exist in the order, create a new one
+                            Product product = productRepository.findById(itemDTO.getProductId())
+                                    .orElseThrow(() -> new RuntimeException(
+                                            "Product not found with id " + itemDTO.getProductId()));
+
+                            Item newItem = new Item();
+                            newItem.setOrder(existingOrder); // Link the item to the existing order
+                            newItem.setProduct(product);
+                            newItem.setQuantity(itemDTO.getQuantity());
+                            newItem.setUnitPrice(product.getPrice());
+                            newItem.setTotalPrice(product.getPrice() * itemDTO.getQuantity()); // Set the
+                            // total price
+
+                            // Add the new item to the order
+                            existingOrder.getItems().add(newItem);
+                        }
+                    }
                 }
 
                 // Update basic order details
