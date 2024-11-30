@@ -93,6 +93,23 @@ public class EcommerceAppApplication {
 					"369 Palm St, Springfield, IL");
 			userRepository.saveAll(List.of(admin, seller, buyer));
 
+			// Create a cart
+			Cart adminCart = new Cart();// cartRepository.findById(admin.getId()).get();
+			Cart sellerCart = new Cart();// cartRepository.findById(seller.getId()).get();
+			Cart buyerCart = new Cart();// cartRepository.findById(buyer.getId()).get();
+
+			adminCart.setUser(admin);
+			adminCart.setTotalPrice(0.0);
+
+			sellerCart.setUser(seller);
+			sellerCart.setTotalPrice(0.0);
+
+			buyerCart.setUser(buyer);
+			buyerCart.setTotalPrice(0.0);
+
+			// cart.setTotalPrice(0.0);
+			cartRepository.saveAll(List.of(adminCart, sellerCart, buyerCart));
+
 			List<User> users = loadUsers();
 			System.out.println("Users loaded: " + users.size());
 
@@ -146,12 +163,6 @@ public class EcommerceAppApplication {
 			// User buyer = userRepository.findByEmail("buyer@example.com").orElseThrow();
 
 			// Example of creating an order with items
-
-			// Create a cart
-			// Cart cart = cartRepository.findById(buyer.getId()).get();
-			// cart.setUser(buyer); // Assuming user is already created
-			// cart.setTotalPrice(0.0);
-			// cartRepository.save(cart);
 
 			// Sample Orders
 			Order order1 = new Order();
