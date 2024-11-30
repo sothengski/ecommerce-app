@@ -159,8 +159,8 @@ public class EcommerceAppApplication {
 			order1.setOrderNumber(Order.generateOrderNumber(buyer.getId(), false));
 			order1.setOrderStatus("Processing");
 			order1.setOrderDate(LocalDateTime.now());
-			order1.setTotalQuantity(3);
-			order1.setTotalPrice(150.00);
+			// order1.setTotalQuantity(3);
+			// order1.setTotalPrice(150.00);
 			order1.setCurrency("USD");
 			order1.setPaymentStatus("Pending");
 			order1.setPaymentMethod("Credit Card");
@@ -176,8 +176,8 @@ public class EcommerceAppApplication {
 			order2.setOrderNumber(Order.generateOrderNumber(buyer.getId(), true));
 			order2.setOrderStatus("Shipped");
 			order2.setOrderDate(LocalDateTime.now().minusDays(1));
-			order2.setTotalQuantity(2);
-			order2.setTotalPrice(75.00);
+			// order2.setTotalQuantity(2);
+			// order2.setTotalPrice(75.00);
 			order2.setCurrency("USD");
 			order2.setPaymentStatus("Paid");
 			order2.setPaymentMethod("PayPal");
@@ -188,10 +188,6 @@ public class EcommerceAppApplication {
 			// order2.setShippingCountry("USA");
 			order2.setShippingCost(4.99);
 			// order2.setCart(cart);
-
-			// Save Orders
-			order1 = orderRepository.save(order1);
-			order2 = orderRepository.save(order2);
 
 			// Order Items
 			Item item1 = new Item();
@@ -206,15 +202,25 @@ public class EcommerceAppApplication {
 			item2.setOrder(order1);
 			item2.setProduct(pro2);
 			item2.setQuantity(1);
-			item1.setUnitPrice(pro1.getPrice());
-			item1.setTotalPrice(item1.getQuantity() * item1.getUnitPrice());
+			item2.setUnitPrice(pro2.getPrice());
+			item2.setTotalPrice(item2.getQuantity() * item2.getUnitPrice());
+
+			order1.setTotalQuantity(item1.getQuantity() + item2.getQuantity());
+			order1.setTotalPrice(item1.getTotalPrice() + item2.getTotalPrice());
 
 			Item item3 = new Item();
 			item3.setOrder(order2);
 			item3.setProduct(pro3);
 			item3.setQuantity(1);
-			item1.setUnitPrice(pro1.getPrice());
-			item1.setTotalPrice(item1.getQuantity() * item1.getUnitPrice());
+			item3.setUnitPrice(pro3.getPrice());
+			item3.setTotalPrice(item3.getQuantity() * item3.getUnitPrice());
+
+			order2.setTotalQuantity(item3.getQuantity());
+			order2.setTotalPrice(item3.getTotalPrice());
+
+			// Save Orders
+			orderRepository.save(order1);
+			orderRepository.save(order2);
 
 			// Save Order Items
 			itemRepository.saveAll(List.of(item1, item2, item3));
