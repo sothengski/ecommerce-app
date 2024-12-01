@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.group01.ecommerce_app.model.Order;
 
 import lombok.Data;
@@ -19,6 +20,8 @@ public class OrderDTO {
     private Long orderId;
     private String orderNumber;
     private String orderStatus;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime orderDate;
 
     private int totalQuantity;
