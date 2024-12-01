@@ -294,7 +294,6 @@ public class ProductController {
 	@DeleteMapping("/products/{productId}")
 	public ResponseEntity<ApiResponse<HttpStatus>> deleteProduct(@PathVariable("productId") long productId) {
 		try {
-			
 			productRepository.deleteById(productId);
 			return ResponseEntity.noContent().build();
 		} catch (Exception e) {
