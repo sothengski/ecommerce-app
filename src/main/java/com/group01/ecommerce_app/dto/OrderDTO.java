@@ -40,6 +40,7 @@ public class OrderDTO {
     // private String billingState;
     // private String billingPostalCode;
     // private String billingCountry;
+    private UserDTO user;
 
     private List<ItemDTO> items;
 
@@ -73,6 +74,7 @@ public class OrderDTO {
         // dto.setBillingState(order.getBillingState());
         // dto.setBillingPostalCode(order.getBillingPostalCode());
         // dto.setBillingCountry(order.getBillingCountry());
+        dto.setUser(UserDTO.convertToUserDTO(order.getUser(), "role", "active"));
         dto.setItems(order.getItems().stream()
                 .map(ItemDTO::convertToItemDTO) // Explicitly map each Item
                 .collect(Collectors.toList()));
