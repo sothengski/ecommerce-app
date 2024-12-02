@@ -116,6 +116,6 @@ Registers a new user.
 ---
 
 ### Notes:
-- Postman collection (`https://www.postman.com/your-link](https://www.postman.com/sotheng-ski/sotheng/collection/onk338u/ecommerce-app-se?action=share&creator=10752563`)
+- Postman collection (`https://www.postman.com/sotheng-ski/sotheng/collection/onk338u/ecommerce-app-se?action=share&creator=10752563`)
 - Customize the "License" section if you're using a different open-source license.
 - The `application.properties` part assumes a MySQL database, but you can adjust it to suit PostgreSQL or another DB system as needed. 
