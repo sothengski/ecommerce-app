@@ -68,6 +68,11 @@ This is the backend for an eCommerce application built with **Spring Boot**. The
 
 5. The API will be available at `http://localhost:8080/api`.
 
+6. Postman Collection:
+    ```bash
+    https://www.postman.com/sotheng-ski/sotheng/collection/onk338u/ecommerce-app-se?action=share&creator=10752563
+    ```
+
 ---
 
 ## API Endpoints
@@ -116,6 +121,6 @@ Registers a new user.
 ---
 
 ### Notes:
-- Postman collection (`https://www.postman.com/sotheng-ski/sotheng/collection/onk338u/ecommerce-app-se?action=share&creator=10752563`)
+
 - Customize the "License" section if you're using a different open-source license.
 - The `application.properties` part assumes a MySQL database, but you can adjust it to suit PostgreSQL or another DB system as needed. 

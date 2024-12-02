@@ -46,10 +46,6 @@ public class UserController {
         this.cartRepository = cartRepository;
     }
 
-    // private final BCryptPasswordEncoder passwordEncoder = new
-    // BCryptPasswordEncoder();
-    // import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
     @GetMapping("/users")
     public ResponseEntity<ApiResponse<List<UserDTO>>> getAllUsers() {
         try {
@@ -224,11 +220,6 @@ public class UserController {
                     .body(new ApiResponse<>(false, "Error updating user", e.getMessage()));
         }
     }
-
-    // private String notFoundMessage(String type, Long id) {
-    // return id == null ? type + " not found" : type + " with id " + id + " does
-    // not exist";
-    // }
 
     @DeleteMapping("users/{id}")
     public ResponseEntity<ApiResponse<String>> deleteUser(@PathVariable("id") Long id) {

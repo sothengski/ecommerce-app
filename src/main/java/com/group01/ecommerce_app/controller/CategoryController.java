@@ -42,13 +42,7 @@ public class CategoryController {
             if (categories.isEmpty()) {
                 return new ResponseEntity<>(new ApiResponse<>(true, "Categories retrieved successfully",
                         categories, "No categories found"), HttpStatus.OK);
-                // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-                // return new ResponseEntity<>(new ApiResponse<>(true, "No Categories data",
-                // Collections.emptyList()), HttpStatus.NO_CONTENT);
             }
-
-            // List of roles have the data
-            // return ResponseEntity.ok(categories);
             return new ResponseEntity<>(new ApiResponse<>(true, "Categories retrieved successfully",
                     categories), HttpStatus.OK);
         } catch (Exception e) {
