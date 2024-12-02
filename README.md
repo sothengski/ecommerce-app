@@ -27,7 +27,7 @@ This is the backend for an eCommerce application built with **Spring Boot**. The
 ### Setup
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/ecommerce-backend.git
+    git clone https://github.com/sothengski/ecommerce-app.git
     cd ecommerce-app
     ```
 
